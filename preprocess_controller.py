@@ -1,3 +1,4 @@
+import pickle
 from data import preprocess
 import create
 
@@ -15,8 +16,11 @@ img_paths, captions = preprocess.get_path_caption()
 
 # 캡션 1개의 행에 5개의 comment가 있음
 # for i in range(len(captions)):
-#     # 한개의 이미지 경로, 한개의 이미지에 해당하는 캡션
-#     create.create_dataSet(img_paths, captions[i])
-
-
+# 한개의 이미지 경로, 한개의 이미지에 해당하는 캡션
+# img_data, caption_data = create.create_dataSet(img_paths, captions[i])
+# print(captions[i])
 create.create_dataSet(img_paths, captions[0])
+
+# with open('tokens.txt', 'rb') as f:
+#     data = pickle.load(f)
+#     print(data)

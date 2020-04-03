@@ -26,16 +26,16 @@ def preprocess_img(img_path, flag, target_size=250):
     # flag가 True : 데이터 정규화 하기
     if flag == True:
         img_tensor /= 255.
-        print(img_tensor[0])
+        # print(img_tensor[0])
 
     # flag가 False : 데이터 정규화 X
     else:
         print(img_tensor[0])
 
-    # 테스트 코드
-    # plt.rcParams['figure.figsize'] = (10, 10)
-    # plt.imshow(img_tensor[0])
-    # plt.show()
+        # 테스트 코드
+        # plt.rcParams['figure.figsize'] = (10, 10)
+        # plt.imshow(img_tensor[0])
+        # plt.show()
 
-    # 데이터 리턴
+        # 데이터 리턴
     return img_tensor
