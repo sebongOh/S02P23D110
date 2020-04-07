@@ -14,7 +14,7 @@ def get_path_caption():
     # csv_data[i][0] : image_name
     # csv_data[i][1] : comment_number
     # csv_data[i][2] : comment
-
+    
     # img_data[0] : 경로
     # img_data[1]: comment 1
     # img_data[2]: comment 2
@@ -32,6 +32,7 @@ def get_path_caption():
         img_data[4] = csv_data[i+3][2]
         img_data[5] = csv_data[i+4][2]
         captions.append(img_data[:])
+        
     return img_paths, captions
 
 

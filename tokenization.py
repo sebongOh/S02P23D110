@@ -1,5 +1,6 @@
 from tensorflow.keras.layers import Embedding
 from tensorflow.keras.models import Sequential
+from tensorflow.keras import preprocessing
 from tensorflow.keras.preprocessing.text import Tokenizer
 import img_preprocess
 import numpy as np
@@ -27,7 +28,7 @@ def tokenization(captions):
     tokenizer = Tokenizer(num_words=10000)
 
     # 단어 인덱스를 구축합니다.
-    tokenizer.fit_on_texts(samples[:100])
+    tokenizer.fit_on_texts(samples)
 
     # 문자열을 정수 인덱스의 리스트로 변환합니다.
 
@@ -40,6 +41,7 @@ def tokenization(captions):
     word_index = tokenizer.word_index
     word_cnt = tokenizer.word_counts
     word_docs = tokenizer.word_docs
+    print(captions[1:6])
     print('Found %s unique tokens.' % len(word_index))
     print(word_index)  # 많이 나온 순서
     print(word_cnt)  # 각 값이 나온 횟수
@@ -57,8 +59,8 @@ def tokenization(captions):
         samples[i].extend([pad]*(cap_leng-len(samples[i])))
 
     # print(samples[:10])  # 변환된 토큰들pring, 값이 많아서 10개만 봄
-# with open('tokens.txt', 'wb') as f:
-#     pickle.dump(samples, f)  # pickle 방식으로 저장
+    with open('tokens.txt', 'wb') as f:
+        pickle.dump(samples, f)  # pickle 방식으로 저장
     # word_cnt : 30이고, 단어 집합의 크기
     # 5 : 임베딩 벡터의 출력 차원.
     # input_length : 입력 시퀀스의 길이. 여기선 30
