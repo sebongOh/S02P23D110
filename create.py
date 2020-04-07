@@ -1,18 +1,53 @@
 import tokenization
 import img_preprocess
 import Augmentation
+import my_token
+import tensorflow as tf
+import numpy as np
 
 
-def create_dataSet(img_paths, captions):
+def create_tf_data(my_tokenizer, img_name_train, cap_train):
+    # Feel free to change these parameters according to your system's configuration
+    BATCH_SIZE = 64
+    BUFFER_SIZE = 1000
 
-    # 이미지 데이터화해서 받아오기
-    # img_tensor = img_preprocess.preprocess_img(captions[0], True)
+    num_steps = len(img_name_train) // BATCH_SIZE
+    # Shape of the vector extracted from InceptionV3 is (64, 2048)
+    # These two variables represent that vector shape
+    features_shape = 2048
+    attention_features_shape = 64
 
-    # 토큰화 된 캡션 쌍 받아오기
-    caption_sample = tokenization.tokenization(captions)
+    dataset = tf.data.Dataset.from_tensor_slices((img_name_train, cap_train))
 
-    # tf 데이터형식 지키는건진 모르겠움,,
-    # 이미지는 tf파일 형식으로 바꿔서 리턴한거라서 ㄱㅊ
-    # 토큰화된 캡션에서는 잘 모르겠음?
-    # return img_tensor, caption_sample
-    # Augmentation.do(img_tensor)
+    # Use map to load the numpy files in parallel
+    dataset = dataset.map(lambda item1, item2: tf.numpy_function(
+        map_func, [item1, item2], [tf.float32, tf.int32]),
+        num_parallel_calls=tf.data.experimental.AUTOTUNE)
+
+    # Shuffle and batch
+    dataset = dataset.shuffle(BUFFER_SIZE).batch(BATCH_SIZE)
+    dataset = dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
+
+    # encoder = CNN_Encoder(embedding_dim)
+    # decoder = RNN_Decoder(embedding_dim, units, vocab_size)
+    return dataset
+
+
+def map_func(img_name, cap):
+    img_tensor = np.load(img_name.decode('utf-8')+'.npy')
+    return img_tensor, cap
+
+# def create_dataSet(img_paths, captions):
+
+#     # 이미지 데이터화해서 받아오기
+#     # img_tensor = img_preprocess.preprocess_img(captions[0], True)
+
+#     # 토큰화 된 캡션 쌍 받아오기
+#     caption_sample = tokenization.tokenization(captions)
+
+#     # tf 데이터형식 지키는건진 모르겠움,,
+#     # 이미지는 tf파일 형식으로 바꿔서 리턴한거라서 ㄱㅊ
+#     # 토큰화된 캡션에서는 잘 모르겠음?
+#     # return img_tensor, caption_sample
+#     # Augmentation.do(img_tensor)
+#     return caption_sample

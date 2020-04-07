@@ -2,8 +2,35 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 from tensorflow.keras.preprocessing import image
-
+from sklearn.utils import shuffle
 # 여기서 이미지를 데이터화 하겠지?
+
+
+def img_pre(img_path, captions):
+    all_img_name = []
+    all_caption = []
+
+    # 각 캡션에 <start><end>토큰 추가
+    for i in range(0, len(captions), 1):
+        img_path = captions[i][0]
+
+        for j in range(1, 6, 1):
+            caption = ""
+            caption += '<start>' + captions[i][j] + '<end>'
+
+            all_img_name.append(img_path)
+            all_caption.append(caption)
+
+    # print(all_img_name)
+    # print(all_caption)
+    train_captions, img_name_vector = shuffle(
+        all_caption, all_img_name, random_state=1)
+
+    num_example = 3000
+    train_captions = train_captions[:num_example]
+    img_name_vector = img_name_vector[:num_example]
+
+    return img_name_vector, train_captions
 
 
 def preprocess_img(img_path, flag, target_size=250):
