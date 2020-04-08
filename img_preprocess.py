@@ -25,7 +25,6 @@ def img_pre(img_path, captions):
     # print(all_caption)
     train_captions, img_name_vector = shuffle(
         all_caption, all_img_name, random_state=1)
-
     num_example = 3000
     train_captions = train_captions[:num_example]
     img_name_vector = img_name_vector[:num_example]

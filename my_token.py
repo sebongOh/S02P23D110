@@ -50,7 +50,7 @@ def tokenization(train_captions):
 
     # 다시 토큰화된 벡터 생성!!
     train_seqs = tokenizer.texts_to_sequences(train_captions)
-
+    print("train_seqs:", train_seqs[0])
     # 토큰화 벡터를 설정한 pad로 채우기
     # (만약에 위에서 토크나이저 생성할때, 최대 길이 설정안하면, 자동으로 됨)
     cap_vector = preprocessing.sequence.pad_sequences(train_seqs)
@@ -58,7 +58,7 @@ def tokenization(train_captions):
     # max_length : 가중치를 저장하는데 사용되는 길이
     max_length = calc_max_length(train_seqs)
 
-    return tokenizer, cap_vector
+    return tokenizer, cap_vector, train_seqs, max_length
 
 
 # ======================= 토크 나이저 저장 및 불러오기 ==================
@@ -67,13 +67,49 @@ def Save_Tokenizer(my_tokenizer):
     with open('tokens.txt', 'wb') as f:
         pickle.dump(my_tokenizer, f)  # pickle 방식으로 저장
 
+def Save_Captions(cap_vector):
+    with open('captions.txt', 'wb') as f:
+        pickle.dump(cap_vector, f)  # pickle 방식으로 저장
+        
+def Save_Seqs(train_seqs):
+    with open('train_seqs.txt', 'wb') as f:
+        pickle.dump(train_seqs, f)  # pickle 방식으로 저장
+
 
 # 토크나이저 객체 불러오기
 def Load_Tokenizer():
-    with open('tokens.txt', 'rb') as f:
-        my_tokenizer = pickle.load(f)
+    try:
+        with open('tokens.txt', 'rb') as f:
+            my_tokenizer = pickle.load(f)
 
-    if(my_tokenizer is None):
+        if(my_tokenizer is None):
+            return None
+        else:
+            return my_tokenizer
+    except:
         return None
-    else:
-        return my_tokenizer
+        
+def Load_Captions():
+    try:
+        with open('captions.txt', 'rb') as f:
+            cap_vector = pickle.load(f)
+
+        if(cap_vector is None):
+            return None
+        else:
+            return cap_vector
+    except:
+        return None
+
+        
+def Load_Seqs():
+    try:
+        with open('train_seqs.txt', 'rb') as f:
+            train_seqs = pickle.load(f)
+
+        if(cap_vector is None):
+            return None
+        else:
+            return train_seqs
+    except:
+        return None
