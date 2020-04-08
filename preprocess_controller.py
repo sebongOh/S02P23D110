@@ -82,7 +82,7 @@ decoder = RNN.RNN_Decoder(embedding_dim, units, vocab_size)
 
 print(encoder, decoder)
 
-image_features_extract_model = pre_trained_model.Pre_trained_img(img_name_vector)
+# image_features_extract_model = pre_trained_model.Pre_trained_img(img_name_vector)
 
 
 
@@ -125,7 +125,7 @@ image_features_extract_model = pre_trained_model.Pre_trained_img(img_name_vector
 # #                                                                     test_size=0.2,
 # #                                                                     random_state=0)
 
-print(len(img_name_train), len(cap_train), len(img_name_val), len(cap_val))
+# print(len(img_name_train), len(cap_train), len(img_name_val), len(cap_val))
 
 
 
