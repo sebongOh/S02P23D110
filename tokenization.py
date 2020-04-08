@@ -24,7 +24,7 @@ def tokenization(captions):
     # for i in range(len(samples)):
     #     samples[i] = "<start>" + samples[i] + "<end>"
 
-    # 가장 빈도가 높은 1,000개의 단어만 선택하도록 Tokenizer 객체를 만듭니다.
+    # 가장 빈도가 높은 10,000개의 단어만 선택하도록 Tokenizer 객체를 만듭니다.
     tokenizer = Tokenizer(num_words=10000)
 
     # 단어 인덱스를 구축합니다.

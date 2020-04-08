@@ -9,7 +9,7 @@ import numpy as np
 def create_tf_data(my_tokenizer, img_name_train, cap_train):
     # Feel free to change these parameters according to your system's configuration
     BATCH_SIZE = 64
-    BUFFER_SIZE = 1000
+    BUFFER_SIZE = 1000 # shuffle 기준치, 1000이면 앞에서 부터 1000개만 뽑아서 섞고 다음1000개를 섞고..
 
 
     dataset = tf.data.Dataset.from_tensor_slices((img_name_train, cap_train))
@@ -23,8 +23,6 @@ def create_tf_data(my_tokenizer, img_name_train, cap_train):
     dataset = dataset.shuffle(BUFFER_SIZE).batch(BATCH_SIZE)
     dataset = dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
 
-    # encoder = CNN_Encoder(embedding_dim)
-    # decoder = RNN_Decoder(embedding_dim, units, vocab_size)
     return dataset
 
 

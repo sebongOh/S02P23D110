@@ -6,7 +6,7 @@ from sklearn.utils import shuffle
 # 여기서 이미지를 데이터화 하겠지?
 
 
-def img_pre(img_path, captions):
+def img_pre(img_path, captions, test_data_num):
     all_img_name = []
     all_caption = []
 
@@ -22,7 +22,7 @@ def img_pre(img_path, captions):
 
     train_captions, img_name_vector = shuffle(
         all_caption, all_img_name, random_state=1)
-    num_example = 3000
+    num_example = test_data_num
     train_captions = train_captions[:num_example]
     img_name_vector = img_name_vector[:num_example]
 

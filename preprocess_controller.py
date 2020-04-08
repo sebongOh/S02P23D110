@@ -12,7 +12,10 @@ import img_preprocess, img_extract, create, CNN, RNN, pre_trained_model
 
 # - Augmentation 링크
 # https://keraskorea.github.io/posts/2018-10-24-little_data_powerful_model/
-tf.device('/cpu:0')
+
+# GPU 메모리 초기화
+gpus = tf.config.experimental.list_physical_devices('GPU')
+tf.config.experimental.set_memory_growth(gpus[0], True)
 
 # Req 3번에서 이미지 파일 경로랑 캡션을 입력으로 받으라고 함
 #  이미지 파일 경로, 캡션 받기
@@ -21,16 +24,22 @@ print("이미지/캡션 데이터 로딩")
 # ===========================
 # 이미지 정규화 데이터 받아오기
 # 여기 구현
-img_name_vector, train_captions = img_preprocess.img_pre(img_paths, captions)
+img_name_vector, train_captions = img_preprocess.img_pre(img_paths, captions, 3000)
 print("샤용 데이터수: ",len(train_captions))
 # ===========================
+
+
 
 # ===========================================
 # 캡션 토큰화 데이터 받아오기,, 리턴은 토크나이저
 # my_tokenizer = None
 # if(my_token.Load_Tokenizer() == None):
 #     print("dddddddddddddddddddddd")
+
+# # 나머지 구현후에 저장/로드 부분 마무리
 tokenizer, cap_vector, train_seqs, max_length = my_token.tokenization(train_captions[:my_token.top_k*5])
+
+
 #     my_token.Save_Tokenizer(my_tokenizer)
 #     my_token.Save_Captions(cap_vector)
 #     my_token.Save_Seqs(train_seqs)
@@ -60,7 +69,6 @@ tokenizer, cap_vector, train_seqs, max_length = my_token.tokenization(train_capt
 # 따라서 train:test = 80% : 20%
 img_name_train, img_name_val, cap_train, cap_val = train_test_split(
     img_name_vector, cap_vector, test_size=0.2, random_state=0)
-print("데이터 분할 완료")
 # ====================-=======
 
 # # tf 데이터셋 만들기
@@ -80,11 +88,13 @@ print("인코딩, 디코딩")
 
 image_features_extract_model = pre_trained_model.Pre_trained_img(img_name_vector)
 
-print(len(img_name_train), len(cap_train), len(img_name_val), len(cap_val))
+print("데이터 분할 완료")
+print("트레이닝 데이터수: ", len(img_name_train), len(cap_train), "테스트 데이터수: ",len(img_name_val), len(cap_val))
 
 optimizer = tf.keras.optimizers.Adam()
 
 
+# # 체크 포인트 지정 : 
 
 checkpoint_path = "./checkpoints/train"
 ckpt = tf.train.Checkpoint(encoder=encoder,
@@ -93,6 +103,11 @@ ckpt = tf.train.Checkpoint(encoder=encoder,
 ckpt_manager = tf.train.CheckpointManager(ckpt, checkpoint_path, max_to_keep=5)
 
 start_epoch = 0
+
+##############################################
+# # 학습을 지속할때 이전에 학습한 자료로 초반epoch 사용
+# # 학습시간 감소를 위해 사용한듯?
+# # 나머지 구현 후에 주석 해제
 # if ckpt_manager.latest_checkpoint:
 #     start_epoch = int(ckpt_manager.latest_checkpoint.split('-')[-1])
 #     # restoring the latest checkpoint in checkpoint_path
@@ -100,13 +115,14 @@ start_epoch = 0
 
 # adding this in a separate cell because if you run the training cell
 # many times, the loss_plot array will be reset
+####################################################
+
 loss_plot = []
 
 print("학습을 시작합니다")
 BATCH_SIZE = 64
-BUFFER_SIZE = 1000
 
-EPOCHS = 20
+EPOCHS = 30
 num_steps = len(img_name_train) // BATCH_SIZE
 
 for epoch in range(start_epoch, EPOCHS):
