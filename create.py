@@ -11,11 +11,6 @@ def create_tf_data(my_tokenizer, img_name_train, cap_train):
     BATCH_SIZE = 64
     BUFFER_SIZE = 1000
 
-    num_steps = len(img_name_train) // BATCH_SIZE
-    # Shape of the vector extracted from InceptionV3 is (64, 2048)
-    # These two variables represent that vector shape
-    features_shape = 2048
-    attention_features_shape = 64
 
     dataset = tf.data.Dataset.from_tensor_slices((img_name_train, cap_train))
 

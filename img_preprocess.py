@@ -11,18 +11,15 @@ def img_pre(img_path, captions):
     all_caption = []
 
     # 각 캡션에 <start><end>토큰 추가
-    for i in range(0, len(captions), 1):
+    for i in range(len(captions)):
         img_path = captions[i][0]
 
-        for j in range(1, 6, 1):
-            caption = ""
-            caption += '<start>' + captions[i][j] + '<end>'
+        for j in range(1, 6):
+            caption = '<start>' + captions[i][1] + '<end>'
 
             all_img_name.append(img_path)
             all_caption.append(caption)
 
-    # print(all_img_name)
-    # print(all_caption)
     train_captions, img_name_vector = shuffle(
         all_caption, all_img_name, random_state=1)
     num_example = 3000

@@ -50,13 +50,12 @@ def tokenization(train_captions):
 
     # 다시 토큰화된 벡터 생성!!
     train_seqs = tokenizer.texts_to_sequences(train_captions)
-    print("train_seqs:", train_seqs[0])
     # 토큰화 벡터를 설정한 pad로 채우기
     # (만약에 위에서 토크나이저 생성할때, 최대 길이 설정안하면, 자동으로 됨)
     cap_vector = preprocessing.sequence.pad_sequences(train_seqs)
 
     # max_length : 가중치를 저장하는데 사용되는 길이
-    max_length = calc_max_length(train_seqs)
+    max_length = 30
 
     return tokenizer, cap_vector, train_seqs, max_length
 
