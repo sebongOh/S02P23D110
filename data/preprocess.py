@@ -8,8 +8,8 @@ import random
 
 def get_path_caption():
     img_paths = '.\\datasets\\images'
-    csv_data = np.loadtxt('.\\datasets\\images\\results.csv',
-                          delimiter='|', dtype="str", encoding="ISO-8859-1")
+    csv_data = np.loadtxt('.\\datasets\\captions.csv',
+                          delimiter='|', dtype="str", encoding="utf-8")
 
     # csv_data[i][0] : image_name
     # csv_data[i][1] : comment_number
@@ -26,6 +26,7 @@ def get_path_caption():
 
     for i in range(1, len(csv_data), 5):
         img_data[0] = img_paths + '\\' + csv_data[i][0]
+        img_data[0] = img_data[0].replace("\"", "")
         img_data[1] = csv_data[i][2]
         img_data[2] = csv_data[i+1][2]
         img_data[3] = csv_data[i+2][2]
