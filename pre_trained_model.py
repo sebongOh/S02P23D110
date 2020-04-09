@@ -110,6 +110,8 @@ def train_step(img_tensor, target, encoder, decoder, tokenizer, optimizer):
 
     return loss, total_loss 
 
+    
+
 def plot_attention(image, result, attention_plot):
     temp_image = np.array(Image.open(image))
 

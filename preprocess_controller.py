@@ -24,9 +24,13 @@ print("이미지/캡션 데이터 로딩")
 # ===========================
 # 이미지 정규화 데이터 받아오기
 # 여기 구현
-img_name_vector, train_captions = img_preprocess.img_pre(img_paths, captions, 3000)
+# 데이터 augumentation 함수 인에 구현
+
+test_data_num = 3000
+img_name_vector, train_captions = img_preprocess.img_pre(img_paths, captions, test_data_num)
 print("샤용 데이터수: ",len(train_captions))
 # ===========================
+
 
 
 
@@ -104,18 +108,18 @@ ckpt_manager = tf.train.CheckpointManager(ckpt, checkpoint_path, max_to_keep=5)
 
 start_epoch = 0
 
-##############################################
-# # 학습을 지속할때 이전에 학습한 자료로 초반epoch 사용
-# # 학습시간 감소를 위해 사용한듯?
-# # 나머지 구현 후에 주석 해제
-# if ckpt_manager.latest_checkpoint:
-#     start_epoch = int(ckpt_manager.latest_checkpoint.split('-')[-1])
-#     # restoring the latest checkpoint in checkpoint_path
-#     ckpt.restore(ckpt_manager.latest_checkpoint)
+#############################################
+# 학습을 지속할때 이전에 학습한 자료로 초반epoch 사용
+# 학습시간 감소를 위해 사용한듯?
+# 나머지 구현 후에 주석 해제
+if ckpt_manager.latest_checkpoint:
+    start_epoch = int(ckpt_manager.latest_checkpoint.split('-')[-1])
+    # restoring the latest checkpoint in checkpoint_path
+    ckpt.restore(ckpt_manager.latest_checkpoint)
 
-# adding this in a separate cell because if you run the training cell
-# many times, the loss_plot array will be reset
-####################################################
+adding this in a separate cell because if you run the training cell
+many times, the loss_plot array will be reset
+###################################################
 
 loss_plot = []
 
@@ -146,6 +150,9 @@ for epoch in range(start_epoch, EPOCHS):
                                          total_loss/num_steps))
     print ('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
 
+
+
+
 plt.plot(loss_plot)
 plt.xlabel('Epochs')
 plt.ylabel('Loss')
@@ -158,7 +165,9 @@ attention_features_shape = 64
 
 
 
-# captions on the validation set
+
+# predict.py
+
 rid = np.random.randint(0, len(img_name_val))
 image = img_name_val[rid]
 real_caption = ' '.join([tokenizer.index_word[i] for i in cap_val[rid] if i not in [0]])

@@ -13,7 +13,6 @@ def create_tf_data(my_tokenizer, img_name_train, cap_train):
 
 
     dataset = tf.data.Dataset.from_tensor_slices((img_name_train, cap_train))
-
     # Use map to load the numpy files in parallel
     dataset = dataset.map(lambda item1, item2: tf.numpy_function(
         map_func, [item1, item2], [tf.float32, tf.int32]),
