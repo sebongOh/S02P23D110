@@ -9,3 +9,7 @@ __pycache__/
 *$py.class
 datasets/images/
 checkpoints/
+.idea/
+.vscode/
+.idea/workspace.xml
+.vscode/settings.json
