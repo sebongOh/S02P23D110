@@ -43,27 +43,34 @@ def Pre_trained_img(img_name_vector):
 
 
 def evaluate(image, max_length, attention_features_shape, encoder, decoder, pre_trained_model, image_features_extract_model, tokenizer):
-    attention_plot = np.zeros((max_length, attention_features_shape)) # 캡션 길이를 똑같이 맞춤(빈부분은 <pad>)
+    # 캡션 길이를 똑같이 맞춤(빈부분은 <pad>)
+    attention_plot = np.zeros((max_length, attention_features_shape)) 
 
+    # RNN hidden layer 초기화
     hidden = decoder.reset_state(batch_size=1)
 
+    # 처음 학습했던 이미지 차원, 캡션 차원 맞춰주기
     temp_input = tf.expand_dims(pre_trained_model.load_image(image)[0], 0)
     img_tensor_val = image_features_extract_model(temp_input)
     img_tensor_val = tf.reshape(img_tensor_val, (img_tensor_val.shape[0], -1, img_tensor_val.shape[3]))
 
+    # 이미지 특징 추출
     features = encoder(img_tensor_val)
 
     dec_input = tf.expand_dims([tokenizer.word_index['<start>']], 0)
     result = []
 
+    # 캡션 데이터를 예측한다
     for i in range(max_length):
         predictions, hidden, attention_weights = decoder(dec_input, features, hidden)
 
         attention_plot[i] = tf.reshape(attention_weights, (-1, )).numpy()
-
         predicted_id = tf.random.categorical(predictions, 1)[0][0].numpy()
+
+        
         result.append(tokenizer.index_word[predicted_id])
 
+        # 예측 종료
         if tokenizer.index_word[predicted_id] == '<end>':
             return result, attention_plot
 
