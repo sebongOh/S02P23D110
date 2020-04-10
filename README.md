@@ -195,6 +195,7 @@ glob : 폴더 내의 특정 파일명만 모아줌
 ## Req. 6 train.py 구현
 
 ### Req. 6-1 손실 함수 구현
+예측값과 정답값을 입력으로 받아 손실을 계산하는 함수를 구현
 
 ```
         features = encoder(img_tensor)
@@ -208,6 +209,7 @@ glob : 폴더 내의 특정 파일명만 모아줌
 ```
 
 ### Req. 6-2 1-batch train step 구현
+배치 데이터를 입력받아 손실을 계산하고 모델을 학습하는 함수 구현
 
 ```
     with tf.GradientTape() as tape:
@@ -221,6 +223,7 @@ total_loss = (loss / int(target.shape[1]))
 
 
 ### Req. 6-3 train.py 완성
+여기까지 구현된 전처리, 모델, 최적화함수및 손실함수를 이용하여 모델을 학습시키는 과정 구현
 
 ```
 BATCH_SIZE = 2048
@@ -261,6 +264,7 @@ for epoch in range(start_epoch, EPOCHS):
 
 
 ### Req. 7-1 캡션 생성 함수 구현
+캡션 문장을 생성하는 함수를 구현
 
 ```
 rid = np.random.randint(0, len(img_name_val))
@@ -278,7 +282,7 @@ pre_trained_model.plot_attention(image, result, attention_plot)
 
 ### Req. 7-2 predict.py 구현
 
-
+랜덤한 이미지를 넣어서 실제값과 예측값을 비교하는 과정 구현
 
 ```
 def plot_attention(image, result, attention_plot):
@@ -305,6 +309,7 @@ def plot_attention(image, result, attention_plot):
 
 
 ### Req. 8-1 체크포인트 생성 및 저장 함수 구현
+CheckpointManager를 이용하여 모델의 변수들을 저장
 
 ```
 checkpoint_path = "./checkpoints/train"
@@ -319,6 +324,7 @@ start_epoch = 0
 
 
 ### Req. 8-2 체크포인트 로더 구현
+checkpoints/train에 저장된 체크포인트 파일을 불러올 로더를 구현
 
 ```
 if ckpt_manager.latest_checkpoint:
@@ -328,9 +334,6 @@ if ckpt_manager.latest_checkpoint:
 
 ```
 
-
-
-## 실행 결과
 
 
 
