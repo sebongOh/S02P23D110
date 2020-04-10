@@ -26,7 +26,7 @@ print("이미지/캡션 데이터 로딩")
 # 여기 구현
 # 데이터 augumentation 함수 인에 구현
 
-test_data_num = 3000
+test_data_num = 30000
 img_name_vector, train_captions = img_preprocess.img_pre(img_paths, captions, test_data_num)
 print("샤용 데이터수: ",len(train_captions))
 # ===========================
@@ -98,7 +98,9 @@ print("데이터 분할 완료")
 print("트레이닝 데이터수: ", len(img_name_train), len(cap_train), "테스트 데이터수: ",len(img_name_val), len(cap_val))
 
 
-optimizer = tf.keras.optimizers.Adam()
+# optimizer 지정
+# optimizer에서 learning rate를 변경 가능
+optimizer = tf.keras.optimizers.Adam(learning_rate=1e-5)
 
 
 # # 체크 포인트 지정 : 
@@ -114,27 +116,36 @@ start_epoch = 0
 # 학습을 지속할때 이전에 학습한 자료로 초반epoch 사용
 # 학습시간 감소를 위해 사용한듯?
 # 나머지 구현 후에 주석 해제
-if ckpt_manager.latest_checkpoint:
-    start_epoch = int(ckpt_manager.latest_checkpoint.split('-')[-1])
-    # restoring the latest checkpoint in checkpoint_path
-    ckpt.restore(ckpt_manager.latest_checkpoint)
+# if ckpt_manager.latest_checkpoint:
+#     start_epoch = int(ckpt_manager.latest_checkpoint.split('-')[-1])
+#     # restoring the latest checkpoint in checkpoint_path
+#     ckpt.restore(ckpt_manager.latest_checkpoint)
 
-adding this in a separate cell because if you run the training cell
-many times, the loss_plot array will be reset
+# adding this in a separate cell because if you run the training cell
+# many times, the loss_plot array will be reset
 ###################################################
 
 loss_plot = []
 
 print("학습을 시작합니다")
-BATCH_SIZE = 64
 
-EPOCHS = 30
+# batch size, epoch 지정
+# Batch size: 한번에 학습할 양
+# Epochs: batch size 만큼 학습할 횟수
+BATCH_SIZE = 512
+EPOCHS = 100
+
+
 num_steps = len(img_name_train) // BATCH_SIZE
 
+
+# 지정한 epoch만큼 학습
 for epoch in range(start_epoch, EPOCHS):
     start = time.time()
+    # epoch당 손실함수
     total_loss = 0
 
+    # batch당 손실함수
     for (batch, (img_tensor, target)) in enumerate(dataset):
         batch_loss, t_loss = pre_trained_model.train_step(img_tensor, target, encoder, decoder, tokenizer, optimizer)
         total_loss += t_loss
@@ -148,6 +159,7 @@ for epoch in range(start_epoch, EPOCHS):
     # storing the epoch end loss value to plot later
     loss_plot.append(total_loss / num_steps)
 
+    # epoch 5개 진행시 체크포인트 저장
     if epoch % 5 == 0:
         ckpt_manager.save()
 
@@ -156,7 +168,7 @@ for epoch in range(start_epoch, EPOCHS):
 
 
 
-
+# 손실함수 그래프
 plt.plot(loss_plot)
 plt.xlabel("Epochs")
 plt.ylabel("Loss")

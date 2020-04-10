@@ -40,8 +40,6 @@ def Pre_trained_img(img_name_vector):
             np.save(path_of_feature, bf.numpy())
 
     return image_features_extract_model
-<<<<<<< HEAD
-=======
 
 
 def evaluate(image, max_length, attention_features_shape, encoder, decoder, pre_trained_model, image_features_extract_model, tokenizer):
@@ -134,4 +132,3 @@ def plot_attention(image, result, attention_plot):
 
     plt.tight_layout()
     plt.show()
->>>>>>> 657194688251413e3c7b6329bda02074a4c947f2

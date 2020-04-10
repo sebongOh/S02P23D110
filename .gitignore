@@ -11,5 +11,6 @@ datasets/images/
 checkpoints/
 .idea/
 .vscode/
+.vscode/settings.json
 workspace.xml
-settings.json
+preview/
