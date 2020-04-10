@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import matplotlib.image as img
 import numpy as np
 import tensorflow as tf
-import pandas as pd
 import json
 
 # Req. 2-2	세팅 값 저장
@@ -21,7 +20,7 @@ def save_config(args):
     data["batch_size"] = args.batch_size
     data["data"] = args.data
 
-    with open('.\\settings.json', 'a', encoding='utf-8') as make_file:
+    with open(".\\settings.json", "a", encoding="utf-8") as make_file:
         json.dump(data, make_file, indent="\t")
 
     # 다음은 csv 파일로 저장하는 방법... (아직 덜함)
@@ -38,6 +37,7 @@ def save_config(args):
     #     df.to_scv('setting.csv', index=False, mode='a',
     #               encoding='utf-8-sig', header=False)
     return data
+
 
 # Req. 4-1	이미지와 캡션 시각화
 
