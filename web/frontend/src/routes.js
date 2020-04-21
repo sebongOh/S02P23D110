@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
-import helloWorld from "./views/helloWorld";
-import store from "./vuex/store";
+import main from "./views/content/main";
+// import store from "./vuex/store";
 
 Vue.use(Router);
 
@@ -10,7 +10,7 @@ const router = new Router({
     {
       path: "/",
       name: "main",
-      component: helloWorld,
+      component: main,
     },
   ],
 });
