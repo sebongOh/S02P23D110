@@ -24,6 +24,7 @@ export default {
   name: "fileUpload",
   data() {
     return {
+      uploadImage: "",
       filename: "",
       imageSrc: "",
     };
@@ -31,6 +32,8 @@ export default {
   methods: {
     onDrop(event) {
       this.inputImageFile(event.dataTransfer.files);
+      this.uploadImage = event.dataTransfer.files[0];
+      console.log(event.dataTransfer.files[0]);
     },
     onClickFile(event) {
       console.log(event);
@@ -52,6 +55,8 @@ export default {
     },
     onClickUpload() {
       this.preview(this.filename);
+      console.log(this.$refs.files);
+      console.log(this.uploadImage);
     },
     preview(file) {
       if (typeof file === "string") {

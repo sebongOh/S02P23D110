@@ -1,5 +1,4 @@
 // import axios from "axios";
-// import Swal from "sweetalert2";
 // const host = "http://192.168.100.58:8080";
 // const noticePort = "http://192.168.100.58:8080";
 // const filehost = "http://192.168.100.58:8080";
