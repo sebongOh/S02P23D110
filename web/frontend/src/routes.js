@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import main from "./views/content/main";
+import result from "./views/content/aiResult";
 // import store from "./vuex/store";
 
 Vue.use(Router);
@@ -11,6 +12,11 @@ const router = new Router({
       path: "/",
       name: "main",
       component: main,
+    },
+    {
+      path: "/result",
+      name: "result",
+      component: result,
     },
   ],
 });

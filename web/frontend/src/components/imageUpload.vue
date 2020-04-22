@@ -57,6 +57,7 @@ export default {
       this.preview(this.filename);
       console.log(this.$refs.files);
       console.log(this.uploadImage);
+      console.log(this.imageSrc);
     },
     preview(file) {
       if (typeof file === "string") {
