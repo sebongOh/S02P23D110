@@ -72,8 +72,8 @@ def login(request):
         if(obj.password == data['password']):
             print(search_id)
             print(obj.password)
-            return HttpResponse(status=200)
-        return HttpResponse(status=400)
+            return JsonResponse({"message": "login OK"}, status=200)
+        return JsonResponse({"message": "login fail"}, status=400)
 
 
 class FileUploadView(APIView):

@@ -4,7 +4,7 @@ from rest_framework import routers, serializers, viewsets
 from django.urls import path
 from back import views
 from back import models
-from back.serializers import UsersSerializer
+from back.serializers import UsersSerializer, InputFileSerializer
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -36,10 +36,16 @@ class UsersViewSet(viewsets.ModelViewSet):
     serializer_class = UsersSerializer
 
 
+class ImageViewSet(viewsets.ModelViewSet):
+    queryset = models.InputFile.objects.all()
+    serializer_class = InputFileSerializer
+
+
     # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'user', UserViewSet)
-router.register(r'userlist', UsersViewSet)
+router.register(r'users', UsersViewSet)
+router.register(r'upload', ImageViewSet)
 
 # users 로 호출하면 UserViewSet 이 호출됨 13Line<<<<<<<<<<<<<<<
 
