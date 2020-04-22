@@ -1,7 +1,9 @@
 from django.conf.urls import url, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
-from address import views
+from django.urls import path
+from back import views
+from back import models
 
 # Serializers define the API representation.
 # JSON형태로 변환해주는 라이브러리 Serializer
@@ -26,13 +28,15 @@ class UserViewSet(viewsets.ModelViewSet):
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
+router.register(r'user', UserViewSet)
 # users 로 호출하면 UserViewSet 이 호출됨 13Line<<<<<<<<<<<<<<<
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    url(r'^', include(router.urls)),
-    url(r'^address/', views.address_list),
+    path('', include(router.urls)),
+    path('users/', views.join),
+    path('login/', views.login),
+    path('users/<int:pk>/', views.user_detail),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
