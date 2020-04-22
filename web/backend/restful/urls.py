@@ -4,6 +4,7 @@ from rest_framework import routers, serializers, viewsets
 from django.urls import path
 from back import views
 from back import models
+from back.serializers import UsersSerializer
 
 # Serializers define the API representation.
 # JSON형태로 변환해주는 라이브러리 Serializer
@@ -26,9 +27,15 @@ class UserViewSet(viewsets.ModelViewSet):
     # serializer_class 는 UserSerializer(JSON) 형태를 쓰겠다.
 
 
-# Routers provide an easy way of automatically determining the URL conf.
+class UsersViewSet(viewsets.ModelViewSet):
+    queryset = models.users.objects.all()
+    serializer_class = UsersSerializer
+
+
+    # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'user', UserViewSet)
+router.register(r'userlist', UsersViewSet)
 # users 로 호출하면 UserViewSet 이 호출됨 13Line<<<<<<<<<<<<<<<
 
 # Wire up our API using automatic URL routing.
