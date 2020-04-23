@@ -17,6 +17,17 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>SearchAuto</v-toolbar-title>
       <v-spacer />
+      <v-text-field
+        flat
+        solo-inverted
+        hide-details
+        prepend-inner-icon="fa-search"
+        label="Search"
+        class="hidden-sm-and-down"
+        v-model="keyword"
+      ></v-text-field>
+      <!-- <v-btn @click="search">검색</v-btn> -->
+      <v-spacer />
       <v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight" />
     </v-app-bar>
 
@@ -35,36 +46,6 @@
 
     <v-navigation-drawer v-model="left" fixed temporary />
 
-    <!-- <v-content>
-      <v-container class="fill-height" fluid>
-        <v-row justify="center" align="center">
-          <v-col class="shrink">
-            <v-tooltip right>
-              <template v-slot:activator="{ on }">
-                <v-btn :href="source" icon large target="_blank" v-on="on">
-                  <v-icon large>mdi-code-tags</v-icon>
-                </v-btn>
-              </template>
-              <span>Source</span>
-            </v-tooltip>
-            <v-tooltip right>
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  icon
-                  large
-                  href="https://codepen.io/johnjleider/pen/QewYYx"
-                  target="_blank"
-                  v-on="on"
-                >
-                  <v-icon large>mdi-codepen</v-icon>
-                </v-btn>
-              </template>
-              <span>Codepen</span>
-            </v-tooltip>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-content>-->
     <v-content>
       <p>autosearch</p>
       <router-view class="page"></router-view>
@@ -81,19 +62,33 @@
 </template>
 
 <script>
+// import ContentsApi from "./apis/ContentsApi";
 export default {
   name: "App",
   props: {
-    source: String,
+    source: String
   },
 
   components: {},
 
   data: () => ({
-    drawer: null,
+    drawer: false,
     drawerRight: null,
     right: false,
     left: false,
+    keyword: ""
   }),
+  methods: {
+    // search() {
+    //   keyword = this.keyword
+    //   ContentsApi.search(keyword, res => {
+    //   })
+    // }
+  },
+  watch: {
+    keyword: function() {
+      console.log(this.keyword);
+    }
+  }
 };
 </script>
