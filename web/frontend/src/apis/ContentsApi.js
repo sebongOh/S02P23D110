@@ -17,17 +17,19 @@ const ContentsApi = {
 //       errorCallback(error);
 //     });
 
-const imgupload = (data, callback, errorCallback) => {
+const imgupload = (formdata, callback, errorCallback) => {
   axios({
     url: `${host}/upload/`,
     method: "post",
-    data: data,
-    // headers: { "Content-Type": "application/json" },
+    data: formdata,
+    headers: { "Content-Type": "multipart/form-data" },
   })
     .then((res) => {
+      console.log(res);
       callback(res);
     })
     .catch((error) => {
+      console.log(error);
       errorCallback(error);
     });
 };

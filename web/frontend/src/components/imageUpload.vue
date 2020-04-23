@@ -71,11 +71,17 @@ export default {
     },
     onClickUpload() {
       this.preview(this.filename);
-      console.log(this.$refs.files);
-      console.log(this.uploadImage);
-      console.log(this.imageSrc);
+
+      const formData = new FormData();
+      formData.append("file", this.uploadImage);
+      console.log("imageSrc", this.imageSrc);
+
+      for (let key of formData.entries()) {
+        console.log(`${key}`);
+      }
+
       ContentsApi.imgupload(
-        this.uploadImage,
+        formData,
         res => {
           console.log(res);
         },
@@ -83,6 +89,7 @@ export default {
           console.log(error);
         }
       );
+      // this.$router();
     },
     preview(file) {
       if (typeof file === "string") {
