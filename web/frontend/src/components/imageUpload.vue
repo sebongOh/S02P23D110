@@ -37,7 +37,7 @@
 import ContentsApi from "../apis/ContentsApi";
 
 export default {
-  name: "fileUpload",
+  name: "imageUpload",
   data() {
     return {
       uploadImage: "",

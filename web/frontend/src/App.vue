@@ -15,7 +15,8 @@
 
     <v-app-bar app clipped-right color="blue-grey" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>SearchAuto</v-toolbar-title>
+      <!-- <router-link to='/'></router-link> -->
+      <v-toolbar-title @click="homeBtn">SearchAuto</v-toolbar-title>
       <v-spacer />
       <v-text-field
         flat
@@ -25,8 +26,9 @@
         label="Search"
         class="hidden-sm-and-down"
         v-model="keyword"
+        @keyup.enter="search"
       ></v-text-field>
-      <!-- <v-btn @click="search">검색</v-btn> -->
+      <v-btn @click="search">검색</v-btn>
       <v-spacer />
       <v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight" />
     </v-app-bar>
@@ -48,7 +50,7 @@
 
     <v-content>
       <p>autosearch</p>
-      <router-view class="page"></router-view>
+      <router-view></router-view>
     </v-content>
 
     <v-navigation-drawer v-model="right" fixed right temporary />
@@ -62,7 +64,6 @@
 </template>
 
 <script>
-// import ContentsApi from "./apis/ContentsApi";
 export default {
   name: "App",
   props: {
@@ -79,11 +80,27 @@ export default {
     keyword: ""
   }),
   methods: {
-    // search() {
-    //   keyword = this.keyword
-    //   ContentsApi.search(keyword, res => {
-    //   })
-    // }
+    search() {
+      const data = this.keyword;
+
+      // console.log(this.$route);
+      console.log("fullpath:", this.$router.currentRoute.fullPath);
+      if (this.$router.currentRoute.fullPath === `/search?keyword=${data}`) {
+        console.log("refreash");
+        this.$router.go(0);
+      } else {
+        console.log("push to search");
+        this.$router.push({ path: "/search", query: { keyword: data } });
+      }
+    },
+    homeBtn() {
+      // console.log(this.$router.currentRoute.path);
+      if (this.$router.currentRoute.path === "/") {
+        this.$router.go(0);
+      } else {
+        this.$router.push("/");
+      }
+    }
   },
   watch: {
     keyword: function() {

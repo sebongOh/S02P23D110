@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import main from "./views/content/main";
 import result from "./views/content/aiResult";
+import search from "./views/content/search";
 // import store from "./vuex/store";
 
 Vue.use(Router);
@@ -17,6 +18,11 @@ const router = new Router({
       path: "/result",
       name: "result",
       component: result,
+    },
+    {
+      path: "/search",
+      name: "search",
+      component: search,
     },
   ],
 });
@@ -35,6 +41,17 @@ const router = new Router({
 //     }
 
 //     next();
+// });
+
+// router.beforeEach((to, from, next) => {
+//   // console.log(from.params, to.params);
+//   console.log("to:", to.path);
+//   console.log("from:", from.path);
+//   if (from.path === to.path && from.params === to.params) {
+//     this.$router.go(0);
+//   } else {
+//     next();
+//   }
 // });
 
 export default router;

@@ -3,7 +3,8 @@ const host = "http://119.56.164.135:8000";
 
 const ContentsApi = {
   //   requestAI: (data, callback, errorCallback) => requestAI(data, callback, errorCallback),
-  imgupload: (data) => imgupload(data),
+  imgupload: (data, callback, errorCallback) => imgupload(data, callback, errorCallback),
+  search: (data, callback, errorCallback) => search(data, callback, errorCallback),
   //   profileLoad: (data, callback, error) => profileLoad(data, callback, error),
 };
 
@@ -23,6 +24,21 @@ const imgupload = (formdata, callback, errorCallback) => {
     method: "post",
     data: formdata,
     headers: { "Content-Type": "multipart/form-data" },
+  })
+    .then((res) => {
+      console.log(res);
+      callback(res);
+    })
+    .catch((error) => {
+      console.log(error);
+      errorCallback(error);
+    });
+};
+
+const search = (data, callback, errorCallback) => {
+  axios({
+    url: `${host}/search?keyword=` + data,
+    method: "get",
   })
     .then((res) => {
       console.log(res);
