@@ -2,20 +2,24 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
+from rest_framework.decorators import api_view
 from .models import users
 from .models import InputFile
+from .models import cars
 from .serializers import UsersSerializer
 from .serializers import InputFileSerializer
+from .serializers import CarsSerializer
 from rest_framework.parsers import FileUploadParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+import json
+import os.path
 
 
 # Create your views here.
 
-
-@csrf_exempt
+@api_view(['GET', 'POST'])
 def join(request):
     # 전체회원조회
     if request.method == 'GET':
@@ -39,9 +43,8 @@ def join(request):
         return JsonResponse(serializer.errors, status=400)
 
 
-@csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
 def user_detail(request, pk):
-
     obj = users.objects.get(pk=pk)
     # 회원 정보 하나 가져오기
     if request.method == 'GET':
@@ -61,7 +64,7 @@ def user_detail(request, pk):
         return HttpResponse(status=204)
 
 
-@csrf_exempt
+@api_view(['POST'])
 def login(request):
     # login 기능
     # login TEST 할 때, identify ,password 제이슨 형태로 보내야함
@@ -76,13 +79,67 @@ def login(request):
         return JsonResponse({"message": "login fail"}, status=400)
 
 
+@api_view(['GET'])
+def car(request):
+    if request.method == 'GET':
+        queryset = cars.objects.all()
+        serializer = CarsSerializer(queryset, many=True)
+        return JsonResponse(serializer.data, status=201, safe=False)
+
+
+@api_view(['GET'])
+def car_datail(request, num):
+    obj = cars.objects.get(id=num)
+    if request.method == 'GET':
+        serializer = CarsSerializer(obj)
+        return JsonResponse(serializer.data, status=201)
+
+
+@api_view(['GET'])
+def car_company_list(request, company):
+    if request.method == 'GET':
+        obj = cars.objects.filter(company=company)
+        serializer = CarsSerializer(obj, many=True)
+        print(serializer)
+        return JsonResponse(serializer.data, status=201, safe=False)
+
+
+@api_view(['GET'])
+def car_name_list(request, name):
+    if request.method == 'GET':
+        obj = cars.objects.filter(name__icontains=name)
+        serializer = CarsSerializer(obj, many=True)
+        print(serializer)
+        return JsonResponse(serializer.data, status=201, safe=False)
+
+
+# @api_view(['GET'])
+# def car_companyAll(request):
+#    if request.method == 'GET':
+#        obj = cars.objects.all()
+#        serializer = CarsSerializer(obj, many=True)
+#        print(serializer.data[:]['company'])
+
+
 class FileUploadView(APIView):
     parser_class = (FileUploadParser,)
 
     def post(self, request, *args, **kwargs):
         file_serializer = InputFileSerializer(data=request.data)
+        print(request.data)
         if file_serializer.is_valid():
             file_serializer.save()
             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        # @csrf_exempt
+        # def insertdata(request):
+        #    with open('./back/car_data.json', encoding='utf-8') as f:
+        #        json_data = json.load(f)
+        #        for i in range(len(json_data)):
+        #            serializer = CarsSerializer(data=json_data[i])
+        #            if serializer.is_valid():
+        #                serializer.save()
+        #            # return JsonResponse(serializer.errors, status=400)
+        #        return JsonResponse(serializer.data, status=201)

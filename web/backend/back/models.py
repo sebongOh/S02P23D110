@@ -14,11 +14,6 @@ class users(models.Model):
         db_table = 'back_users'
 
 
-class test(models.Model):
-    a = models.CharField(max_length=50)
-    b = models.CharField(max_length=50)
-
-
 class InputFile(models.Model):
 
     file = models.FileField(blank=False, null=False)
@@ -30,7 +25,15 @@ class InputFile(models.Model):
         return self.file.name
 
 
-class InputImage(models.Model):
+class cars(models.Model):
+    id = models.AutoField(primary_key=True)
+    imagelink = models.CharField(max_length=300)
+    name = models.CharField(max_length=50)
+    price = models.CharField(max_length=60)
+    company = models.CharField(max_length=50)
+    fuel_eff = models.CharField(max_length=50)
+    size = models.CharField(max_length=50)
+    engine = models.CharField(max_length=50)
 
-    imagename = models.CharField(max_length=30)
-    image = models.ImageField(default='media/test.jpg')
+    class Meta:
+        db_table = 'back_cars'
