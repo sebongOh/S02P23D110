@@ -132,7 +132,7 @@ export default {
           {
             name: "쌍용",
             imgUrl:
-              "https://imgauto-phinf.pstatic.net/20170707_181/auto_149940895782493s0w_PNG/20170707152915_q71wMr3r.png?type=f40_40"
+              "https://imgauto-phinf.pstatic.net/20170707_290/auto_14994089867715m7Kc_PNG/20170707152945_ov1NwuMf.png?type=f40_40"
           }, //쌍용
           {
             name: "르노삼성",
