@@ -1,7 +1,14 @@
 from django.conf.urls import url, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
-from address import views
+from django.urls import path
+from back import views
+from back import models
+from back.serializers import UsersSerializer, InputFileSerializer
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
+import back
 
 # Serializers define the API representation.
 # JSON형태로 변환해주는 라이브러리 Serializer
@@ -24,15 +31,36 @@ class UserViewSet(viewsets.ModelViewSet):
     # serializer_class 는 UserSerializer(JSON) 형태를 쓰겠다.
 
 
-# Routers provide an easy way of automatically determining the URL conf.
+class UsersViewSet(viewsets.ModelViewSet):
+    queryset = models.users.objects.all()
+    serializer_class = UsersSerializer
+
+
+class ImageViewSet(viewsets.ModelViewSet):
+    queryset = models.InputFile.objects.all()
+    serializer_class = InputFileSerializer
+
+
+    # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
+router.register(r'user', UserViewSet)
+router.register(r'users', UsersViewSet)
+router.register(r'upload', ImageViewSet)
+
 # users 로 호출하면 UserViewSet 이 호출됨 13Line<<<<<<<<<<<<<<<
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    url(r'^', include(router.urls)),
-    url(r'^address/', views.address_list),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('', include(router.urls)),
+    path('admin/', admin.site.urls),
+    path('upload/', include('back.urls')),
+    path('users/', views.join),
+    path('login/', views.login),
+    path('users/<int:pk>/', views.user_detail),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
