@@ -3,12 +3,28 @@
     <div id="uploader">
       <p>Input Image URL and Click the button or Drag and Drop or Attach an Image File</p>
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Input Image URL or  Drag & Drop or Select" v-model="filename" @dragover.prevent @dragenter.prevent @drop.prevent="onDrop" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Input Image URL or  Drag & Drop or Select"
+          v-model="filename"
+          @dragover.prevent
+          @dragenter.prevent
+          @drop.prevent="onDrop"
+        />
         <div class="input-group-append">
-          <span class="input-group-text" @click="onClickFile"><i class="fa fa-paperclip"></i></span>
+          <span class="input-group-text" @click="onClickFile">
+            <i class="fa fa-paperclip"></i>
+          </span>
           <button class="btn btn-outline-info" @click="onClickUpload">Upload</button>
         </div>
-        <input type="file" class="file-input" accept="image/*" ref="fileInput" @change="onFileChange" />
+        <input
+          type="file"
+          class="file-input"
+          accept="image/*"
+          ref="fileInput"
+          @change="onFileChange"
+        />
       </div>
       <div v-show="imageSrc" class="upload-image">
         <img :src="imageSrc" />
@@ -18,15 +34,15 @@
 </template>
 
 <script>
-// import axios from axios
+import ContentsApi from "../apis/ContentsApi";
 
 export default {
-  name: "fileUpload",
+  name: "imageUpload",
   data() {
     return {
       uploadImage: "",
       filename: "",
-      imageSrc: "",
+      imageSrc: ""
     };
   },
   methods: {
@@ -55,8 +71,25 @@ export default {
     },
     onClickUpload() {
       this.preview(this.filename);
-      console.log(this.$refs.files);
-      console.log(this.uploadImage);
+
+      const formData = new FormData();
+      formData.append("file", this.uploadImage);
+      console.log("imageSrc", this.imageSrc);
+
+      for (let key of formData.entries()) {
+        console.log(`${key}`);
+      }
+
+      ContentsApi.imgupload(
+        formData,
+        res => {
+          console.log(res);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+      // this.$router();
     },
     preview(file) {
       if (typeof file === "string") {
@@ -69,8 +102,8 @@ export default {
         };
         reader.readAsDataURL(file);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
