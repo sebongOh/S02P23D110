@@ -12,8 +12,7 @@ import search from "./views/content/search";
 Vue.use(Router);
 
 const router = new Router({
-  routes: [
-    {
+  routes: [{
       path: "/",
       name: "main",
       component: main,
@@ -48,6 +47,11 @@ const router = new Router({
       name: "search",
       component: search,
     },
+    {
+      path: "/MyPage",
+      name: "Mypage",
+      component: () => import("@/views/content/MyPage.vue")
+    }
   ],
 });
 
