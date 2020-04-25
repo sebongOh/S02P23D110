@@ -8,7 +8,7 @@
       </v-list-item-content>
     </v-list-item>
     <v-card-text>
-      <p>제조사: {{ brand }}</p>
+      <p>제조사: {{ company }}</p>
       <p>공인연비: {{ fuel_eff }}</p>
       <p>연료: {{ engine }}</p>
     </v-card-text>
@@ -26,26 +26,16 @@
 export default {
   name: "carCard",
 
-  props: ["name", "brand", "price", "fuel_eff", "engine"]
+  props: ["name", "company", "price", "fuel_eff", "engine"],
 };
 </script>
 
 <style>
 .bottom-gradient {
-  background-image: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.4) 0%,
-    transparent 72px
-  );
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 72px);
 }
 
 .repeating-gradient {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    rgba(255, 0, 0, 0.25),
-    rgba(255, 0, 0, 0.25) 5px,
-    rgba(0, 0, 255, 0.25) 5px,
-    rgba(0, 0, 255, 0.25) 10px
-  );
+  background-image: repeating-linear-gradient(-45deg, rgba(255, 0, 0, 0.25), rgba(255, 0, 0, 0.25) 5px, rgba(0, 0, 255, 0.25) 5px, rgba(0, 0, 255, 0.25) 10px);
 }
 </style>
