@@ -9,7 +9,9 @@ import imageUpload from "../../components/imageUpload";
 
 export default {
   components: {
-    imageUpload,
-  },
+    imageUpload
+  }
 };
 </script>
+
+
