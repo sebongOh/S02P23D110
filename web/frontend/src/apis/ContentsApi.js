@@ -1,5 +1,5 @@
 import axios from "axios";
-const host = "http://119.56.164.135:8000";
+const host = "http://58.230.252.215:8000";
 
 const ContentsApi = {
   //   requestAI: (data, callback, errorCallback) => requestAI(data, callback, errorCallback),
@@ -37,7 +37,7 @@ const imgupload = (formdata, callback, errorCallback) => {
 
 const search = (data, callback, errorCallback) => {
   axios({
-    url: `${host}/search?keyword=` + data,
+    url: `${host}/cars/` + data,
     method: "get",
   })
     .then((res) => {

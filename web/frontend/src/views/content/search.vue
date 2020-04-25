@@ -73,7 +73,9 @@ export default {
       ContentsApi.search(
         keyword,
         res => {
-          console.log(res);
+          // console.log(res);
+          const carItem = res.data;
+          console.log(carItem);
         },
         error => {
           console.log(error);
