@@ -98,7 +98,7 @@ def car_datail(request, num):
 @api_view(['GET'])
 def car_company_list(request, company):
     if request.method == 'GET':
-        obj = cars.objects.filter(company=company)
+        obj = cars.objects.filter(company__icontains=company)
         serializer = CarsSerializer(obj, many=True)
         print(serializer)
         return JsonResponse(serializer.data, status=201, safe=False)
@@ -113,12 +113,12 @@ def car_name_list(request, name):
         return JsonResponse(serializer.data, status=201, safe=False)
 
 
-# @api_view(['GET'])
-# def car_companyAll(request):
-#    if request.method == 'GET':
-#        obj = cars.objects.all()
-#        serializer = CarsSerializer(obj, many=True)
-#        print(serializer.data[:]['company'])
+@api_view(['GET'])
+def car_companyAll(request):
+    if request.method == 'GET':
+        obj = cars.objects.filter().values('company').distinct()
+        print(obj)
+        return HttpResponse(obj, status=201)
 
 
 class FileUploadView(APIView):

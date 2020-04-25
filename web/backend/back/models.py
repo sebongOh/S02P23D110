@@ -37,3 +37,7 @@ class cars(models.Model):
 
     class Meta:
         db_table = 'back_cars'
+
+
+class preference(models.Model):
+    id = models.AutoField(primary_key=True)
