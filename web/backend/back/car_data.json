@@ -1,0 +1,802 @@
+[{
+    "name": "2021 G80",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200330_142/auto_1585547248870fGwBQ_PNG/20200330144726_jJxZhNkX.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "5,247~6,187",
+    "size": "준대형",
+    "id": 1,
+    "company": "제네시스",
+    "fuel_eff": "8.4~14.6km/ℓ"
+}, {
+    "name": "2020 아반떼",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200407_287/auto_1586224652431bUq6f_PNG/20200407105728_c9QG5Lkd.png?type=f160_116",
+    "engine": "가솔린, LPG",
+    "price": "1,531~2,392",
+    "size": "준중형",
+    "id": 2,
+    "company": "현대",
+    "fuel_eff": "10.5~15.4km/ℓ"
+}, {
+    "name": "2020 그랜저",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191128_162/auto_1574904215756tdl5C_PNG/20191128102328_yTlcSHSE.png?type=f160_116",
+    "engine": "가솔린, LPG",
+    "price": "3,172~4,287",
+    "size": "준대형",
+    "id": 3,
+    "company": "현대",
+    "fuel_eff": "7.4~11.9km/ℓ"
+}, {
+    "name": "2020 GV80",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200117_65/auto_157923338557966P0o_PNG/20200117125623_HsQIdiZ5.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "6,037~6,937",
+    "size": "준대형",
+    "id": 4,
+    "company": "제네시스",
+    "fuel_eff": "8.0~11.8km/ℓ"
+}, {
+    "name": "2020 쏘렌토",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200218_238/auto_1581988308022GWJhq_PNG/20200218101133_b3EyZVEM.png?type=f160_116",
+    "engine": "디젤",
+    "price": "2,948~4,047",
+    "size": "중형",
+    "id": 5,
+    "company": "기아",
+    "fuel_eff": "13.7~14.3km/ℓ"
+}, {
+    "name": "2020 XM3",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200221_274/auto_1582265983808QGaIg_PNG/20200221151942_LDF8hVC3.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "1,719~2,532",
+    "size": "소형",
+    "id": 6,
+    "company": "르노삼성",
+    "fuel_eff": "13.2~13.7km/ℓ"
+}, {
+    "name": "2019 셀토스",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190625_294/auto_1561453864796M1skF_PNG/20190625181103_hcdCWuOT.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "1,881~2,865",
+    "size": "소형",
+    "id": 7,
+    "company": "기아",
+    "fuel_eff": "10.9~17.6km/ℓ"
+}, {
+    "name": "2019 팰리세이드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200214_59/auto_1581652551380VY6IV_PNG/20200214125548_huaxqWAd.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "3,397~4,347",
+    "size": "준대형",
+    "id": 8,
+    "company": "현대",
+    "fuel_eff": "8.9~12.4km/ℓ"
+}, {
+    "name": "2020 K5",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191121_229/auto_15743128483693MLHG_PNG/20191121140719_ouNmJmMp.png?type=f160_116",
+    "engine": "가솔린, LPG",
+    "price": "2,293~3,063",
+    "size": "중형",
+    "id": 9,
+    "company": "기아",
+    "fuel_eff": "9.8~13.8km/ℓ"
+}, {
+    "name": "2020 투싼",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191010_42/auto_1570672496107tkiyd_PNG/20191010105444_hnPUPDGi.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "2,199~3,229",
+    "size": "준중형",
+    "id": 10,
+    "company": "현대",
+    "fuel_eff": "10.4~16.3km/ℓ"
+}, {
+    "name": "2020 G70",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200123_218/auto_1579752723970ll4rR_PNG/20200123131159_0qTFdaB9.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "3,770~5,582",
+    "size": "중형",
+    "id": 11,
+    "company": "제네시스",
+    "fuel_eff": "8.6~15.2km/ℓ"
+}, {
+    "name": "2020 벨로스터 N",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200421_101/auto_1587434119691wwXK9_PNG/20200421105321_HCwpQJAd.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "2,944~3,394",
+    "size": "준중형",
+    "id": 12,
+    "company": "현대",
+    "fuel_eff": "10.2~10.7km/ℓ"
+}, {
+    "name": "2019 베뉴",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200214_188/auto_1581670066918MWcxW_PNG/20200214174744_zcdllFi0.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "1,436~2,058",
+    "size": "소형",
+    "id": 13,
+    "company": "현대",
+    "fuel_eff": "13.3~13.7km/ℓ"
+}, {
+    "name": "2021 K3",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200420_196/auto_1587346142331tXGXp_PNG/20200420102741_xr7x99uR.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "1,714~2,087",
+    "size": "준중형",
+    "id": 14,
+    "company": "기아",
+    "fuel_eff": "14.1~15.2km/ℓ"
+}, {
+    "name": "2021 K9",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200409_133/auto_1586394102548WihL3_PNG/20200409100128_P36sKJaQ.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "5,437~9,232",
+    "size": "대형",
+    "id": 15,
+    "company": "기아",
+    "fuel_eff": "7.5~9.0km/ℓ"
+}, {
+    "name": "2019 싼타페",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190927_20/auto_1569573432230zox1r_PNG/20190927173710_aHHQtxKS.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "2,628~4,022",
+    "size": "중형",
+    "id": 1,
+    "company": "현대",
+    "fuel_eff": "9.0~13.8km/ℓ"
+}, {
+    "name": "2020 쏘나타",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200423_3/auto_1587614176346EUe3d_PNG/20200423125602_5X1dXTl2.png?type=f160_116",
+    "engine": "가솔린, LPG",
+    "price": "2,326~3,287",
+    "size": "중형",
+    "id": 2,
+    "company": "현대",
+    "fuel_eff": "9.8~13.7km/ℓ"
+}, {
+    "name": "2020 코나",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190912_297/auto_1568250361012wAsDt_PNG/20190912100559_WvgT34du.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "1,867~2,575",
+    "size": "소형",
+    "id": 3,
+    "company": "현대",
+    "fuel_eff": "11.1~17.5km/ℓ"
+}, {
+    "name": "2020 카니발",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190903_173/auto_15674689152664ycF3_PNG/20190903090141_QVbx9IsQ.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "2,880~3,890",
+    "size": "대형",
+    "id": 4,
+    "company": "기아",
+    "fuel_eff": "8.2~11.4km/ℓ"
+}, {
+    "name": "2020 티볼리",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200402_201/auto_1585793299600VdeAu_PNG/20200402110808_N6ogj5yL.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "1,640~2,645",
+    "size": "소형",
+    "id": 5,
+    "company": "쌍용",
+    "fuel_eff": "10.2~14.5km/ℓ"
+}, {
+    "name": "2019 G90",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190825_138/auto_15666938824441zAjU_PNG/20190825094440_I1nd4Aln.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "None",
+    "size": "대형",
+    "id": 6,
+    "company": "제네시스",
+    "fuel_eff": "7.3~8.9km/ℓ"
+}, {
+    "name": "2020 코란도",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200402_39/auto_15857913703042Ifu8_PNG/20200402103555_Ee2hepW5.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "2,197~3,178",
+    "size": "준중형",
+    "id": 7,
+    "company": "쌍용",
+    "fuel_eff": "10.1~15.2km/ℓ"
+}, {
+    "name": "2020 QM6",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190617_89/auto_1560743957522RhHf4_PNG/20190617125915_MtjAwCu4.png?type=f160_116",
+    "engine": "디젤, 가솔린, LPG",
+    "price": "2,317~3,787",
+    "size": "중형",
+    "id": 8,
+    "company": "르노삼성",
+    "fuel_eff": "8.6~14.4km/ℓ"
+}, {
+    "name": "2020 모하비",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190912_240/auto_1568249207007pRbBd_PNG/20190912094645_gtzkkyVa.png?type=f160_116",
+    "engine": "디젤",
+    "price": "4,647~5,212",
+    "size": "준대형",
+    "id": 9,
+    "company": "기아",
+    "fuel_eff": "9.3~9.4km/ℓ"
+}, {
+    "name": "2019 니로 하이브리드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190827_207/auto_1566888236325UA04z_PNG/20190827154353_vzoOuKVe.png?type=f160_116",
+    "engine": "하이브리드, 가솔린, 전기",
+    "price": "2,420~2,993",
+    "size": "소형",
+    "id": 10,
+    "company": "기아",
+    "fuel_eff": "19.5km/ℓ"
+}, {
+    "name": "2019 K7",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200102_286/auto_15779528632449pc9F_PNG/20200102171417_6aWncK5B.png?type=f160_116",
+    "engine": "디젤, 가솔린, LPG",
+    "price": "2,949~3,727",
+    "size": "준대형",
+    "id": 11,
+    "company": "기아",
+    "fuel_eff": "7.3~14.6km/ℓ"
+}, {
+    "name": "2020 그랜저 하이브리드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191128_167/auto_15749054648383mU64_PNG/20191128104421_VenAGl3t.png?type=f160_116",
+    "engine": "가솔린, 전기",
+    "price": "3,646~4,432",
+    "size": "준대형",
+    "id": 12,
+    "company": "현대",
+    "fuel_eff": "15.2~16.2km/ℓ"
+}, {
+    "name": "2020 K5 하이브리드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191212_33/auto_1576116429073iXPc6_PNG/20191212110703_PCa2RR7n.png?type=f160_116",
+    "engine": "가솔린, 전기",
+    "price": "2,749~3,327",
+    "size": "중형",
+    "id": 13,
+    "company": "기아",
+    "fuel_eff": "19.1~20.1km/ℓ"
+}, {
+    "name": "2021 K3 GT",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200420_85/auto_1587347339678XBRjg_PNG/20200420104846_SsVrN010.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "2,187~2,451",
+    "size": "준중형",
+    "id": 14,
+    "company": "기아",
+    "fuel_eff": "12.1km/ℓ"
+}, {
+    "name": "2020 스팅어",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190827_72/auto_15668902755163vdrF_PNG/20190827161751_OBriLR2S.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "3,447~5,182",
+    "size": "중형",
+    "id": 15,
+    "company": "기아",
+    "fuel_eff": "8.4~15.0km/ℓ"
+}, {
+    "name": "2020 G4 렉스턴",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200214_168/auto_1581646848173fPlzH_PNG/20200214112043_S8P4mp8e.png?type=f160_116",
+    "engine": "디젤",
+    "price": "3,361~4,551",
+    "size": "준대형",
+    "id": 1,
+    "company": "쌍용",
+    "fuel_eff": "10.1~10.5km/ℓ"
+}, {
+    "name": "2020 스포티지",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190912_101/auto_1568249873101uh3Tn_PNG/20190912095751_puLlo9Bu.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "2,284~3,102",
+    "size": "준중형",
+    "id": 2,
+    "company": "기아",
+    "fuel_eff": "10.5~16.3km/ℓ"
+}, {
+    "name": "2020 텔루라이드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200214_153/auto_1581656813825zDIsp_PNG/20200214140650_L1ZhaqXM.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "31,690~43,490",
+    "size": "준대형",
+    "id": 3,
+    "company": "기아",
+    "fuel_eff": "정보없음"
+}, {
+    "name": "2020 렉스턴 스포츠",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200214_253/auto_1581654914378AkJjf_PNG/20200214133511_PPtpnJtr.png?type=f160_116",
+    "engine": "디젤",
+    "price": "2,419~3,440",
+    "size": "준대형",
+    "id": 4,
+    "company": "쌍용",
+    "fuel_eff": "9.8~11.0km/ℓ"
+}, {
+    "name": "2020 레이",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200210_76/auto_15812998336207W3Ff_PNG/20200210105710_sOHiTsBw.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "1,260~1,570",
+    "size": "경형",
+    "id": 5,
+    "company": "기아",
+    "fuel_eff": "12.7~13.0km/ℓ"
+}, {
+    "name": "2020 코나 하이브리드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190912_33/auto_1568249642628dth8n_PNG/20190912095400_WNdDzaCJ.png?type=f160_116",
+    "engine": "하이브리드, 가솔린, 전기",
+    "price": "2,270~2,611",
+    "size": "소형",
+    "id": 6,
+    "company": "현대",
+    "fuel_eff": "17.4~19.3km/ℓ"
+}, {
+    "name": "2020 그랜드 스타렉스",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200408_184/auto_15863324434450bDwB_PNG/20200408165359_Tnxclzh8.png?type=f160_116",
+    "engine": "디젤, LPG",
+    "price": "2,209~3,280",
+    "size": "대형",
+    "id": 7,
+    "company": "현대",
+    "fuel_eff": "6.1~11.0km/ℓ"
+}, {
+    "name": "2020 렉스턴 스포츠 칸",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200214_111/auto_1581655454291MHgwF_PNG/20200214134411_Prmow2RM.png?type=f160_116",
+    "engine": "디젤",
+    "price": "2,795~3,690",
+    "size": "준대형",
+    "id": 8,
+    "company": "쌍용",
+    "fuel_eff": "10.0~10.3km/ℓ"
+}, {
+    "name": "2019 모닝",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191121_192/auto_1574314881943vglqd_PNG/20191121144120_GKPyeTFn.png?type=f160_116",
+    "engine": "가솔린, LPG",
+    "price": "965~1,445",
+    "size": "경형",
+    "id": 9,
+    "company": "기아",
+    "fuel_eff": "11.8~16.0km/ℓ"
+}, {
+    "name": "2018 넥쏘",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190912_92/auto_1568250131456XowRn_PNG/20190912100209_smdjrcOx.png?type=f160_116",
+    "engine": "수소",
+    "price": "6,890~7,220",
+    "size": "중형",
+    "id": 10,
+    "company": "현대",
+    "fuel_eff": "93.7~96.2km/kg"
+}, {
+    "name": "2020 코나 일렉트릭",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191231_177/auto_1577777636258yDIik_PNG/20191231163211_NwVkj9NK.png?type=f160_116",
+    "engine": "전기",
+    "price": "4,690~4,890",
+    "size": "소형",
+    "id": 11,
+    "company": "현대",
+    "fuel_eff": "5.6km/kWh"
+}, {
+    "name": "2020 쏘나타 하이브리드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200423_118/auto_15876159958209uYTe_PNG/20200423132626_se3uQYqo.png?type=f160_116",
+    "engine": "가솔린, 전기",
+    "price": "2,754~3,579",
+    "size": "중형",
+    "id": 12,
+    "company": "현대",
+    "fuel_eff": "19.1~20.1km/ℓ"
+}, {
+    "name": "2020 쏘렌토 하이브리드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200219_97/auto_1582077795048BnRql_PNG/20200219110305_xPZNEHyN.png?type=f160_116",
+    "engine": "가솔린, 전기",
+    "price": "중형",
+    "size": "중형",
+    "id": 13,
+    "company": "기아",
+    "fuel_eff": "15.3km/ℓ"
+}, {
+    "name": "2019 G90L",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200310_67/auto_1583821921010A0QCc_PNG/20200310153159_iz8Vx9UC.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "None",
+    "size": "대형",
+    "id": 14,
+    "company": "제네시스",
+    "fuel_eff": "7.2km/ℓ"
+}, {
+    "name": "2019 아이오닉 하이브리드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190830_57/auto_1567130866918avolX_PNG/20190830110741_axwDeQfq.png?type=f160_116",
+    "engine": "하이브리드, 가솔린, 전기",
+    "price": "2,242~2,693",
+    "size": "준중형",
+    "id": 15,
+    "company": "현대",
+    "fuel_eff": "22.4km/ℓ"
+}, {
+    "name": "2020 포터2",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190909_120/auto_1568016178511oh3Oy_PNG/20190909170252_5A0kZigI.png?type=f160_116",
+    "engine": "디젤",
+    "price": "1,664~2,276",
+    "size": "중형",
+    "id": 1,
+    "company": "현대",
+    "fuel_eff": "8.9~9.9km/ℓ"
+}, {
+    "name": "2020 SM6",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190715_161/auto_1563168053839MEbdz_PNG/20190715142052_HtbfS72l.png?type=f160_116",
+    "engine": "가솔린, LPG",
+    "price": "2,346~3,212",
+    "size": "중형",
+    "id": 2,
+    "company": "르노삼성",
+    "fuel_eff": "9.0~12.2km/ℓ"
+}, {
+    "name": "2019 스토닉",
+    "image_link": "https://imgauto-phinf.pstatic.net/20180806_191/auto_1533531240269GLTuh_PNG/20180806135356_5SPhqZsw.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "1,584~2,111",
+    "size": "소형",
+    "id": 3,
+    "company": "기아",
+    "fuel_eff": "12.6~13.5km/ℓ"
+}, {
+    "name": "2021 쏘울 부스터",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200323_110/auto_15849395297901I36n_PNG/20200323135832_n1nWGVxv.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "1,910~2,293",
+    "size": "소형",
+    "id": 4,
+    "company": "기아",
+    "fuel_eff": "12.2~12.4km/ℓ"
+}, {
+    "name": "2021 쏘울 부스터 EV",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200323_86/auto_15849403022785uLfl_PNG/20200323141131_LGJXlUZd.png?type=f160_116",
+    "engine": "전기",
+    "price": "4,187~4,834",
+    "size": "소형",
+    "id": 5,
+    "company": "기아",
+    "fuel_eff": "5.4~5.6km/kWh"
+}, {
+    "name": "2020 카니발 하이리무진",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191014_271/auto_1571022575278u42EY_PNG/20191014120921_FKZ8B43E.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "4,435~5,976",
+    "size": "대형",
+    "id": 6,
+    "company": "기아",
+    "fuel_eff": "7.6~10.3km/ℓ"
+}, {
+    "name": "2020 봉고3",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190905_297/auto_156767243599295Vaz_PNG/20190905173352_NMwLSevx.png?type=f160_116",
+    "engine": "디젤, LPG",
+    "price": "1,529~2,219",
+    "size": "중형",
+    "id": 7,
+    "company": "기아",
+    "fuel_eff": "6.5~9.9km/ℓ"
+}, {
+    "name": "2018 벨로스터",
+    "image_link": "https://imgauto-phinf.pstatic.net/20180115_86/auto_1515998845373kDC6M_PNG/20180115154656_9HoGurgR.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "2,044~2,568",
+    "size": "준중형",
+    "id": 8,
+    "company": "현대",
+    "fuel_eff": "12.4~13.1km/ℓ"
+}, {
+    "name": "2020 포터2 일렉트릭",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191209_17/auto_1575865268623fSg5O_PNG/20191209132054_FfMbB1uU.png?type=f160_116",
+    "engine": "전기",
+    "price": "4,060~4,274",
+    "size": "중형",
+    "id": 9,
+    "company": "현대",
+    "fuel_eff": "3.1km/kWh"
+}, {
+    "name": "2020 카니발 리무진",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190903_95/auto_15674688681835xmNM_PNG/20190903090033_ETnD4SFP.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "3,347~3,977",
+    "size": "대형",
+    "id": 10,
+    "company": "기아",
+    "fuel_eff": "8.2~11.3km/ℓ"
+}, {
+    "name": "2019 쏠라티",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190402_60/auto_1554169365239EYmqQ_PNG/20190402104235_6VOKTx8j.png?type=f160_116",
+    "engine": "디젤",
+    "price": "6,103~6,489",
+    "size": "대형",
+    "id": 11,
+    "company": "현대",
+    "fuel_eff": "정보없음"
+}, {
+    "name": "2019 K7 하이브리드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191209_160/auto_15758684203964tvzW_PNG/20191209141335_sM0W1ET3.png?type=f160_116",
+    "engine": "하이브리드, 가솔린, 전기",
+    "price": "3,599~3,975",
+    "size": "준대형",
+    "id": 12,
+    "company": "기아",
+    "fuel_eff": "16.2km/ℓ"
+}, {
+    "name": "2019 i30",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200226_4/auto_1582681358299VFMf9_PNG/20200226104222_Ik5GrbnW.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "2,319~2,499",
+    "size": "준중형",
+    "id": 13,
+    "company": "현대",
+    "fuel_eff": "11.4~11.8km/ℓ"
+}, {
+    "name": "2019 다니고 III 픽업",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191024_208/auto_1571893243020M2962_PNG/20191024140021_9PjPPuHA.png?type=f160_116",
+    "engine": "전기",
+    "price": "1,880",
+    "size": "경형",
+    "id": 14,
+    "company": "대창",
+    "fuel_eff": "정보없음"
+}, {
+    "name": "2020 캠시스 CEVO-C",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200406_131/auto_1586149174085pokiI_PNG/20200406135920_WMy0L92I.png?type=f160_116",
+    "engine": "전기",
+    "price": "1,450",
+    "size": "경형",
+    "id": 15,
+    "company": "캠시스",
+    "fuel_eff": "6.4km/kWh"
+}, {
+    "name": "2020 봉고3 EV",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200107_217/auto_1578358719607HUOKP_PNG/20200107095837_0t9TTv5D.png?type=f160_116",
+    "engine": "전기",
+    "price": "4,050~4,270",
+    "size": "중형",
+    "id": 1,
+    "company": "기아",
+    "fuel_eff": "3.1km/kWh"
+}, {
+    "name": "2018 니로 EV",
+    "image_link": "https://imgauto-phinf.pstatic.net/20180718_300/auto_1531894396223VsLwq_PNG/20180718151222_oXS7k0Ti.png?type=f160_116",
+    "engine": "전기",
+    "price": "4,780~4,980",
+    "size": "소형",
+    "id": 2,
+    "company": "기아",
+    "fuel_eff": "5.3km/kWh"
+}, {
+    "name": "2020 다마스",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190816_125/auto_15659358441691IszN_PNG/20190816151030_Fbp7ryzi.png?type=f160_116",
+    "engine": "LPG",
+    "price": "988~1,028",
+    "size": "경형",
+    "id": 3,
+    "company": "한국지엠",
+    "fuel_eff": "8.8km/ℓ"
+}, {
+    "name": "2019 아이오닉 일렉트릭",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190430_299/auto_15566035301323b0by_PNG/20190430145207_Nk3vitAE.png?type=f160_116",
+    "engine": "전기",
+    "price": "4,140~4,440",
+    "size": "준중형",
+    "id": 4,
+    "company": "현대",
+    "fuel_eff": "6.3km/kWh"
+}, {
+    "name": "2019 니로 플러그인 하이브리드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190827_43/auto_15668882737770JcuI_PNG/20190827154431_cVdvtced.png?type=f160_116",
+    "engine": "하이브리드, 가솔린, 전기",
+    "price": "3,438~3,651",
+    "size": "소형",
+    "id": 5,
+    "company": "기아",
+    "fuel_eff": "18.6km/ℓ"
+}, {
+    "name": "2020 라보",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190816_48/auto_1565936018667FvjYD_PNG/20190816151322_a5aG81nV.png?type=f160_116",
+    "engine": "LPG",
+    "price": "838~908",
+    "size": "경형",
+    "id": 6,
+    "company": "한국지엠",
+    "fuel_eff": "8.6km/ℓ"
+}, {
+    "name": "2019 다니고 III 밴",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191205_204/auto_1575538804570mrRbG_PNG/20191205184002_lAGG5V1f.png?type=f160_116",
+    "engine": "전기",
+    "price": "1,880",
+    "size": "경형",
+    "id": 7,
+    "company": "대창",
+    "fuel_eff": "정보없음"
+}, {
+    "name": "2017 i30 N",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191231_251/auto_1577753408445IJFDq_PNG/20191231095005_ov0zxwdZ.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "24,995",
+    "size": "준중형",
+    "id": 8,
+    "company": "현대",
+    "fuel_eff": "정보없음"
+}, {
+    "name": "2020 i10",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191231_39/auto_1577752858187l83gD_PNG/20191231094053_sejlzzuV.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "9,500",
+    "size": "경형",
+    "id": 9,
+    "company": "현대",
+    "fuel_eff": "4.7~5.5ℓ/100km"
+}, {
+    "name": "2019 아이오닉 플러그인 하이브리드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190116_209/auto_1547628042960bSjJl_PNG/20190116174041_YuLzRHrJ.png?type=f160_116",
+    "engine": "하이브리드, 가솔린, 전기",
+    "price": "3,134~3,383",
+    "size": "준중형",
+    "id": 10,
+    "company": "현대",
+    "fuel_eff": "20.5km/ℓ"
+}, {
+    "name": "2019 엑센트",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191113_40/auto_1573608093935J3Xdy_PNG/20191113102132_JBB29byV.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "14,995~19,080",
+    "size": "소형",
+    "id": 11,
+    "company": "현대",
+    "fuel_eff": "31.0~32.0mpg"
+}, {
+    "name": "2018 그랜드 스타렉스 리무진",
+    "image_link": "https://imgauto-phinf.pstatic.net/20190821_224/auto_15663580989552SUiy_PNG/20190821122804_2yYLIaS2.png?type=f160_116",
+    "engine": "디젤",
+    "price": "4,185~5,910",
+    "size": "대형",
+    "id": 12,
+    "company": "현대",
+    "fuel_eff": "8.9km/ℓ"
+}, {
+    "name": "2020 라페스타 EV",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191219_281/auto_1576732111241gxnYG_PNG/20191219140814_mUMKpZvG.png?type=f160_116",
+    "engine": "전기",
+    "price": "24,759",
+    "size": "중형",
+    "id": 13,
+    "company": "현대",
+    "fuel_eff": "정보없음"
+}, {
+    "name": "2020 i30 패스트백",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200226_215/auto_1582688173538x6V7y_PNG/20200226123555_ApWTYe03.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "준중형",
+    "size": "준중형",
+    "id": 14,
+    "company": "현대",
+    "fuel_eff": "정보없음"
+}, {
+    "name": "2020 ix25",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191031_213/auto_1572498176489plix1_PNG/20191031140215_1NZDt0KB.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "1,064,000",
+    "size": "소형",
+    "id": 15,
+    "company": "현대",
+    "fuel_eff": "정보없음"
+}, {
+    "name": "2020 i20",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200219_20/auto_1582076181529X84gY_PNG/20200219103557_UBDSs2FS.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "559,000~941,000",
+    "size": "소형",
+    "id": 1,
+    "company": "현대",
+    "fuel_eff": "정보없음"
+}, {
+    "name": "2019 i30 N 패스트백",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191112_255/auto_1573541507801pc3VC_PNG/20191112155125_KTFXXAYo.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "41,990",
+    "size": "준중형",
+    "id": 2,
+    "company": "현대",
+    "fuel_eff": "7.8ℓ/100km"
+}, {
+    "name": "2018 다니고",
+    "image_link": "https://imgauto-phinf.pstatic.net/20180116_293/auto_1516075915879GGMWL_PNG/20180116131122_XUBBojfb.png?type=f160_116",
+    "engine": "전기",
+    "price": "1,490",
+    "size": "경형",
+    "id": 3,
+    "company": "대창",
+    "fuel_eff": "정보없음"
+}, {
+    "name": "2020 i30 왜건",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200226_214/auto_1582687759202XxEL8_PNG/20200226122903_lCl9Vdtw.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "준중형",
+    "size": "준중형",
+    "id": 4,
+    "company": "현대",
+    "fuel_eff": "정보없음"
+}, {
+    "name": "2018 라페스타",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191219_234/auto_1576732693591x4DGO_PNG/20191219141757_3CeA5qng.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "17,096~20,806",
+    "size": "중형",
+    "id": 5,
+    "company": "현대",
+    "fuel_eff": "정보없음"
+}, {
+    "name": "2019 리오 세단",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191025_149/auto_15719837337670jyLT_PNG/20191025150833_cwEAteFF.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "15,750~16,390",
+    "size": "소형",
+    "id": 6,
+    "company": "기아",
+    "fuel_eff": "36.0mpg"
+}, {
+    "name": "2020 아우라",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200227_117/auto_1582783412468ugbJI_PNG/20200227150319_X7W6UIVs.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "580,000",
+    "size": "소형",
+    "id": 7,
+    "company": "현대",
+    "fuel_eff": "정보없음"
+}, {
+    "name": "2020 X씨드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200226_210/auto_1582690274327gY6JK_PNG/20200226131049_U5tJ392f.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "23,295~28,095",
+    "size": "준중형",
+    "id": 8,
+    "company": "기아",
+    "fuel_eff": "6.4~8.1ℓ/100km"
+}, {
+    "name": "2020 프로씨드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200120_143/auto_1579490273991EHlzG_PNG/20200120121741_LtjIAj9o.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "19,558~23,525",
+    "size": "준중형",
+    "id": 9,
+    "company": "기아",
+    "fuel_eff": "6.8~8.4ℓ/100km"
+}, {
+    "name": "2019 씨드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20180717_285/auto_15317942561759tSdg_PNG/20180717112409_ZqYiqFnr.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "15,990~34,690",
+    "size": "준중형",
+    "id": 10,
+    "company": "기아",
+    "fuel_eff": "정보없음"
+}, {
+    "name": "2018 씨드 SW",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200120_36/auto_1579486863693DT6Df_PNG/20200120112046_x5bF03sC.png?type=f160_116",
+    "engine": "디젤, 가솔린",
+    "price": "15,858~19,991",
+    "size": "준중형",
+    "id": 11,
+    "company": "기아",
+    "fuel_eff": "4.0~6.0ℓ/100km"
+}, {
+    "name": "2020 X씨드 플러그인 하이브리드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200120_136/auto_1579486018414tGbqI_PNG/20200120110636_72nxBSgb.png?type=f160_116",
+    "engine": "가솔린, 전기",
+    "price": "25,037~28,370",
+    "size": "준중형",
+    "id": 12,
+    "company": "기아",
+    "fuel_eff": "정보없음"
+}, {
+    "name": "2020 씨드 SW 플러그인 하이브리드",
+    "image_link": "https://imgauto-phinf.pstatic.net/20200120_274/auto_1579489502048eS0Fh_PNG/20200120120443_CdVIvNO2.png?type=f160_116",
+    "engine": "가솔린, 전기",
+    "price": "24,454",
+    "size": "준중형",
+    "id": 13,
+    "company": "기아",
+    "fuel_eff": "정보없음"
+}, {
+    "name": "2019 리오 해치백",
+    "image_link": "https://imgauto-phinf.pstatic.net/20191025_183/auto_1571982782241dKh7O_PNG/20191025145252_36yDxHLD.png?type=f160_116",
+    "engine": "가솔린",
+    "price": "16,490",
+    "size": "소형",
+    "id": 14,
+    "company": "기아",
+    "fuel_eff": "36.0mpg"
+}]
