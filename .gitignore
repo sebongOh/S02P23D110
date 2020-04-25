@@ -13,4 +13,30 @@ checkpoints/
 .vscode/
 .vscode/settings.json
 workspace.xml
+<<<<<<< HEAD
 preview/
+
+.DS_Store
+node_modules
+/dist
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+=======
+preview/
+>>>>>>> 892f30c0a188a977fc89e8ec895fbd3fd531946f
