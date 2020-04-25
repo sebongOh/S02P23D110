@@ -1,6 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
 import main from "./views/content/main";
+import login from "./views/login";
+import signUp from "./views/signUp";
+import myInformation from "./views/myInformation";
+import leave from "./views/leave";
 import result from "./views/content/aiResult";
 import search from "./views/content/search";
 // import store from "./vuex/store";
@@ -13,6 +17,26 @@ const router = new Router({
       path: "/",
       name: "main",
       component: main,
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: login,
+    },
+    {
+      path: "/signUp",
+      name: "signUp",
+      component: signUp,
+    },
+    {
+      path: "/myInformation",
+      name: "myInformation",
+      component: myInformation,
+    },
+    {
+      path: "/leave",
+      name: "leave",
+      component: leave,
     },
     {
       path: "/result",
