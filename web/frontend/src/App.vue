@@ -1,23 +1,11 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawerRight" app clipped right>
-      <v-list dense>
-        <v-list-item @click.stop="right = !right">
-          <v-list-item-action>
-            <v-icon>mdi-exit-to-app</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>right drawer</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
-    <v-app-bar app clipped-right color="blue-grey" dark>
+    <v-app-bar app clipped-right>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <!-- <router-link to='/'></router-link> -->
       <v-toolbar-title @click="homeBtn">SearchAuto</v-toolbar-title>
       <v-spacer />
+
       <v-text-field
         flat
         solo-inverted
@@ -29,8 +17,12 @@
         @keyup.enter="search"
       ></v-text-field>
       <v-btn @click="search">검색</v-btn>
+
       <v-spacer />
-      <v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight" />
+      <v-toolbar-items>
+        <v-btn text>홈</v-btn>
+        <v-btn text>로그인</v-btn>
+      </v-toolbar-items>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
@@ -107,8 +99,7 @@ export default {
 
   data: () => ({
     drawer: null,
-    drawerRight: null,
-    right: false,
+
     left: false,
     keyword: "",
     items: [

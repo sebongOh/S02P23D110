@@ -7,6 +7,7 @@ import myInformation from "./views/myInformation";
 import leave from "./views/leave";
 import result from "./views/content/aiResult";
 import search from "./views/content/search";
+import detail from "./views/content/detail";
 // import store from "./vuex/store";
 
 Vue.use(Router);
@@ -46,6 +47,16 @@ const router = new Router({
       path: "/search",
       name: "search",
       component: search,
+    },
+    {
+      path: "/detail",
+      name: "detail",
+      component: detail,
+    },
+    {
+      path: "/MyPage",
+      name: "Mypage",
+      component: () => import("@/views/content/MyPage.vue"),
     },
   ],
 });
