@@ -83,7 +83,6 @@
     <!-- <v-navigation-drawer v-model="left" fixed temporary /> -->
 
     <v-content>
-      <p>autosearch</p>
       <router-view></router-view>
     </v-content>
 

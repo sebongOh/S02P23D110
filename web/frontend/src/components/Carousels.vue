@@ -1,0 +1,177 @@
+<template>
+  <v-carousel
+    cycle
+    height="20%"
+    hide-delimiter-background
+    show-arrows-on-hove
+    class="text-center align-center"
+  >
+    <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src">
+      <v-row class="fill-height" align="center" justify="center">
+        <v-row class="fill-height pa-3" align="center">
+          <v-col cols="12" md="7" offset-md="5">
+            <h1 class="display-3 font-weight-light white--text">The Art Of Travel</h1>
+            <div
+              class="subheading text-uppercase pl-2 mb-4 white--text"
+            >Finding Beauty, One flight at a time</div>
+            <v-btn color="blue-grey" class="ma-2 white--text" dark @click="dialog = true">
+              Upload
+              <v-icon right dark>mdi-cloud-upload</v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
+        <!-- ###########################upload modal 창-->
+
+        <!--########################## -->
+      </v-row>
+    </v-carousel-item>
+    <v-dialog v-model="dialog" max-width="600px">
+      <v-card>
+        <v-card-title>UploadImage</v-card-title>
+        <v-card-subtitle>Input Image URL and Click the button or Drag and Drop or Attach an Image File</v-card-subtitle>
+        <v-card-text>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Input Image URL or  Drag & Drop or Select"
+            v-model="filename"
+            @dragover.prevent
+            @dragenter.prevent
+            @drop.prevent="onDrop"
+          />
+        </v-card-text>
+        <v-card-text>
+          <v-file-input @change="onClickFile"></v-file-input>
+        </v-card-text>
+        <v-card-text>
+          <input
+            type="file"
+            class="file-input"
+            accept="image/*"
+            ref="fileInput"
+            @change="onFileChange"
+          />
+        </v-card-text>
+        <v-card-actions>
+          <v-btn color="blue-grey" class="ma-2 white--text" dark @click="onClickUpload">Upload</v-btn>
+          <v-btn class="ma-2 white--text" dark @click="dialog = false">Close</v-btn>
+        </v-card-actions>
+
+        <v-card v-show="imageSrc" class="upload-image">
+          <v-img :src="imageSrc"></v-img>
+        </v-card>
+      </v-card>
+    </v-dialog>
+  </v-carousel>
+</template>
+
+<script>
+import ContentsApi from "../apis/ContentsApi";
+export default {
+  data() {
+    return {
+      uploadImage: "",
+      filename: "",
+      imageSrc: "",
+      dialog: false,
+      items: [
+        {
+          src:
+            "https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+        },
+        {
+          src:
+            "https://images.unsplash.com/photo-1532581140115-3e355d1ed1de?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+        },
+        {
+          src:
+            "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+        },
+        {
+          src:
+            "https://images.unsplash.com/photo-1522037576655-7a93ce0f4d10?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+        }
+      ]
+    };
+  },
+  methods: {
+    onDrop(event) {
+      this.inputImageFile(event.dataTransfer.files);
+      this.uploadImage = event.dataTransfer.files[0];
+      console.log(event.dataTransfer.files[0]);
+    },
+    onClickFile(event) {
+      console.log(event);
+      this.$refs.fileInput.click();
+    },
+    onFileChange(event) {
+      console.log(event);
+      this.inputImageFile(event.target.files);
+    },
+    inputImageFile(files) {
+      if (files.length) {
+        let file = files[0];
+        if (!/^image\//.test(file.type)) {
+          alert("이미지 파일만 등록이 가능합니다");
+          return false;
+        }
+        this.filename = file.name;
+        this.preview(file);
+      }
+    },
+    onClickUpload() {
+      this.preview(this.filename);
+
+      const formData = new FormData();
+      formData.append("file", this.uploadImage);
+      console.log("imageSrc", this.imageSrc);
+
+      for (let key of formData.entries()) {
+        console.log(`${key}`);
+      }
+
+      ContentsApi.imgupload(
+        formData,
+        res => {
+          console.log(res);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+      // this.$router();
+    },
+    preview(file) {
+      if (typeof file === "string") {
+        this.imageSrc = file;
+      } else {
+        let vm = this;
+        let reader = new FileReader();
+        reader.onload = () => {
+          vm.imageSrc = reader.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  }
+};
+</script>
+
+<style>
+#uploader {
+  width: 90%;
+  padding: 2rem;
+  .file-input {
+    display: none;
+  }
+  .upload-image {
+    padding-top: 1rem;
+    width: 200px;
+    height: 200px;
+    v-img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+</style>

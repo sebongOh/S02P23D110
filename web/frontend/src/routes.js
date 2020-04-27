@@ -12,8 +12,7 @@ import search from "./views/content/search";
 Vue.use(Router);
 
 const router = new Router({
-  routes: [
-    {
+  routes: [{
       path: "/",
       name: "main",
       component: main,
