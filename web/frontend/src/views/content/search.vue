@@ -2,14 +2,8 @@
   <v-container fluid>
     <p>검색어: {{ this.$route.query.keyword }}</p>
     <v-row>
-      <v-col cols="6" sm="4" v-for="item in carItems" :key="item.name">
-        <carCard
-          :name="item.name"
-          :brand="item.brand"
-          :price="item.price"
-          :fuel_eff="item.fuel_eff"
-          :engine="item.engine"
-        ></carCard>
+      <v-col cols="6" sm="4" v-for="item in carItems" :key="item.id">
+        <carCard :id="item.id" :imagelink="item.imagelink" :name="item.name" :brand="item.brand" :price="item.price" :fuel_eff="item.fuel_eff" :engine="item.engine"></carCard>
       </v-col>
     </v-row>
   </v-container>
@@ -21,7 +15,7 @@ import carCard from "../../components/carCard";
 export default {
   name: "search",
   components: {
-    carCard
+    carCard,
   },
   created() {
     console.log("load search");
@@ -29,63 +23,30 @@ export default {
     this.getSearchResult(this.$route.query.keyword);
   },
   data: () => ({
-    carItems: [
-      {
-        brand: "횬다이",
-        name: "2020 아반떼",
-        price: "1,531~2392",
-        fuel_eff: "10.5~15.4km/ℓ",
-        engine: "가솔린,LPG"
-      },
-      {
-        brand: "횬다이",
-        name: "2020 아반떼2",
-        price: "1,531~2392",
-        fuel_eff: "10.5~15.4km/ℓ",
-        engine: "가솔린,LPG"
-      },
-      {
-        brand: "횬다이",
-        name: "2020 아반떼3",
-        price: "1,531~2392",
-        fuel_eff: "10.5~15.4km/ℓ",
-        engine: "가솔린,LPG"
-      },
-      {
-        brand: "횬다이",
-        name: "2020 아반떼4",
-        price: "1,531~2392",
-        fuel_eff: "10.5~15.4km/ℓ",
-        engine: "가솔린,LPG"
-      },
-      {
-        brand: "횬다이",
-        name: "2020 아반떼5",
-        price: "1,531~2392",
-        fuel_eff: "10.5~15.4km/ℓ",
-        engine: "가솔린,LPG"
-      }
-    ]
+    carItems: [],
   }),
   methods: {
     getSearchResult(keyword) {
       console.log("function query:", keyword);
       ContentsApi.search(
         keyword,
-        res => {
+        (res) => {
           // console.log(res);
-          const carItem = res.data;
-          console.log(carItem);
+          const carItemList = res.data;
+          for (const idx in carItemList) {
+            const carItem = carItemList[idx];
+            this.carItems.push(carItem);
+            console.log(carItem);
+          }
         },
-        error => {
+        (error) => {
           console.log(error);
         }
       );
-    }
+    },
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

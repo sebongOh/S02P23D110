@@ -1,6 +1,6 @@
 <template>
   <v-card max-width="344" class="mx-auto">
-    <v-img src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg" height="194"></v-img>
+    <v-img :src="imagelink" height="194"></v-img>
 
     <v-list-item>
       <v-list-item-content>
@@ -13,7 +13,7 @@
       <p>연료: {{ engine }}</p>
     </v-card-text>
     <v-card-actions>
-      <v-btn text color="deep-purple accent-4">Read</v-btn>
+      <v-btn text color="deep-purple accent-4" @click="goDetail(id)">상세정보</v-btn>
       <v-spacer></v-spacer>
       <v-btn icon>
         <v-icon>mdi-heart</v-icon>
@@ -25,8 +25,12 @@
 <script>
 export default {
   name: "carCard",
-
-  props: ["name", "company", "price", "fuel_eff", "engine"],
+  props: ["id", "imagelink", "name", "company", "price", "fuel_eff", "engine"],
+  methods: {
+    goDetail(idx) {
+      this.$router.push({ path: "/detail", query: { id: idx } });
+    },
+  },
 };
 </script>
 
