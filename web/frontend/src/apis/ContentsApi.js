@@ -1,10 +1,11 @@
 import axios from "axios";
-const host = "http://58.230.252.215:8000";
+const host = "http://58.230.252.215:8080";
 
 const ContentsApi = {
   //   requestAI: (data, callback, errorCallback) => requestAI(data, callback, errorCallback),
   imgupload: (data, callback, errorCallback) => imgupload(data, callback, errorCallback),
   search: (data, callback, errorCallback) => search(data, callback, errorCallback),
+  requestCarDetail: (data, callback, errorCallback) => requestCarDetail(data, callback, errorCallback),
   //   profileLoad: (data, callback, error) => profileLoad(data, callback, error),
 };
 
@@ -37,7 +38,22 @@ const imgupload = (formdata, callback, errorCallback) => {
 
 const search = (data, callback, errorCallback) => {
   axios({
-    url: `${host}/cars/` + data,
+    url: `${host}/back/cars/company/` + data,
+    method: "get",
+  })
+    .then((res) => {
+      console.log(res);
+      callback(res);
+    })
+    .catch((error) => {
+      console.log(error);
+      errorCallback(error);
+    });
+};
+
+const requestCarDetail = (data, callback, errorCallback) => {
+  axios({
+    url: `${host}/back/cars/` + data,
     method: "get",
   })
     .then((res) => {
