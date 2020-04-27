@@ -1,20 +1,22 @@
 <template>
   <div>
-    <Carousels></Carousels>
-    <div class="md-6 xs12">
-      <imageUpload></imageUpload>
+    <div>
+      <Carousels></Carousels>
+    </div>
+    <div>
+      <MainList></MainList>
     </div>
   </div>
 </template>
 
 <script>
-import imageUpload from "../../components/imageUpload";
 import Carousels from "../../components/Carousels";
+import MainList from "../../components/MainList";
 
 export default {
   components: {
-    imageUpload,
-    Carousels
+    Carousels,
+    MainList
   }
 };
 </script>

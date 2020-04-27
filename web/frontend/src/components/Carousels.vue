@@ -12,56 +12,54 @@
           <v-col cols="12" md="7" offset-md="5">
             <h1 class="display-3 font-weight-light white--text">The Art Of Travel</h1>
             <div
-              class="subheading text-uppercase pl-2 mb-4 white--text"
+              class="subheading text-uppercase pl-4 mb-6 white--text"
             >Finding Beauty, One flight at a time</div>
-            <v-btn color="blue-grey" class="ma-2 white--text" dark @click="dialog = true">
+            <v-btn large color="orange" class="ma-2 white--text" dark @click="dialog = true">
               Upload
               <v-icon right dark>mdi-cloud-upload</v-icon>
             </v-btn>
           </v-col>
         </v-row>
-        <!-- ###########################upload modal 창-->
-
-        <!--########################## -->
       </v-row>
     </v-carousel-item>
+    <!-- ###########################upload modal 창-->
     <v-dialog v-model="dialog" max-width="600px">
       <v-card>
         <v-card-title>UploadImage</v-card-title>
-        <v-card-subtitle>Input Image URL and Click the button or Drag and Drop or Attach an Image File</v-card-subtitle>
-        <v-card-text>
+        <v-card v-show="imageSrc" class="upload-image">
+          <v-img :src="imageSrc"></v-img>
+        </v-card>
+        <v-card-title>
           <input
+            label="sss"
             type="text"
             class="form-control"
-            placeholder="Input Image URL or  Drag & Drop or Select"
+            placeholder="Input Image URL or Drag & Drop or Select"
             v-model="filename"
             @dragover.prevent
             @dragenter.prevent
             @drop.prevent="onDrop"
           />
-        </v-card-text>
-        <v-card-text>
-          <v-file-input @change="onClickFile"></v-file-input>
-        </v-card-text>
-        <v-card-text>
-          <input
-            type="file"
-            class="file-input"
-            accept="image/*"
-            ref="fileInput"
-            @change="onFileChange"
-          />
-        </v-card-text>
+        </v-card-title>
+        <div class="input-group-append">
+          <span class="input-group-text" @click="onClickFile">
+            <i class="fa fa-paperclip"></i>
+          </span>
+        </div>
+        <input
+          type="file"
+          class="file-input"
+          accept="image/*"
+          ref="fileInput"
+          @change="onFileChange"
+        />
         <v-card-actions>
-          <v-btn color="blue-grey" class="ma-2 white--text" dark @click="onClickUpload">Upload</v-btn>
-          <v-btn class="ma-2 white--text" dark @click="dialog = false">Close</v-btn>
+          <v-btn color="orange" class="ma-2 white--text" dark @click="onClickUpload">Upload</v-btn>
+          <v-btn color="grey" class="ma-2 white--text" dark @click="dialog = false">Close</v-btn>
         </v-card-actions>
-
-        <v-card v-show="imageSrc" class="upload-image">
-          <v-img :src="imageSrc"></v-img>
-        </v-card>
       </v-card>
     </v-dialog>
+    <!--########################## -->
   </v-carousel>
 </template>
 
@@ -158,20 +156,4 @@ export default {
 </script>
 
 <style>
-#uploader {
-  width: 90%;
-  padding: 2rem;
-  .file-input {
-    display: none;
-  }
-  .upload-image {
-    padding-top: 1rem;
-    width: 200px;
-    height: 200px;
-    v-img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
 </style>

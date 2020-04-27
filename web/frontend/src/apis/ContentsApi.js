@@ -6,6 +6,7 @@ const ContentsApi = {
   imgupload: (data, callback, errorCallback) => imgupload(data, callback, errorCallback),
   search: (data, callback, errorCallback) => search(data, callback, errorCallback),
   requestCarDetail: (data, callback, errorCallback) => requestCarDetail(data, callback, errorCallback),
+  requestCars: (callback, errorCallback) => requestCars(callback, errorCallback)
   //   profileLoad: (data, callback, error) => profileLoad(data, callback, error),
 };
 
@@ -68,5 +69,20 @@ const requestCarDetail = (data, callback, errorCallback) => {
       errorCallback(error);
     });
 };
+
+const requestCars = (callback, errorCallback) => {
+  axios({
+      url: `${host}/back/cars`,
+      method: "get",
+    })
+    .then((res) => {
+      console.log(res);
+      callback(res);
+    })
+    .catch((error) => {
+      console.log(error);
+      errorCallback(error);
+    });
+}
 
 export default ContentsApi;
