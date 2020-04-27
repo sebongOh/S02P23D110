@@ -40,14 +40,10 @@ const imgupload = (formdata, callback, errorCallback) => {
 
 const search = (data, callback, errorCallback) => {
   axios({
-<<<<<<< HEAD
-      url: `${host}/cars/` + data,
+
+      url: `${host}/back/cars/company/` + data,
       method: "get",
     })
-=======
-    url: `${host}/back/cars/company/` + data,
-    method: "get",
-  })
     .then((res) => {
       console.log(res);
       callback(res);
@@ -60,10 +56,9 @@ const search = (data, callback, errorCallback) => {
 
 const requestCarDetail = (data, callback, errorCallback) => {
   axios({
-    url: `${host}/back/cars/` + data,
-    method: "get",
-  })
->>>>>>> develop
+      url: `${host}/back/cars/` + data,
+      method: "get",
+    })
     .then((res) => {
       console.log(res);
       callback(res);
