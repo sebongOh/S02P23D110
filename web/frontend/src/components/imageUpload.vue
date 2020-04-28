@@ -66,7 +66,10 @@ export default {
           return false;
         }
         this.filename = file.name;
+        this.uploadImage = file;
         this.preview(file);
+
+        // this.onClickUpload()
       }
     },
     onClickUpload() {
@@ -102,6 +105,13 @@ export default {
         };
         reader.readAsDataURL(file);
       }
+    }
+  },
+  watch: {
+    checkFileInput: function() {
+      console.log(this.uploadImage);
+      console.log(this.filename);
+      console.log(this.imageSrc);
     }
   }
 };

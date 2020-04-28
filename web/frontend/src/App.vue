@@ -14,9 +14,9 @@
         label="Search"
         class="hidden-sm-and-down"
         v-model="keyword"
-        @keyup.enter="search"
+        @keyup.enter="search(keyword)"
       ></v-text-field>
-      <v-btn @click="search">검색</v-btn>
+      <v-btn @click="search(keyword)">검색</v-btn>
 
       <v-spacer />
       <v-toolbar-items>
@@ -77,8 +77,6 @@
     <v-content>
       <router-view></router-view>
     </v-content>
-
-    <v-navigation-drawer v-model="right" fixed right temporary />
 
     <v-footer app color="blue-grey" class="white--text">
       <span>SSAFY</span>

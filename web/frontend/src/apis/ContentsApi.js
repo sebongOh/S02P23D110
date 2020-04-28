@@ -21,7 +21,7 @@ const ContentsApi = {
 
 const imgupload = (formdata, callback, errorCallback) => {
   axios({
-    url: `${host}/upload/`,
+    url: `${host}/back/upload/`,
     method: "post",
     data: formdata,
     headers: { "Content-Type": "multipart/form-data" },
