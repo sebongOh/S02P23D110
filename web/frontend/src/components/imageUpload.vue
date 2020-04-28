@@ -3,28 +3,14 @@
     <div id="uploader">
       <p>Input Image URL and Click the button or Drag and Drop or Attach an Image File</p>
       <div class="input-group">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Input Image URL or  Drag & Drop or Select"
-          v-model="filename"
-          @dragover.prevent
-          @dragenter.prevent
-          @drop.prevent="onDrop"
-        />
+        <input type="text" class="form-control" placeholder="Input Image URL or  Drag & Drop or Select" v-model="filename" @dragover.prevent @dragenter.prevent @drop.prevent="onDrop" />
         <div class="input-group-append">
           <span class="input-group-text" @click="onClickFile">
             <i class="fa fa-paperclip"></i>
           </span>
           <button class="btn btn-outline-info" @click="onClickUpload">Upload</button>
         </div>
-        <input
-          type="file"
-          class="file-input"
-          accept="image/*"
-          ref="fileInput"
-          @change="onFileChange"
-        />
+        <input type="file" class="file-input" accept="image/*" ref="fileInput" @change="onFileChange" />
       </div>
       <div v-show="imageSrc" class="upload-image">
         <img :src="imageSrc" />
@@ -42,7 +28,7 @@ export default {
     return {
       uploadImage: "",
       filename: "",
-      imageSrc: ""
+      imageSrc: "",
     };
   },
   methods: {
@@ -68,8 +54,6 @@ export default {
         this.filename = file.name;
         this.uploadImage = file;
         this.preview(file);
-
-        // this.onClickUpload()
       }
     },
     onClickUpload() {
@@ -85,10 +69,10 @@ export default {
 
       ContentsApi.imgupload(
         formData,
-        res => {
+        (res) => {
           console.log(res);
         },
-        error => {
+        (error) => {
           console.log(error);
         }
       );
@@ -105,15 +89,15 @@ export default {
         };
         reader.readAsDataURL(file);
       }
-    }
+    },
   },
   watch: {
     checkFileInput: function() {
       console.log(this.uploadImage);
       console.log(this.filename);
       console.log(this.imageSrc);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -122,6 +106,11 @@ export default {
   width: 90%;
   padding: 2rem;
 
+  .input-group {
+    border: 2px solid black;
+    width: 200px;
+    height: 100px;
+  }
   .file-input {
     display: none;
   }

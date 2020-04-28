@@ -3,10 +3,15 @@
     <v-app-bar app clipped-right>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <!-- <router-link to='/'></router-link> -->
-      <v-toolbar-title @click="homeBtn">SearchAuto</v-toolbar-title>
+      <v-toolbar-title @click="homeBtn">AutoSearch</v-toolbar-title>
       <v-spacer />
 
-      <v-text-field flat solo-inverted hide-details prepend-inner-icon="fa-search" label="Search" class="hidden-sm-and-down" v-model="keyword" @keyup.enter="search(keyword)"></v-text-field>
+      <select v-model="selected">
+        <option disabled value="">분류</option>
+        <option>이름</option>
+        <option>제조사</option>
+      </select>
+      <v-text-field flat solo-inverted hide-details label="Search" class="hidden-sm-and-down" v-model="keyword" @keyup.enter="search(keyword)"></v-text-field>
       <v-btn @click="search(keyword)">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
@@ -84,7 +89,7 @@ export default {
 
   data: () => ({
     drawer: null,
-
+    selected: "",
     left: false,
     keyword: "",
     items: [

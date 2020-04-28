@@ -8,55 +8,71 @@ import leave from "./views/leave";
 import result from "./views/content/aiResult";
 import search from "./views/content/search";
 import detail from "./views/content/detail";
+import test from "./views/content/test";
 // import store from "./vuex/store";
 
 Vue.use(Router);
 
 const router = new Router({
-  routes: [{
+  routes: [
+    {
       path: "/",
       name: "main",
       component: main,
     },
+
     {
       path: "/login",
       name: "login",
       component: login,
     },
+
     {
       path: "/signUp",
       name: "signUp",
       component: signUp,
     },
+
     {
       path: "/myInformation",
       name: "myInformation",
       component: myInformation,
     },
+
     {
       path: "/leave",
       name: "leave",
       component: leave,
     },
+
     {
       path: "/result",
       name: "result",
       component: result,
     },
+
     {
       path: "/search",
       name: "search",
       component: search,
     },
+
     {
       path: "/detail",
       name: "detail",
       component: detail,
     },
+
     {
       path: "/MyPage",
       name: "Mypage",
       component: () => import("@/views/content/MyPage.vue"),
+    },
+
+    {
+      path: "/test",
+      name: "test",
+      component: test,
     },
   ],
 });
