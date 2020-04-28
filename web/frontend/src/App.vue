@@ -48,8 +48,8 @@
             <v-list-item-title>마이페이지</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+      </v-list> </v-navigation-drawer
+    >-->
 
     <!-- <v-navigation-drawer v-model="left" fixed temporary /> -->
 
