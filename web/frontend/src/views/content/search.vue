@@ -3,15 +3,7 @@
     <p>검색어: {{ this.$route.query.keyword }}</p>
     <v-row>
       <v-col cols="6" sm="4" v-for="item in carItems" :key="item.id">
-        <carCard
-          :id="item.id"
-          :imagelink="item.imagelink"
-          :name="item.name"
-          :brand="item.brand"
-          :price="item.price"
-          :fuel_eff="item.fuel_eff"
-          :engine="item.engine"
-        ></carCard>
+        <carCard :id="item.id" :imagelink="item.imagelink" :name="item.name" :brand="item.brand" :price="item.price" :fuel_eff="item.fuel_eff" :engine="item.engine"></carCard>
       </v-col>
     </v-row>
   </v-container>
@@ -23,7 +15,7 @@ import carCard from "../../components/carCard";
 export default {
   name: "search",
   components: {
-    carCard
+    carCard,
   },
   created() {
     console.log("load search");
@@ -31,15 +23,14 @@ export default {
     this.getSearchResult(this.$route.query.keyword);
   },
   data: () => ({
-    carItems: []
+    carItems: [],
   }),
   methods: {
     getSearchResult(keyword) {
       console.log("function query:", keyword);
       ContentsApi.search(
         keyword,
-        res => {
-          // console.log(res);
+        (res) => {
           const carItemList = res.data;
           for (const idx in carItemList) {
             const carItem = carItemList[idx];
@@ -47,13 +38,13 @@ export default {
             console.log(carItem);
           }
         },
-        error => {
+        (error) => {
           console.log(error);
         }
       );
-    }
+    },
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 
