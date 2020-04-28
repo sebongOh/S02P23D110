@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar app clipped-left>
+    <v-app-bar app>
       <v-app-bar-nav-icon class="left-drawer" @click.stop="drawer = !drawer" />
       <v-toolbar-title @click="homeBtn">AutoSearch</v-toolbar-title>
       <v-spacer />
