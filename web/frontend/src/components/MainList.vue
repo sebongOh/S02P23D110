@@ -4,7 +4,9 @@
       <h1 class="display-2 font-weight-light">The Art Of Travel</h1>
       <div class="subheading text-uppercase pl-4 mb-6">Finding Beauty, One flight at a time</div>
     </v-content>
+
     <v-row>
+      <!-- 차량 리스트 -->
       <v-col v-for="car in calData" :key="car.id" :cols="12" :md="3">
         <v-card>
           <v-img
