@@ -31,7 +31,6 @@ export default {
       ContentsApi.search(
         keyword,
         (res) => {
-          // console.log(res);
           const carItemList = res.data;
           for (const idx in carItemList) {
             const carItem = carItemList[idx];
