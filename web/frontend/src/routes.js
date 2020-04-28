@@ -13,8 +13,7 @@ import detail from "./views/content/detail";
 Vue.use(Router);
 
 const router = new Router({
-  routes: [
-    {
+  routes: [{
       path: "/",
       name: "main",
       component: main,
