@@ -5,7 +5,7 @@
       <div class="subheading text-uppercase pl-4 mb-6">Finding Beauty, One flight at a time</div>
     </v-content>
     <v-row>
-      <v-col v-for="car in cars" :key="car.id" :cols="12" :md="3">
+      <v-col v-for="car in calData" :key="car.id" :cols="12" :md="3">
         <v-card>
           <v-img
             :src="car.imagelink"
@@ -30,10 +30,10 @@
                 class="mx-1 mb-3"
                 color="grey darken-3"
                 text-color="white"
-                @click.stop
+                @click="carDetail(car.id)"
               >{{ car.name }}</v-chip>
               <v-spacer></v-spacer>
-              <v-btn icon>
+              <v-btn icon @click="heart(car.id)">
                 <v-icon>mdi-heart</v-icon>
               </v-btn>
             </v-card-actions>
@@ -41,6 +41,20 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-container class="text-center">
+      <v-btn class="ma-2" color=" darken-2" dark @click="previous()">
+        <v-icon dark left>mdi-arrow-left</v-icon>Back
+      </v-btn>
+      <v-chip
+        label
+        class="ma-1 font-weight-bold"
+        color="black darken-2"
+        text-color="white"
+      >{{ curPageNum }}</v-chip>
+      <v-btn class="ma-2" color=" darken-2" dark @click="next()">
+        <v-icon dark left>mdi-arrow-right</v-icon>Next
+      </v-btn>
+    </v-container>
   </v-container>
 </template>
 
@@ -60,25 +74,51 @@ export default {
         engine: ""
       }
     ],
-    cards: [
-      {
-        title: "Pre-fab homes",
-        src: "https://cdn.vuetifyjs.com/images/cards/house.jpg",
-        flex: 4
-      }
-    ]
+    dataPerpage: 16,
+    curPageNum: 1
   }),
   mounted() {
     ContentsApi.requestCars(res => {
-      console.log("데이터 넘어어어어어온다다다다다");
-      console.log(res.data);
       this.cars = res.data;
     }),
       error => {
         console.log(error);
       };
   },
-  methods: {}
+  methods: {
+    heart(car_id) {
+      console.log("좋아요 :: " + car_id);
+    },
+    carDetail(car_id) {
+      console.log("디테일 :: " + car_id);
+    },
+    previous() {
+      if (1 < this.curPageNum) {
+        return (this.curPageNum -= 1);
+      }
+      return this.curPageNum;
+    },
+    next() {
+      if (this.numOfpages > this.curPageNum) {
+        return (this.curPageNum += 1);
+      }
+      return this.curPageNum;
+    }
+  },
+  computed: {
+    startOffset() {
+      return (this.curPageNum - 1) * this.dataPerpage;
+    },
+    endOffset() {
+      return this.startOffset + this.dataPerpage;
+    },
+    numOfpages() {
+      return Math.ceil(this.cars.length / this.dataPerpage);
+    },
+    calData() {
+      return this.cars.slice(this.startOffset, this.endOffset);
+    }
+  }
 };
 </script>
 
