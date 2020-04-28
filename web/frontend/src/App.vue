@@ -1,8 +1,7 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar app clipped-right>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <!-- <router-link to='/'></router-link> -->
+    <v-app-bar app clipped-left>
+      <v-app-bar-nav-icon class="left-drawer" @click.stop="drawer = !drawer" />
       <v-toolbar-title @click="homeBtn">AutoSearch</v-toolbar-title>
       <v-spacer />
 
@@ -17,50 +16,38 @@
       </v-btn>
 
       <v-spacer />
-      <v-toolbar-items>
+      <!-- <v-toolbar-items>
         <v-btn text>홈</v-btn>
         <v-btn text>로그인</v-btn>
-      </v-toolbar-items>
+      </v-toolbar-items> -->
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
+    <v-navigation-drawer class="left-drawer" v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
       <v-list dense>
-        <template v-for="item in items">
-          <v-layout v-if="item.heading" :key="item.heading" row align-center>
-            <v-flex xs6>
-              <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
-            </v-flex>
-            <v-flex xs6 class="text-xs-center">
-              <a href="#!" class="body-2 black--text">EDIT</a>
-            </v-flex>
-          </v-layout>
-          <v-list-group v-else-if="item.children" :key="item.text" v-model="item.model" :prepend-icon="item.model ? item.icon : item['icon-alt']" append-icon>
-            <template v-slot:activator>
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>{{ item.text }}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </template>
-            <v-list-item v-for="(child, i) in item.children" :key="i" @click="search(child.name)">
-              <v-list-item-action v-if="child.icon"></v-list-item-action>
-              <v-list-item-avatar>
-                <img :src="child.imgUrl" alt />
-              </v-list-item-avatar>
-              <v-list-item-content>
-                <v-list-item-title>{{ child.name }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-group>
-          <v-list-item v-else :key="item.name">
-            <v-list-item-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.name }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </template>
+        <v-list-item v-if="isLogin">
+          <v-list-item-icon>
+            <v-icon>mdi-logout-variant</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>로그아웃</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item v-else to="/login">
+          <v-list-item-icon>
+            <v-icon>mdi-login-variant</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>로그인</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/MyPage">
+          <v-list-item-icon>
+            <v-icon>mdi-account</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>마이페이지</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
 
@@ -70,22 +57,26 @@
       <router-view></router-view>
     </v-content>
 
-    <v-footer app color="blue-grey" class="white--text">
+    <bottomNav class="bottom-nav" />
+    <!-- <v-footer app color="blue-grey" class="white--text">
       <span>SSAFY</span>
       <v-spacer />
       <span>&copy; 2020</span>
-    </v-footer>
+    </v-footer> -->
   </v-app>
 </template>
 
 <script>
+import bottomNav from "./components/BottomNav";
 export default {
   name: "App",
   props: {
     source: String,
   },
 
-  components: {},
+  components: {
+    bottomNav,
+  },
 
   data: () => ({
     drawer: null,
@@ -214,3 +205,16 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@media (min-width: 1367px) {
+  .bottom-nav {
+    display: none;
+  }
+}
+@media (max-width: 1366px) {
+  .left-drawer {
+    display: none;
+  }
+}
+</style>
