@@ -1,5 +1,5 @@
 import axios from "axios";
-const host = "http://127.0.0.1:8000";
+const host = "http://58.230.252.215:8080";
 
 const ContentsApi = {
   //   requestAI: (data, callback, errorCallback) => requestAI(data, callback, errorCallback),
@@ -22,13 +22,13 @@ const ContentsApi = {
 
 const imgupload = (formdata, callback, errorCallback) => {
   axios({
-      url: `${host}/back/upload/`,
-      method: "post",
-      data: formdata,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
+    url: `${host}/back/upload/`,
+    method: "post",
+    data: formdata,
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  })
     .then((res) => {
       console.log(res);
       callback(res);
@@ -41,9 +41,9 @@ const imgupload = (formdata, callback, errorCallback) => {
 
 const search = (data, callback, errorCallback) => {
   axios({
-      url: `${host}/back/cars/company/` + data,
-      method: "get",
-    })
+    url: `${host}/back/cars/company/` + data,
+    method: "get",
+  })
     .then((res) => {
       console.log(res);
       callback(res);
@@ -56,9 +56,9 @@ const search = (data, callback, errorCallback) => {
 
 const requestCarDetail = (data, callback, errorCallback) => {
   axios({
-      url: `${host}/back/cars/` + data,
-      method: "get",
-    })
+    url: `${host}/back/cars/` + data,
+    method: "get",
+  })
     .then((res) => {
       console.log(res);
       callback(res);
@@ -71,9 +71,9 @@ const requestCarDetail = (data, callback, errorCallback) => {
 
 const requestCars = (callback, errorCallback) => {
   axios({
-      url: `${host}/back/cars`,
-      method: "get",
-    })
+    url: `${host}/back/cars`,
+    method: "get",
+  })
     .then((res) => {
       console.log(res);
       callback(res);

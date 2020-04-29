@@ -13,6 +13,7 @@ import detail from "./views/content/detail";
 Vue.use(Router);
 
 const router = new Router({
+  mode: "history",
   routes: [
     {
       path: "/",
