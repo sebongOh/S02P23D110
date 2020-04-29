@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar app>
+    <v-app-bar app clipped-left>
       <v-app-bar-nav-icon class="left-drawer" @click.stop="drawer = !drawer" />
       <v-toolbar-title @click="homeBtn">AutoSearch</v-toolbar-title>
       <v-spacer />
@@ -48,8 +48,8 @@
             <v-list-item-title>마이페이지</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-      </v-list> </v-navigation-drawer
-    >-->
+      </v-list>
+    </v-navigation-drawer>
 
     <!-- <v-navigation-drawer v-model="left" fixed temporary /> -->
 
@@ -57,7 +57,7 @@
       <router-view></router-view>
     </v-content>
 
-    <bottomNav class="bottom-nav" />
+    <BottomNav class="bottom-nav" />
     <!-- <v-footer app color="blue-grey" class="white--text">
       <span>SSAFY</span>
       <v-spacer />
@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import bottomNav from "./components/BottomNav";
+import BottomNav from "./components/BottomNav";
 export default {
   name: "App",
   props: {
@@ -75,7 +75,7 @@ export default {
   },
 
   components: {
-    bottomNav,
+    BottomNav,
   },
 
   data: () => ({
@@ -83,6 +83,7 @@ export default {
     selected: "",
     left: false,
     keyword: "",
+    isLogin: false,
     items: [
       {
         icon: "keyboard-arrow-up",

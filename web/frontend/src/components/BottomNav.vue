@@ -1,5 +1,5 @@
 <template>
-  <v-bottom-navigation v-model="bottomNav" dark shift fixed grow>
+  <v-bottom-navigation dark shift fixed grow>
     <v-btn v-if="isLogin">
       <span>Log out</span>
       <v-icon>mdi-logout-variant</v-icon>
