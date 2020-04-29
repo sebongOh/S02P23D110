@@ -6,6 +6,8 @@ from rest_framework.decorators import api_view
 from .models import users
 from .models import InputFile
 from .models import cars
+from .models import likecars
+from .serializers import LikeCarsSerializer
 from .serializers import UsersSerializer
 from .serializers import InputFileSerializer
 from .serializers import CarsSerializer
@@ -17,9 +19,59 @@ import json
 import os.path
 from rest_framework.parsers import MultiPartParser
 from django.db.models import Count
+from rest_framework.renderers import JSONRenderer
 
 
-# Create your views here.
+@api_view(['GET'])
+def likecarAll(request):
+    if request.method == 'GET':
+        data = likecars.objects.filter().values('carId').annotate(
+            like=Count('carId')).order_by('-like')[:5]
+        li = []
+
+        for i in data:
+            serializer = CarsSerializer(cars.objects.get(id=i['carId']))
+            li.append(serializer.data)
+        aa = JSONRenderer().render(li)
+        return HttpResponse(aa, status=200)
+
+
+@api_view(['GET'])
+def likecarUser(request, pk):
+    if request.method == 'GET':
+        data = likecars.objects.filter(userId=pk).values('carId')
+        li = []
+        for i in data:
+            serializer = CarsSerializer(cars.objects.get(id=i['carId']))
+            li.append(serializer.data)
+        aa = JSONRenderer().render(li)
+        print(aa)
+        return HttpResponse(aa, status=200)
+
+
+@api_view(['POST'])
+def likecar(request):
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        like = likecars.objects.filter(
+            userId=data['userId']) & likecars.objects.filter(carId=data['carId'])
+        print(like)
+        if(len(like) == 0):
+            print("추가~~~")
+            serializer = LikeCarsSerializer(data=data)
+            if serializer.is_valid():
+                serializer.save()
+                result = likecars.objects.filter(userId=data['userId'])
+                serializer = LikeCarsSerializer(result, many=True)
+                return JsonResponse(serializer.data, safe=False, status=200)
+        else:
+            print("삭제~~~")
+            like.delete()
+            result = likecars.objects.filter(userId=data['userId'])
+            serializer = LikeCarsSerializer(result, many=True)
+            return JsonResponse(serializer.data, safe=False, status=200)
+
+
 class usersPostview(APIView):
     parser_classes = (MultiPartParser, )
 
@@ -98,7 +150,8 @@ def login(request):
             if(obj.password == data['password']):
                 print(search_id)
                 print(obj.password)
-                return JsonResponse({"message": "login OK"}, status=200)
+                serializer = UsersSerializer(obj)
+                return JsonResponse(serializer.data, status=200)
             else:
                 return JsonResponse({"message:": "login fail"}, status=400)
         except Exception as ex:

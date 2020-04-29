@@ -3,7 +3,7 @@ from .models import users
 from .models import InputFile
 from .models import cars
 from .models import likecar
-from .models import carlike
+from .models import likecars
 
 
 class UsersSerializer(serializers.HyperlinkedModelSerializer):
@@ -31,7 +31,7 @@ class LikecarSerializer(serializers.ModelSerializer):
         fields = ['id', 'user', 'car']
 
 
-class carLikeSerializer(serializers.ModelSerializer):
+class LikeCarsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = carlike
-        fields = ['user', 'car']
+        model = likecars
+        fields = "__all__"

@@ -49,6 +49,9 @@ class likecar(models.Model):
         cars, on_delete=models.CASCADE)
 
 
-class carlike(models.Model):
-    user = models.ForeignKey(users, on_delete=models.CASCADE)
-    car = models.ForeignKey(cars, on_delete=models.CASCADE)
+class likecars(models.Model):
+    carId = models.IntegerField(null=False)
+    userId = models.IntegerField(null=False)
+
+    class Meta:
+        db_table = 'back_likecars'
