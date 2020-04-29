@@ -15,7 +15,8 @@ urlpatterns = [
     path('cars/companyAll/', views.car_companyAll),
     path('likecarAll/', views.likecarAll),
     path('likecarUser/<int:pk>/', views.likecarUser),
-    path('likecar/', views.likecar)
+    path('likecar/', views.likecar),
+    path('cars/detailAi/', views.detailAI),
     #   path('like/all/', views.like_all)
     # path('cars/company_list/', views.car_companyAll)
 ]
