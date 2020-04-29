@@ -1,9 +1,11 @@
 <template>
   <v-app id="inspire">
     <v-app-bar app clipped-left>
-      <v-app-bar-nav-icon class="left-drawer" @click.stop="drawer = !drawer" />
-      <v-toolbar-title @click="homeBtn">AutoSearch</v-toolbar-title>
-      <v-spacer />
+      <div class="left-drawer">
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+        <v-toolbar-title @click="homeBtn">AutoSearch</v-toolbar-title>
+        <v-spacer />
+      </div>
 
       <select v-model="selected">
         <option disabled value="">분류</option>
