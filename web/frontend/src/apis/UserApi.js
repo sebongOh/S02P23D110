@@ -1,22 +1,40 @@
-// import axios from "axios";
-// const host = "http://192.168.100.58:8080";
-// const noticePort = "http://192.168.100.58:8080";
-// const filehost = "http://192.168.100.58:8080";
-// const UserApi = {
-//   requestLogin: (data, callback, errorCallback) => requestLogin(data, callback, errorCallback),
-//   join: (data) => join(data),
-//   profileLoad: (data, callback, error) => profileLoad(data, callback, error),
-// };
-// const requestLogin = (data, callback, errorCallback) => {
-//   axios
-//     .post(`${host}/account/login?email=` + JSON.stringify(data["email"]) + "&password=" + JSON.stringify(data["password"]))
-//     .then((res) => {
-//       callback(res);
-//     })
-//     .catch((error) => {
-//       errorCallback(error);
-//     });
-// };
+import axios from "axios";
+const host = "http://58.230.252.215:8080";
+
+const UserApi = {
+  requestLogin: (data, callback, errorCallback) => requestLogin(data, callback, errorCallback),
+  requestLike: (data, callback, errorCallback) => requestLike(data, callback, errorCallback),
+  //   join: (data) => join(data),
+  //   profileLoad: (data, callback, error) => profileLoad(data, callback, error),
+};
+
+const requestLike = (data, callback, errorCallback) => {
+  axios({
+    url: `${host}/back/user/like/` + data,
+    method: "post",
+  })
+    .then((res) => {
+      console.log(res);
+      callback(res);
+    })
+    .catch((error) => {
+      console.log(error);
+      errorCallback(error);
+    });
+};
+
+const requestLogin = (data, callback, errorCallback) => {
+  axios
+    .post(`${host}/back/login/`, { identify: data["identify"], password: data["password"] })
+    .then((res) => {
+      console.log(res);
+      callback(res);
+    })
+    .catch((error) => {
+      console.log(error);
+      errorCallback(error);
+    });
+};
 
 // const join = (body) => {
 //   var value = {
@@ -64,4 +82,4 @@
 //     });
 // };
 
-// export default UserApi;
+export default UserApi;

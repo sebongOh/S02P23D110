@@ -1,5 +1,5 @@
 import axios from "axios";
-const host = "http://127.0.0.1:8000";
+const host = "http://58.230.252.215:8080";
 
 const ContentsApi = {
   //   requestAI: (data, callback, errorCallback) => requestAI(data, callback, errorCallback),

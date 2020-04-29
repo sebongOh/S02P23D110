@@ -15,8 +15,8 @@
     <v-card-actions>
       <v-btn text color="deep-purple accent-4" @click="goDetail(id)">상세정보</v-btn>
       <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
+      <v-btn @click="like">
+        <v-icon>{{ icon }}</v-icon>
         <v-icon>mdi-heart-outline</v-icon>
       </v-btn>
     </v-card-actions>
@@ -24,12 +24,60 @@
 </template>
 
 <script>
+import UserApi from "../apis/UserApi";
 export default {
   name: "carCard",
   props: ["id", "imagelink", "name", "company", "price", "fuel_eff", "engine"],
+  created() {
+    this.getLikeInfo();
+  },
+  data: () => ({
+    isLike: false,
+    icon: "mdi-heart-outline",
+  }),
   methods: {
     goDetail(idx) {
       this.$router.push({ path: "/detail", query: { id: idx } });
+    },
+    getLikeInfo() {
+      const likList = sessionStorage.getItem("likeList");
+
+      if (this.id in likList) {
+        this.isLike = true;
+      } else {
+        this.isLike = false;
+      }
+    },
+    like() {
+      this.isLike = !this.isLike;
+      const data = {
+        carId: this.id,
+        userId: sessionStorage.getItem("id"),
+      };
+      if (this.isLike) {
+        this.icon = "mdi-heart";
+        UserApi.requestLike(
+          data,
+          (res) => {
+            const carItemList = res.data;
+            for (const idx in carItemList) {
+              const carItem = carItemList[idx];
+              this.carItems.push(carItem);
+              console.log(carItem);
+            }
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      } else {
+        this.icon = "mdi-heart-outline";
+      }
+    },
+  },
+  watch: {
+    iconWatch: function() {
+      this.isLike;
     },
   },
 };

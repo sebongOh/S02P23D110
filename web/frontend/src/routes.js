@@ -13,46 +13,56 @@ import detail from "./views/content/detail";
 Vue.use(Router);
 
 const router = new Router({
-  routes: [{
+  mode: "history",
+  routes: [
+    {
       path: "/",
       name: "main",
       component: main,
     },
+
     {
       path: "/login",
       name: "login",
       component: login,
     },
+
     {
       path: "/signUp",
       name: "signUp",
       component: signUp,
     },
+
     {
       path: "/myInformation",
       name: "myInformation",
       component: myInformation,
     },
+
     {
       path: "/leave",
       name: "leave",
       component: leave,
     },
+
     {
       path: "/result",
       name: "result",
       component: result,
     },
+
     {
       path: "/search",
       name: "search",
       component: search,
     },
+
     {
       path: "/detail",
       name: "detail",
       component: detail,
     },
+
     {
       path: "/MyPage",
       name: "Mypage",
