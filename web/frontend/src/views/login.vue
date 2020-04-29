@@ -81,11 +81,13 @@ export default {
           let identify = res.data.identify;
           let name = res.data.name;
           let nickname = res.data.nickname;
+          let image = res.data.image;
           // let likelist = res.data.object.likelist;
           sessionStorage.setItem("id", id);
           sessionStorage.setItem("identify", identify);
           sessionStorage.setItem("name", name);
           sessionStorage.setItem("nickname", nickname);
+          sessionStorage.setItem("image", image);
           //sessionStorage.setItem("likelist", likelist);
           // this.getNotice();
           // this.$router.push('/main');

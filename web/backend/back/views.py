@@ -42,13 +42,16 @@ def likecarAll(request):
 def likecarUser(request, pk):
     if request.method == 'GET':
         data = likecars.objects.filter(userId=pk).values('carId')
-        li = []
-        for i in data:
-            serializer = CarsSerializer(cars.objects.get(id=i['carId']))
-            li.append(serializer.data)
-        aa = JSONRenderer().render(li)
-        print(aa)
-        return HttpResponse(aa, status=200)
+        if(len(data) == 0):
+            return HttpResponse(status=400)
+        else:
+            li = []
+            for i in data:
+                serializer = CarsSerializer(cars.objects.get(id=i['carId']))
+                li.append(serializer.data)
+            aa = JSONRenderer().render(li)
+            print(aa)
+            return HttpResponse(aa, status=200)
 
 
 @api_view(['POST'])
@@ -209,6 +212,7 @@ def car_companyAll(request):
 def detailAI(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
+        print(data)
         urllib.request.urlretrieve(data['link'], './media/detailai.png')
         imagePath = './media/detailai.png'
         result = back.guess.run_inference_on_image(

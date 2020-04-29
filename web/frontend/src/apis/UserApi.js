@@ -10,9 +10,9 @@ const UserApi = {
 
 const requestLike = (data, callback, errorCallback) => {
   axios({
-    url: `${host}/back/user/like/` + data,
-    method: "post",
-  })
+      url: `${host}/back/likecarUser/` + data + `/`,
+      method: "get",
+    })
     .then((res) => {
       console.log(res);
       callback(res);
