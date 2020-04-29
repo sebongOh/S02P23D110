@@ -13,9 +13,8 @@
           <v-text-field label="아이디" v-model="id" value></v-text-field>
           <v-text-field label="비밀번호" type="password" v-model="password"></v-text-field>
           <v-text-field label="비밀번호 확인" type="password" v-model="passwordConfirm"></v-text-field>
-          <v-text-field label="이름" value></v-text-field>
+          <v-text-field label="이름" v-model="name" value></v-text-field>
           <v-text-field label="닉네임" v-model="nickName" value></v-text-field>
-          <v-text-field label="생년월일" value></v-text-field>
         </v-card-text>
         <div class="pa-4 text-center">
           <v-img
@@ -61,7 +60,8 @@ export default {
     id: "",
     password: "",
     passwordConfirm: "",
-    email: "",
+    name: "",
+    nickName: "",
     passwordValid: false,
     idValid: false,
     signUpValid: false,
@@ -79,10 +79,10 @@ export default {
         this.passwordValid = true;
       }
     },
-    signUp() {
-      if (this.id) {
-      }
-    },
+    // signUp() {
+    //   if (this.id) {
+    //   }
+    // },
   },
 };
 </script>
