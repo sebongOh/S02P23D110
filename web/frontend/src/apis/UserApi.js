@@ -25,7 +25,10 @@ const requestLike = (data, callback, errorCallback) => {
 
 const requestLogin = (data, callback, errorCallback) => {
   axios
-    .post(`${host}/back/login/`, { identify: data["identify"], password: data["password"] })
+    .post(`${host}/back/login/`, {
+      identify: data["identify"],
+      password: data["password"],
+    })
     .then((res) => {
       console.log(res);
       callback(res);

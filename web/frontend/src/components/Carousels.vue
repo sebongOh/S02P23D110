@@ -23,15 +23,14 @@
       </v-row>
     </v-carousel-item>
     <!-- ###########################upload modal 창-->
-    <v-dialog v-model="dialog" max-width="600px">
+    <v-dialog v-model="dialog" max-width="700px">
       <v-card>
         <v-card-title>UploadImage</v-card-title>
-        <v-card v-show="imageSrc" class="upload-image">
+        <v-card v-model="imageSrc" class="upload-image">
           <v-img :src="imageSrc"></v-img>
         </v-card>
-        <v-card-title>
+        <v-card-subtitle>
           <input
-            label="sss"
             type="text"
             class="form-control"
             placeholder="Input Image URL or Drag & Drop or Select"
@@ -40,19 +39,16 @@
             @dragenter.prevent
             @drop.prevent="onDrop"
           />
-        </v-card-title>
-        <div class="input-group-append">
-          <span class="input-group-text" @click="onClickFile">
-            <i class="fa fa-paperclip"></i>
-          </span>
-        </div>
-        <input
-          type="file"
-          class="file-input"
-          accept="image/*"
-          ref="fileInput"
-          @change="onFileChange"
-        />
+        </v-card-subtitle>
+        <v-card-subtitle>
+          <input
+            type="file"
+            class="file-input"
+            accept="image/*"
+            ref="fileInput"
+            @change="onFileChange"
+          />
+        </v-card-subtitle>
         <v-card-actions>
           <v-btn color="orange" class="ma-2 white--text" dark @click="onClickUpload">Upload</v-btn>
           <v-btn color="grey" class="ma-2 white--text" dark @click="dialog = false">Close</v-btn>
@@ -114,6 +110,7 @@ export default {
           return false;
         }
         this.filename = file.name;
+        this.uploadImage = file;
         this.preview(file);
       }
     },
@@ -132,6 +129,7 @@ export default {
         formData,
         res => {
           console.log(res);
+          this.imageSrc = "";
         },
         error => {
           console.log(error);
@@ -156,4 +154,8 @@ export default {
 </script>
 
 <style>
+.form-control {
+  border: 3px solid black;
+  width: 100%;
+}
 </style>
