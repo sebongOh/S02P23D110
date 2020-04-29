@@ -15,9 +15,30 @@ from rest_framework.views import APIView
 from rest_framework import status
 import json
 import os.path
+from rest_framework.parsers import MultiPartParser
+from django.db.models import Count
 
 
 # Create your views here.
+class usersPostview(APIView):
+    parser_classes = (MultiPartParser, )
+
+    def post(self, request, format=None):
+        serializer = UsersSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=400)
+
+    def put(self, request, pk):
+        obj = users.objects.get(pk=pk)
+        data = JSONParser().parse(request)
+        serializer = UsersSerializer(obj, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=400)
+
 
 @api_view(['GET', 'POST'])
 def join(request):
@@ -70,13 +91,18 @@ def login(request):
     # login TEST 할 때, identify ,password 제이슨 형태로 보내야함
     if request.method == 'POST':
         data = JSONParser().parse(request)
+        print(data)
         search_id = data['identify']
-        obj = users.objects.get(identify=search_id)
-        if(obj.password == data['password']):
-            print(search_id)
-            print(obj.password)
-            return JsonResponse({"message": "login OK"}, status=200)
-        return JsonResponse({"message": "login fail"}, status=400)
+        try:
+            obj = users.objects.get(identify=search_id)
+            if(obj.password == data['password']):
+                print(search_id)
+                print(obj.password)
+                return JsonResponse({"message": "login OK"}, status=200)
+            else:
+                return JsonResponse({"message:": "login fail"}, status=400)
+        except Exception as ex:
+            return JsonResponse({"message": "login fail"}, ex, status=400)
 
 
 @api_view(['GET'])
@@ -107,10 +133,13 @@ def car_company_list(request, company):
 @api_view(['GET'])
 def car_name_list(request, name):
     if request.method == 'GET':
-        obj = cars.objects.filter(name__icontains=name)
-        serializer = CarsSerializer(obj, many=True)
-        print(serializer)
-        return JsonResponse(serializer.data, status=201, safe=False)
+        try:
+            obj = cars.objects.filter(name__icontains=name)
+            serializer = CarsSerializer(obj, many=True)
+            print(serializer)
+            return JsonResponse(serializer.data, status=201, safe=False)
+        except Exception as ex:
+            return JsonResponse(ex, status=400)
 
 
 @api_view(['GET'])
@@ -119,6 +148,17 @@ def car_companyAll(request):
         obj = cars.objects.filter().values('company').distinct()
         print(obj)
         return HttpResponse(obj, status=201)
+
+
+# @api_view(['GET'])
+# def like_all(request):
+#    if request.method == 'GET':
+#        obj = likes.objects.all()
+#        print(obj)
+#        # obj = likes.objects.filter().values('carsId').annotate(
+#        #    Count('likecount')).orderby('-likecount')
+#        # print(obj)
+#        return HttpResponse(obj, status=201)
 
 
 class FileUploadView(APIView):

@@ -9,6 +9,8 @@ class users(models.Model):
     password = models.CharField(max_length=50)
     name = models.CharField(max_length=20)
     nickname = models.CharField(unique=True, max_length=50)
+    image = models.ImageField(
+        upload_to='images/', height_field=None, width_field=None, max_length=None)
 
     class Meta:
         db_table = 'back_users'
@@ -39,5 +41,14 @@ class cars(models.Model):
         db_table = 'back_cars'
 
 
-class preference(models.Model):
-    id = models.AutoField(primary_key=True)
+class likecar(models.Model):
+   # id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(
+        users, on_delete=models.CASCADE)
+    car = models.ForeignKey(
+        cars, on_delete=models.CASCADE)
+
+
+class carlike(models.Model):
+    user = models.ForeignKey(users, on_delete=models.CASCADE)
+    car = models.ForeignKey(cars, on_delete=models.CASCADE)
