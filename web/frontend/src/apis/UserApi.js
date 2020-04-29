@@ -1,5 +1,5 @@
 import axios from "axios";
-const host = "http://58.230.252.215:8080";
+const host = "http://58.230.252.215:8000";
 
 const UserApi = {
   requestLogin: (data, callback, errorCallback) => requestLogin(data, callback, errorCallback),
