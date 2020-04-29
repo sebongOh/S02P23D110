@@ -3,7 +3,7 @@
     <v-layout row wrap>
       <v-flex xs12 lg4 class="text-center">
         <v-avatar class="profile" color="grey" size="164">
-          <v-img contain src="https://cdn.vuetifyjs.com/images/cards/store.jpg"></v-img>
+          <v-img contain src="user.image"></v-img>
         </v-avatar>
       </v-flex>
 
@@ -11,11 +11,22 @@
         <v-list>
           <v-list-item>
             <v-list-item-icon>
+              <v-icon color="indigo">mdi-phone</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>{{user.identify}}</v-list-item-title>
+              <v-list-item-subtitle>identify</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-icon>
               <v-icon color="indigo">mdi-human</v-icon>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <v-list-item-title>SungUk Hong</v-list-item-title>
+              <v-list-item-title>{{user.name}}</v-list-item-title>
               <v-list-item-subtitle>name</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -25,8 +36,8 @@
             </v-list-item-icon>
 
             <v-list-item-content>
-              <v-list-item-title>(650) 555-1234</v-list-item-title>
-              <v-list-item-subtitle>Mobile</v-list-item-subtitle>
+              <v-list-item-title>{{user.nickname}}</v-list-item-title>
+              <v-list-item-subtitle>nickname</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -37,27 +48,36 @@
         </v-list>
       </v-flex>
     </v-layout>
-    <v-dialog
-      v-model="MyInfoVisible"
-      hide-overlay
-      transition="dialog-bottom-transition"
-      width="50vh"
-    >
+    <v-dialog v-model="MyInfoVisible" persistent max-width="600px">
       <v-card>
-        <v-toolbar color="transparent">
-          <v-btn icon>
-            <v-icon @click="MyInfoVisible=false">mdi-close</v-icon>
-          </v-btn>
-          <v-spacer></v-spacer>
-        </v-toolbar>
+        <v-card-title>
+          <span class="headline">User Profile</span>
+        </v-card-title>
         <v-card-text>
-          <v-text-field label="아이디" value></v-text-field>
-          <v-text-field label="비밀번호" type="password"></v-text-field>
-          <v-text-field label="비밀번호 확인" type="password"></v-text-field>
-          <v-text-field label="e-mail" value></v-text-field>
-          <v-text-field label="주소" value></v-text-field>
-          <v-text-field label="생년월일" value></v-text-field>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field label="identify*" readonly="user.id" v-model="user.identify"></v-text-field>
+              </v-col>
+
+              <v-col cols="12">
+                <v-text-field label="name*" required v-model="user.name"></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field label="Password*" type="password" required></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field label="nickname*" required v-model="user.nickname"></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
+          <small>*indicates required field</small>
         </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="MyInfoBtnClick() ">Close</v-btn>
+          <v-btn color="blue darken-1" text @click="MyInfoBtnClick() ">Save</v-btn>
+        </v-card-actions>
       </v-card>
     </v-dialog>
   </div>
@@ -65,6 +85,7 @@
 
 <script>
 // import MyInfoDialog from "../components/MyInfoDialog";
+
 export default {
   name: "MyProfile",
   components: {
@@ -72,6 +93,20 @@ export default {
   },
   data() {
     return {
+      user: {
+        id: sessionStorage.getItem("id"),
+        identify: sessionStorage.getItem("identify"),
+        name: sessionStorage.getItem("name"),
+        nickname: sessionStorage.getItem("nickname"),
+        image: sessionStorage.getItem("image")
+      },
+      update: {
+        identify: "",
+        name: "",
+        nickname: "",
+        image: ""
+      },
+
       MyInfoVisible: false
     };
   },
