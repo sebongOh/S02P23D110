@@ -13,8 +13,8 @@
           <v-text-field label="아이디" value></v-text-field>
           <v-text-field label="비밀번호" type="password"></v-text-field>
           <v-text-field label="비밀번호 확인" type="password"></v-text-field>
-          <v-text-field label="e-mail" value></v-text-field>
-          <v-text-field label="주소" value></v-text-field>
+          <v-text-field label="이름" value></v-text-field>
+          <v-text-field label="닉네임" value></v-text-field>
           <v-text-field label="생년월일" value></v-text-field>
         </v-card-text>
         <div class="pa-4 text-center">
