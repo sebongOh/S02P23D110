@@ -2,14 +2,14 @@
   <v-app id="inspire" class="viewport">
     <v-app-bar app clipped-left>
       <v-app-bar-nav-icon class="left-drawer" @click.stop="drawer = !drawer" />
-      <v-toolbar-title @click="homeBtn">AutoSearch</v-toolbar-title>
+      <v-app-bar-title @click="homeBtn" class="left-drawer">AutoSearch</v-app-bar-title>
       <v-spacer />
 
       <select v-model="selected" class="filter">
         <option>이름</option>
         <option>제조사</option>
       </select>
-      <v-text-field flat solo-inverted hide-details label="Search" class="hidden-sm-and-down" v-model="keyword" @keyup.enter="search(keyword)"></v-text-field>
+      <v-text-field flat solo-inverted hide-details label="Search" v-model="keyword" @keyup.enter="search(keyword)"></v-text-field>
       <v-btn @click="search(keyword)">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
