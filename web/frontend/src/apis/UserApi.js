@@ -1,5 +1,5 @@
 import axios from "axios";
-const host = "http://119.56.164.135:8000";
+const host = "http://58.230.252.215:8000";
 
 const UserApi = {
   requestLogin: (data, callback, errorCallback) => requestLogin(data, callback, errorCallback),
@@ -10,9 +10,9 @@ const UserApi = {
 
 const requestLike = (data, callback, errorCallback) => {
   axios({
-      url: `${host}/back/user/like/` + data,
-      method: "post",
-    })
+    url: `${host}/back/user/like/` + data,
+    method: "post",
+  })
     .then((res) => {
       console.log(res);
       callback(res);
@@ -27,7 +27,7 @@ const requestLogin = (data, callback, errorCallback) => {
   axios
     .post(`${host}/back/login/`, {
       identify: data["identify"],
-      password: data["password"]
+      password: data["password"],
     })
     .then((res) => {
       console.log(res);
