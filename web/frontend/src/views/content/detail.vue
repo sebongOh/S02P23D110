@@ -44,7 +44,8 @@ export default {
   },
   data: () => ({
     item: {},
-    similarItems: {},
+    result: {},
+    otherItems: {},
     cards: [
       {
         title: "Pre-fab homes",
@@ -65,46 +66,28 @@ export default {
     ],
   }),
   methods: {
-    getSimilar(imgLink) {
-      console.log("get AI result");
-      let file = document.querySelector("#getfile");
-      console.log("queryselector:", file);
-      const formData = new FormData();
-
-      console.log("file: ", imgLink);
-      // console.log("append formData:", formData.append("file", imgLink));
-      // console.log("formData:", formData);
-      ContentsApi.imgupload(
-        formData,
-        (res) => {
-          console.log(res);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    },
     getItemDetail(id) {
-      console.log("--get detail start--");
       ContentsApi.requestCarDetail(
         id,
         (res) => {
-          // console.log(res.data);
-          this.item = res.data;
-          // console.log("image link check:", res.data.imagelink);
-          // console.log("check:", this.item);
-          this.getSimilar(res.data.imagelink);
+          console.log(res.data);
+          const carList = res.data;
+          let otherList = [];
+          for (let idx in carList) {
+            if (idx == 0) {
+              this.result = carList[idx];
+            } else {
+              otherList.push(carList[idx]);
+            }
+          }
         },
         (error) => {
           console.log(error);
         }
       );
-      console.log("--get detail end--");
     },
   },
-  mounted() {
-    this.getSimilar();
-  },
+  mounted() {},
 };
 </script>
 
