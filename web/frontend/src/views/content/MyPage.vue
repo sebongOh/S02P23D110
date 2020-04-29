@@ -14,6 +14,9 @@
           <div class="text-center display-1">My Car!!</div>
           <MyLike></MyLike>
         </v-flex>
+        <v-flex>
+          <BrandDrawer></BrandDrawer>
+        </v-flex>
       </v-layout>
     </v-container>
   </div>
@@ -22,17 +25,18 @@
 <script>
 import MyProfile from "@/components/MyProfile.vue";
 import MyLike from "@/components/MyLike.vue";
+import BrandDrawer from "../../components/BrandDrawer";
 export default {
   name: "MyPage",
   components: {
     MyProfile,
-    MyLike
+    MyLike,
+    BrandDrawer,
   },
   data() {
     return {};
-  }
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -19,7 +19,9 @@
         </v-list-item-avatar>
 
         <v-list-item-content class="mx-3">
-          <v-list-item-title v-html="likecar.name"></v-list-item-title>
+          <v-list-item-title
+            ><div class="underlined">{{ likecar.name }}</div></v-list-item-title
+          >
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -113,4 +115,29 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.underlined {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2em;
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+}
+.underlined::before {
+  content: "";
+  width: 100%;
+  height: 80%;
+  background-image: linear-gradient(to top, #23c984 15%, rgba(0, 0, 0, 0) 25%);
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  z-index: -1;
+  will-change: width;
+  transform: rotate(-2deg);
+  transform-origin: left bottom;
+}
+</style>
