@@ -1,5 +1,5 @@
 import axios from "axios";
-const host = "http://119.56.164.135:8000";
+const host = "http://58.230.252.215:8000";
 
 const ContentsApi = {
   //   requestAI: (data, callback, errorCallback) => requestAI(data, callback, errorCallback),
@@ -7,6 +7,7 @@ const ContentsApi = {
   search: (data, callback, errorCallback) => search(data, callback, errorCallback),
   requestCarDetail: (data, callback, errorCallback) => requestCarDetail(data, callback, errorCallback),
   requestCars: (callback, errorCallback) => requestCars(callback, errorCallback),
+  likecarAll: (callback, errorCallback) => likecarAll(callback, errorCallback),
   //   profileLoad: (data, callback, error) => profileLoad(data, callback, error),
 };
 
@@ -68,6 +69,21 @@ const requestCarDetail = (data, callback, errorCallback) => {
       errorCallback(error);
     });
 };
+
+const likecarAll = (callback, errorCallback) => {
+  axios({
+      url: `${host}/back/likecarAll/`,
+      method: "get",
+    })
+    .then((res) => {
+      console.log(res);
+      callback(res);
+    })
+    .catch((error) => {
+      console.log(error);
+      errorCallback(error);
+    });
+}
 
 const requestCars = (callback, errorCallback) => {
   axios({
