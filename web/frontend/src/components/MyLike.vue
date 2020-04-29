@@ -1,61 +1,76 @@
 <template>
   <div>
     <v-layout wrap>
-      <v-flex v-for="card in cards" :key="card.title" lg4 sm6 md6 xs12>
-        <v-hover v-slot:default="{ hover }">
-          <v-card elevation="0" max-width="344" style="border: 1px solid;" class="ma-auto">
-            <v-img :src="card.src" class="white--text" height="200px">
-              <v-expand-transition>
-                <div
-                  v-if="hover"
-                  class="d-flex transition-fast-in-fast-out grey display-3 white--text justify-center"
-                  style="height: 100%;"
-                >
-                  <v-card-title v-text="card.title"></v-card-title>
-                </div>
-              </v-expand-transition>
-            </v-img>
-          </v-card>
-        </v-hover>
-      </v-flex>
+      <!-- 차량 리스트 -->
+      <v-col v-for="mylikecar in mylikecars" :key="mylikecar.id" :cols="12" :md="3">
+        <v-card>
+          <v-img
+            :src="mylikecar.imagelink"
+            class="white--text align-end"
+            gradient="to bottom, rgba(0,0,0,.1), rgba(1,2,2,.3)"
+            height="300px"
+          >
+            <v-card-text>
+              <!-- <h3 class="title font-weight-bold mb-1">{{ car.company }}</h3> -->
+              <br />
+              <div class="subtitle-1 font-weight-bold">
+                {{mylikecar.company}}
+                <br />
+                {{ mylikecar.price }}만원
+                <br />
+                {{mylikecar.fuel_eff}}
+              </div>
+            </v-card-text>
+            <v-card-actions>
+              <v-chip
+                label
+                class="mx-1 mb-3"
+                color="grey darken-3"
+                text-color="white"
+                @click="carDetail(car.id)"
+              >{{ mylikecar.name }}</v-chip>
+              <v-spacer></v-spacer>
+              <v-btn icon @click="deletelike(car.id)">
+                <v-icon>mdi-heart-broken</v-icon>
+              </v-btn>
+            </v-card-actions>
+          </v-img>
+        </v-card>
+      </v-col>
     </v-layout>
   </div>
 </template>
 
 <script>
+import UserApi from "../apis/UserApi";
 export default {
   name: "MyLike",
   data() {
     return {
-      cards: [
+      mylikecars: [
         {
-          title: "Pre-fab homes",
-          src:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTaN-ujXAbXuBt9dV8akS1Mgu2_L-nadEpxGUPsvPs_V4ObLIfj&usqp=CAU"
-        },
-        {
-          title: "Favorite road trips",
-          src:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRL-i91N289RHesU25SR38igUY9MQ_deDJtt_ROcfvpV6ilekzC&usqp=CAU"
-        },
-        {
-          title: "Best airlines",
-          src:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWNxFt2_bMG73tliJic1dW6l4xQLmQXcM7lVxlk2niwnD-BoAA&usqp=CAU"
-        },
-        {
-          title: "Best airlines",
-          src:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnNJjKe86ZKuHHLaBt2Awm-GkXRm3y6afgxGney8rCXwyHh1_&usqp=CAU"
-        },
-        {
-          title: "Best airlines",
-          src:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQhB5OPB1UFzmvLEq7nhOFaORSLEQdWwGYwbs4nBvisUDTr0wsT&usqp=CAU"
+          id: "",
+          imagelink: "",
+          name: "",
+          price: "",
+          company: "",
+          fuel_eff: "",
+          size: "",
+          engine: ""
         }
       ]
     };
-  }
+  },
+  mounted() {
+    UserApi.requestLike(sessionStorage.getItem("id"), res => {
+      this.mylikecars = res.data;
+      console.log(this.mylikecars);
+    }),
+      error => {
+        console.log(error);
+      };
+  },
+  methods: {}
 };
 </script>
 
