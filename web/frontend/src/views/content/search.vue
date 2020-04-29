@@ -1,5 +1,6 @@
 <template>
   <v-container fluid>
+    <!-- 검색어 확인용, 배포시 삭제 -->
     <p>검색어: {{ this.$route.query.keyword }}</p>
     <v-row>
       <v-col cols="6" sm="4" v-for="item in carItems" :key="item.id">
@@ -31,7 +32,6 @@ export default {
       ContentsApi.search(
         keyword,
         (res) => {
-          // console.log(res);
           const carItemList = res.data;
           for (const idx in carItemList) {
             const carItem = carItemList[idx];
