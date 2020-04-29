@@ -4,22 +4,22 @@
       <!--제목 -->
       <v-list-item>
         <v-list-item-content class="text-center">
-          <v-list-item-title class="headline">좋아요!</v-list-item-title>
-          <v-list-item-subtitle>사용자 좋아요순 정렬</v-list-item-subtitle>
+          <v-list-item-title class="headline">Like Ranking</v-list-item-title>
+          <!--<v-list-item-subtitle>사용자 좋아요순 정렬</v-list-item-subtitle>-->
         </v-list-item-content>
       </v-list-item>
 
       <!-- 아이템 -->
-      <v-list-item v-for="(card,idx) in cards" :key="card.index">
-        <v-list-item-icon>
+      <v-list-item v-for="likecar in likecars" :key="likecar.id">
+        <!--<v-list-item-icon>
           <v-icon>{{icons[idx].path}}</v-icon>
-        </v-list-item-icon>
+        </v-list-item-icon>-->
         <v-list-item-avatar>
-          <v-img :src="card.src"></v-img>
+          <v-img :src="likecar.imagelink"></v-img>
         </v-list-item-avatar>
 
         <v-list-item-content class="mx-3">
-          <v-list-item-title v-html="card.title"></v-list-item-title>
+          <v-list-item-title v-html="likecar.name"></v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import ContentsApi from "../apis/ContentsApi";
 import {
   mdiNumeric1,
   mdiNumeric2,
@@ -58,6 +59,18 @@ export default {
         {
           index: 5,
           path: mdiNumeric5
+        }
+      ],
+      likecars: [
+        {
+          id: "",
+          imagelink: "",
+          name: "",
+          price: "",
+          company: "",
+          fuel_eff: "",
+          size: "",
+          engine: ""
         }
       ],
       cards: [
@@ -93,6 +106,15 @@ export default {
         }
       ]
     };
+  },
+  mounted() {
+    ContentsApi.likecarAll(res => {
+      this.likecars = res.data;
+      console.log(this.likecars);
+    }),
+      error => {
+        console.log(error);
+      };
   }
 };
 </script>
