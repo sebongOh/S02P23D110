@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-layout my-5>
+    <v-layout wrap justify-center>
       <v-flex lg4 sm6 md4 xs12>
         <v-card>
           <img :src="item.imagelink" alt="" width="340vw" />
@@ -19,16 +19,25 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <v-layout my-5>
+      <v-flex lg12 md12 xs12>
+        <v-divider />
+        <p></p>
+        <div class="text-center display-1">이런 차는 어떠신가요?</div>
+        <CarImages></CarImages>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
 <script>
 import ContentsApi from "../../apis/ContentsApi";
+import CarImages from "../../components/CarImages";
 export default {
   name: "detail",
-  //   components: {
-  //     carCard,
-  //   },
+  components: {
+    CarImages,
+  },
   created() {
     console.log("carId:", this.$route.query.id);
     this.getItemDetail(this.$route.query.id);
