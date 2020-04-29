@@ -1,26 +1,30 @@
 <template>
-  <v-card max-width="344" class="mx-auto">
-    <v-img :src="imagelink" height="194"></v-img>
+  <v-layout my-5>
+    <v-flex lg12 md12 xs12>
+      <v-card max-width="344" class="mx-auto">
+        <v-img :src="imagelink" height="194"></v-img>
 
-    <v-list-item>
-      <v-list-item-content>
-        <v-list-item-title class="headline">{{ name }}</v-list-item-title>
-      </v-list-item-content>
-    </v-list-item>
-    <v-card-text>
-      <p>제조사: {{ company }}</p>
-      <p>공인연비: {{ fuel_eff }}</p>
-      <p>연료: {{ engine }}</p>
-    </v-card-text>
-    <v-card-actions>
-      <v-btn text color="deep-purple accent-4" @click="goDetail(id)">상세정보</v-btn>
-      <v-spacer></v-spacer>
-      <v-btn @click="like">
-        <v-icon>{{ icon }}</v-icon>
-        <v-icon>mdi-heart-outline</v-icon>
-      </v-btn>
-    </v-card-actions>
-  </v-card>
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title class="headline">{{ name }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-card-text>
+          <p>제조사: {{ company }}</p>
+          <p>공인연비: {{ fuel_eff }}</p>
+          <p>연료: {{ engine }}</p>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn text color="deep-purple accent-4" @click="goDetail(id)">상세정보</v-btn>
+          <v-spacer></v-spacer>
+          <v-btn @click="like">
+            <v-icon>{{ icon }}</v-icon>
+            <v-icon>mdi-heart-outline</v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>

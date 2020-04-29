@@ -1,16 +1,15 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="inspire" class="viewport">
     <v-app-bar app clipped-left>
       <v-app-bar-nav-icon class="left-drawer" @click.stop="drawer = !drawer" />
-      <v-toolbar-title @click="homeBtn">AutoSearch</v-toolbar-title>
+      <v-app-bar-title @click="homeBtn" class="left-drawer">AutoSearch</v-app-bar-title>
       <v-spacer />
 
-      <select v-model="selected">
-        <option disabled value="">분류</option>
+      <select v-model="selected" class="filter">
         <option>이름</option>
         <option>제조사</option>
       </select>
-      <v-text-field flat solo-inverted hide-details label="Search" class="hidden-sm-and-down" v-model="keyword" @keyup.enter="search(keyword)"></v-text-field>
+      <v-text-field flat solo-inverted hide-details label="Search" v-model="keyword" @keyup.enter="search(keyword)"></v-text-field>
       <v-btn @click="search(keyword)">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
@@ -80,7 +79,7 @@ export default {
 
   data: () => ({
     drawer: null,
-    selected: "",
+    selected: "이름",
     left: false,
     keyword: "",
     isLogin: false,
@@ -177,17 +176,17 @@ export default {
   }),
   methods: {
     search(keyword) {
-      const data = keyword;
+      const data = { keyword: keyword, filter: this.selected };
 
       // console.log(this.$route);
       console.log("fullpath:", this.$router.currentRoute.path);
       console.log("data, query:", data, this.$route.query.keyword);
-      if (this.$router.currentRoute.path == `/search` && this.$route.query.keyword == data) {
+      if (this.$router.currentRoute.path == `/search` && this.$route.query.keyword == data.keyword) {
         console.log("refreash");
         this.$router.go(0);
       } else {
         console.log("push to search");
-        this.$router.push({ path: "/search", query: { keyword: data } });
+        this.$router.push({ path: "/search", query: { keyword: data.keyword, filter: data.filter } });
       }
     },
     homeBtn() {
@@ -199,11 +198,11 @@ export default {
       }
     },
   },
-  watch: {
-    keyword: function() {
-      console.log(this.keyword);
-    },
-  },
+  // watch: {
+  //   keyword: function() {
+  //     console.log(this.keyword);
+  //   },
+  // },
 };
 </script>
 
@@ -217,5 +216,8 @@ export default {
   .left-drawer {
     display: none;
   }
+}
+.filter {
+  border: 1px solid black;
 }
 </style>

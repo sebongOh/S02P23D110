@@ -1,12 +1,12 @@
 <template>
   <v-container>
-    <v-row no-gutters flex>
-      <v-col cols="4">
+    <v-layout wrap justify-center>
+      <v-flex lg4 sm6 md4 xs12>
         <v-card>
-          <img :src="item.imagelink" alt="" />
+          <img :src="item.imagelink" alt="" width="340vw" />
         </v-card>
-      </v-col>
-      <v-col cols="6">
+      </v-flex>
+      <v-flex lg4 sm6 md4 xs12>
         <v-card>
           <v-card-title>{{ item.name }}</v-card-title>
           <v-card-subtitle>제조사: {{ item.company }}</v-card-subtitle>
@@ -17,18 +17,27 @@
             <p>연료: {{ item.engine }}</p>
           </v-card-text>
         </v-card>
-      </v-col>
-    </v-row>
+      </v-flex>
+    </v-layout>
+    <v-layout my-5>
+      <v-flex lg12 md12 xs12>
+        <v-divider />
+        <p></p>
+        <div class="text-center display-1">이런 차는 어떠신가요?</div>
+        <CarImages></CarImages>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
 <script>
 import ContentsApi from "../../apis/ContentsApi";
+import CarImages from "../../components/CarImages";
 export default {
   name: "detail",
-  //   components: {
-  //     carCard,
-  //   },
+  components: {
+    CarImages,
+  },
   created() {
     console.log("carId:", this.$route.query.id);
     this.getItemDetail(this.$route.query.id);
