@@ -4,12 +4,15 @@
 
 import numpy as np
 import tensorflow.compat.v1 as tf
+import pickle
 
-imagePath = './cuss.jpg'                                      # 추론을 진행할 이미지 경로
+# imagePath = './cuss.jpg'                                      # 추론을 진행할 이미지 경로
 modelFullPath = './tmp/output_graph.pb'                                      # 읽어들일 graph 파일 경로
 labelsFullPath = './tmp/output_labels.txt'                                   # 읽어들일 labels 파일 경로
 
 
+with open('change_car_name.pickle', 'rb') as f:
+    change_car_lists = pickle.load(f)
 
 
 def create_graph():
@@ -48,7 +51,7 @@ def run_inference_on_image(imagePath):
         for node_id in top_k:
             human_string = labels[node_id]
             score = predictions[node_id]
-            result.append([human_string, score])
+            result.append([change_car_lists[human_string], score])
         answer = labels[top_k[0]]
         return result
 
