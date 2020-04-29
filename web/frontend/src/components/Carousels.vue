@@ -46,6 +46,7 @@ export default {
       filename: "",
       imageSrc: "",
       dialog: false,
+      result: {},
       items: [
         {
           src: "https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
@@ -110,14 +111,13 @@ export default {
         (res) => {
           console.log(res);
           this.imageSrc = "";
-          const result = res.data;
-          this.$router.push({ path: "/result", query: { carList: result } });
+          this.result = res.data;
         },
         (error) => {
           console.log(error);
         }
       );
-      // this.$router();
+      this.$router.push({ path: "/result", query: { carList: this.result } });
     },
     preview(file) {
       if (typeof file === "string") {

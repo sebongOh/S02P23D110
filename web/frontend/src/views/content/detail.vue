@@ -24,7 +24,7 @@
         <v-divider />
         <p></p>
         <div class="text-center display-1">이런 차는 어떠신가요?</div>
-        <CarImages></CarImages>
+        <CarImages :aiItems="aiItems"></CarImages>
       </v-flex>
     </v-layout>
   </v-container>
@@ -45,25 +45,7 @@ export default {
   data: () => ({
     item: {},
     result: {},
-    otherItems: {},
-    cards: [
-      {
-        title: "Pre-fab homes",
-        src: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTaN-ujXAbXuBt9dV8akS1Mgu2_L-nadEpxGUPsvPs_V4ObLIfj&usqp=CAU",
-      },
-      {
-        title: "Favorite road trips",
-        src: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRL-i91N289RHesU25SR38igUY9MQ_deDJtt_ROcfvpV6ilekzC&usqp=CAU",
-      },
-      {
-        title: "Best airlines",
-        src: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWNxFt2_bMG73tliJic1dW6l4xQLmQXcM7lVxlk2niwnD-BoAA&usqp=CAU",
-      },
-      {
-        title: "Best airlines",
-        src: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnNJjKe86ZKuHHLaBt2Awm-GkXRm3y6afgxGney8rCXwyHh1_&usqp=CAU",
-      },
-    ],
+    aiItems: {},
   }),
   methods: {
     getItemDetail(id) {
@@ -71,15 +53,23 @@ export default {
         id,
         (res) => {
           console.log(res.data);
-          const carList = res.data;
-          let otherList = [];
-          for (let idx in carList) {
-            if (idx == 0) {
-              this.result = carList[idx];
-            } else {
-              otherList.push(carList[idx]);
-            }
-          }
+          this.item = res.data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+      ContentsApi.requestCarAI(
+        id,
+        (res) => {
+          console.log(res.data);
+          this.aiItems = res.data;
+
+          // let otherList = [];
+          // for (let idx in carList) {
+          //   otherList.push(carList[idx]);
+          // }
+          // this.aiItems = otherList;
         },
         (error) => {
           console.log(error);
