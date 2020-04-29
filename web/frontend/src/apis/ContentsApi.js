@@ -7,17 +7,17 @@ const ContentsApi = {
   searchCompany: (data, callback, errorCallback) => searchCompany(data, callback, errorCallback),
   searchName: (data, callback, errorCallback) => searchName(data, callback, errorCallback),
   requestCarDetail: (data, callback, errorCallback) => requestCarDetail(data, callback, errorCallback),
-  requestCarAI: (data, callback, errorCallback) => requestAI(data, callback, errorCallback),
+  requestCarAI: (data, callback, errorCallback) => requestCarAI(data, callback, errorCallback),
   requestCars: (callback, errorCallback) => requestCars(callback, errorCallback),
   likecarAll: (callback, errorCallback) => likecarAll(callback, errorCallback),
   //   profileLoad: (data, callback, error) => profileLoad(data, callback, error),
 };
 
-const requestAI = (data, callback, errorCallback) => {
-  axios({
-    url: `${host}/back/ai/num/${data}/`,
-    method: "get",
-  })
+const requestCarAI = (data, callback, errorCallback) => {
+  axios
+    .post(`${host}/back/cars/detailAi/`, {
+      link: data,
+    })
     .then((res) => {
       console.log(res);
       callback(res);
@@ -94,9 +94,9 @@ const requestCarDetail = (data, callback, errorCallback) => {
 
 const likecarAll = (callback, errorCallback) => {
   axios({
-      url: `${host}/back/likecarAll/`,
-      method: "get",
-    })
+    url: `${host}/back/likecarAll/`,
+    method: "get",
+  })
     .then((res) => {
       console.log(res);
       callback(res);
@@ -105,7 +105,7 @@ const likecarAll = (callback, errorCallback) => {
       console.log(error);
       errorCallback(error);
     });
-}
+};
 
 const requestCars = (callback, errorCallback) => {
   axios({

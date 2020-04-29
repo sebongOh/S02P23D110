@@ -19,7 +19,6 @@
           <v-spacer></v-spacer>
           <v-btn @click="like">
             <v-icon>{{ icon }}</v-icon>
-            <v-icon>mdi-heart-outline</v-icon>
           </v-btn>
         </v-card-actions>
       </v-card>

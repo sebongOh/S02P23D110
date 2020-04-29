@@ -10,7 +10,7 @@
       </v-list-item>
 
       <!-- 아이템 -->
-      <v-list-item v-for="likecar in likecars" :key="likecar.id">
+      <v-list-item v-for="likecar in likecars" :key="likecar.id" @click="getDetail(likecar.id)">
         <!--<v-list-item-icon>
           <v-icon>{{icons[idx].path}}</v-icon>
         </v-list-item-icon>-->
@@ -30,13 +30,7 @@
 
 <script>
 import ContentsApi from "../apis/ContentsApi";
-import {
-  mdiNumeric1,
-  mdiNumeric2,
-  mdiNumeric3,
-  mdiNumeric4,
-  mdiNumeric5,
-} from "@mdi/js";
+import { mdiNumeric1, mdiNumeric2, mdiNumeric3, mdiNumeric4, mdiNumeric5 } from "@mdi/js";
 export default {
   name: "SortedList",
   data() {
@@ -79,35 +73,35 @@ export default {
         {
           index: 1,
           title: "Pre-fab homes",
-          src:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTaN-ujXAbXuBt9dV8akS1Mgu2_L-nadEpxGUPsvPs_V4ObLIfj&usqp=CAU",
+          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTaN-ujXAbXuBt9dV8akS1Mgu2_L-nadEpxGUPsvPs_V4ObLIfj&usqp=CAU",
         },
         {
           index: 2,
           title: "Favorite road trips",
-          src:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRL-i91N289RHesU25SR38igUY9MQ_deDJtt_ROcfvpV6ilekzC&usqp=CAU",
+          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRL-i91N289RHesU25SR38igUY9MQ_deDJtt_ROcfvpV6ilekzC&usqp=CAU",
         },
         {
           index: 3,
           title: "Best airlines",
-          src:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWNxFt2_bMG73tliJic1dW6l4xQLmQXcM7lVxlk2niwnD-BoAA&usqp=CAU",
+          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWNxFt2_bMG73tliJic1dW6l4xQLmQXcM7lVxlk2niwnD-BoAA&usqp=CAU",
         },
         {
           index: 4,
           title: "Best airlines",
-          src:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnNJjKe86ZKuHHLaBt2Awm-GkXRm3y6afgxGney8rCXwyHh1_&usqp=CAU",
+          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnNJjKe86ZKuHHLaBt2Awm-GkXRm3y6afgxGney8rCXwyHh1_&usqp=CAU",
         },
         {
           index: 5,
           title: "Best airlines",
-          src:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQhB5OPB1UFzmvLEq7nhOFaORSLEQdWwGYwbs4nBvisUDTr0wsT&usqp=CAU",
+          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQhB5OPB1UFzmvLEq7nhOFaORSLEQdWwGYwbs4nBvisUDTr0wsT&usqp=CAU",
         },
       ],
     };
+  },
+  methods: {
+    getDetail(id) {
+      this.$router.push({ path: "/detail", query: { id: id } });
+    },
   },
   mounted() {
     ContentsApi.likecarAll((res) => {

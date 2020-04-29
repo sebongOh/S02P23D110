@@ -49,9 +49,20 @@ export default {
     getItemDetail(id) {
       ContentsApi.requestCarDetail(
         id,
-        (res) => {
+        async (res) => {
           console.log(res.data);
           this.item = res.data;
+          const link = this.item.imagelink;
+          await ContentsApi.requestCarAI(
+            link,
+            (res) => {
+              console.log(res.data);
+              this.aiItems = res.data;
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
         },
         (error) => {
           console.log(error);
