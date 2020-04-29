@@ -23,27 +23,11 @@ const requestLike = (data, callback, errorCallback) => {
     });
 };
 
-const requestLogin = (data, callback, errorCallback) => {
-  axios({
-    url: `${host}/back/login/?identify=${data["identify"]}&password=${data["password"]}`,
-    method: "post",
-  })
-    .then((res) => {
-      console.log(res);
-      callback(res);
-    })
-    .catch((error) => {
-      console.log(error);
-      errorCallback(error);
-    });
-};
-
 // const requestLogin = (data, callback, errorCallback) => {
-//   axios
-//     .post(`${host}/back/login/`, {
-//       identify: data["identify"],
-//       password: data["password"],
-//     })
+//   axios({
+//     url: `${host}/back/login/?identify=${data["identify"]}&password=${data["password"]}`,
+//     method: "post",
+//   })
 //     .then((res) => {
 //       console.log(res);
 //       callback(res);
@@ -53,6 +37,22 @@ const requestLogin = (data, callback, errorCallback) => {
 //       errorCallback(error);
 //     });
 // };
+
+const requestLogin = (data, callback, errorCallback) => {
+  axios
+    .post(`${host}/back/login/`, {
+      identify: data["identify"],
+      password: data["password"],
+    })
+    .then((res) => {
+      console.log(res);
+      callback(res);
+    })
+    .catch((error) => {
+      console.log(error);
+      errorCallback(error);
+    });
+};
 
 // const join = (body) => {
 //   var value = {

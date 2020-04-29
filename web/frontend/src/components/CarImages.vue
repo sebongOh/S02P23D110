@@ -6,7 +6,7 @@
           <v-img :src="item.imagelink" class="white--text" height="200px">
             <v-expand-transition>
               <div v-if="hover" class="d-flex transition-fast-in-fast-out grey display-3 white--text justify-center" style="height: 100%;">
-                <v-card-title v-text="item.name"></v-card-title>
+                <v-card-title v-text="item.name" @click="getDetail(item.id)"></v-card-title>
               </div>
             </v-expand-transition>
           </v-img>
@@ -21,30 +21,13 @@ export default {
   name: "CarImages",
   props: ["aiItems"],
   data() {
-    return {
-      cards: [
-        {
-          title: "Pre-fab homes",
-          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTaN-ujXAbXuBt9dV8akS1Mgu2_L-nadEpxGUPsvPs_V4ObLIfj&usqp=CAU",
-        },
-        {
-          title: "Favorite road trips",
-          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRL-i91N289RHesU25SR38igUY9MQ_deDJtt_ROcfvpV6ilekzC&usqp=CAU",
-        },
-        {
-          title: "Best airlines",
-          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWNxFt2_bMG73tliJic1dW6l4xQLmQXcM7lVxlk2niwnD-BoAA&usqp=CAU",
-        },
-        {
-          title: "Best airlines",
-          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnNJjKe86ZKuHHLaBt2Awm-GkXRm3y6afgxGney8rCXwyHh1_&usqp=CAU",
-        },
-        {
-          title: "Best airlines",
-          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQhB5OPB1UFzmvLEq7nhOFaORSLEQdWwGYwbs4nBvisUDTr0wsT&usqp=CAU",
-        },
-      ],
-    };
+    return {};
+  },
+  methods: {
+    getDetail(id) {
+      // this.$router.go({ name: "detail", query: { id: id } });
+      this.$router.push({ path: "/detail", query: { id: id } });
+    },
   },
 };
 </script>

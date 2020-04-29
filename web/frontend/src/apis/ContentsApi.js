@@ -14,10 +14,10 @@ const ContentsApi = {
 };
 
 const requestCarAI = (data, callback, errorCallback) => {
-  axios({
-    url: `${host}/back/cars/detailAi/${data}/`,
-    method: "post",
-  })
+  axios
+    .post(`${host}/back/cars/detailAi/`, {
+      link: data,
+    })
     .then((res) => {
       console.log(res);
       callback(res);

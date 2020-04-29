@@ -51,25 +51,23 @@ export default {
     getItemDetail(id) {
       ContentsApi.requestCarDetail(
         id,
-        (res) => {
+        async (res) => {
           console.log(res.data);
           this.item = res.data;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-      ContentsApi.requestCarAI(
-        id,
-        (res) => {
-          console.log(res.data);
-          this.aiItems = res.data;
-
-          // let otherList = [];
-          // for (let idx in carList) {
-          //   otherList.push(carList[idx]);
-          // }
-          // this.aiItems = otherList;
+          console.log("itemcheck:", this.item);
+          const link = this.item.imagelink;
+          console.log("AI image link:", this.item.imagelink);
+          await ContentsApi.requestCarAI(
+            link,
+            (res) => {
+              console.log("AI request response");
+              console.log(res.data);
+              this.aiItems = res.data;
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
         },
         (error) => {
           console.log(error);
