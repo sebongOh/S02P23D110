@@ -21,7 +21,10 @@ export default {
   created() {
     console.log("load search");
     console.log("query:", this.$route.query.keyword);
+<<<<<<< HEAD
     console.log("filter:", this.$route.query.filter);
+=======
+>>>>>>> 449d0db5d99de9c7454c7595a152d0c2fee996ec
     this.getSearchResult(this.$route.query.keyword, this.$route.query.filter);
   },
   data: () => ({
@@ -30,8 +33,13 @@ export default {
   methods: {
     getSearchResult(keyword, filter) {
       console.log("function query:", keyword);
+<<<<<<< HEAD
       if (filter == "제조사") {
         ContentsApi.searchCompany(
+=======
+      if (filter == "이름") {
+        ContentsApi.searchName(
+>>>>>>> 449d0db5d99de9c7454c7595a152d0c2fee996ec
           keyword,
           (res) => {
             const carItemList = res.data;
@@ -46,8 +54,13 @@ export default {
           }
         );
       } else {
+<<<<<<< HEAD
         if (filter == "이름") {
           ContentsApi.searchName(
+=======
+        if (filter == "제조사") {
+          ContentsApi.searchCompany(
+>>>>>>> 449d0db5d99de9c7454c7595a152d0c2fee996ec
             keyword,
             (res) => {
               const carItemList = res.data;

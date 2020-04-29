@@ -2,10 +2,17 @@
   <v-app id="inspire" class="viewport">
     <v-app-bar app clipped-left>
       <v-app-bar-nav-icon class="left-drawer" @click.stop="drawer = !drawer" />
+<<<<<<< HEAD
       <v-toolbar-title class="left-drawer" @click="homeBtn">AutoSearch</v-toolbar-title>
       <v-spacer />
 
       <select v-model="selected" class="option">
+=======
+      <v-app-bar-title @click="homeBtn" class="left-drawer">AutoSearch</v-app-bar-title>
+      <v-spacer />
+
+      <select v-model="selected" class="filter">
+>>>>>>> 449d0db5d99de9c7454c7595a152d0c2fee996ec
         <option>이름</option>
         <option>제조사</option>
       </select>
@@ -198,11 +205,11 @@ export default {
       }
     },
   },
-  watch: {
-    keyword: function() {
-      console.log(this.keyword);
-    },
-  },
+  // watch: {
+  //   keyword: function() {
+  //     console.log(this.keyword);
+  //   },
+  // },
 };
 </script>
 
@@ -217,7 +224,12 @@ export default {
     display: none;
   }
 }
+<<<<<<< HEAD
 .option {
   border: 2px solid black;
+=======
+.filter {
+  border: 1px solid black;
+>>>>>>> 449d0db5d99de9c7454c7595a152d0c2fee996ec
 }
 </style>

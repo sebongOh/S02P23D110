@@ -1,12 +1,21 @@
 <template>
   <v-container>
+<<<<<<< HEAD
     <v-layout my-5 row wrap>
       <v-flex xs12 md12 lg4>
+=======
+    <v-layout wrap justify-center>
+      <v-flex lg4 sm6 md4 xs12>
+>>>>>>> 449d0db5d99de9c7454c7595a152d0c2fee996ec
         <v-card>
           <img :src="item.imagelink" alt="" width="340vw" />
         </v-card>
       </v-flex>
+<<<<<<< HEAD
       <v-flex xs12 md12 lg4>
+=======
+      <v-flex lg4 sm6 md4 xs12>
+>>>>>>> 449d0db5d99de9c7454c7595a152d0c2fee996ec
         <v-card>
           <v-card-title>{{ item.name }}</v-card-title>
           <v-card-subtitle>제조사: {{ item.company }}</v-card-subtitle>
@@ -19,6 +28,7 @@
         </v-card>
       </v-flex>
     </v-layout>
+<<<<<<< HEAD
     <v-divider></v-divider>
     <p><b>비슷한 차를 찾으시나요?</b></p>
     <v-layout my-3 xs row>
@@ -30,6 +40,14 @@
             </v-card>
           </v-flex>
         </v-layout>
+=======
+    <v-layout my-5>
+      <v-flex lg12 md12 xs12>
+        <v-divider />
+        <p></p>
+        <div class="text-center display-1">이런 차는 어떠신가요?</div>
+        <CarImages></CarImages>
+>>>>>>> 449d0db5d99de9c7454c7595a152d0c2fee996ec
       </v-flex>
     </v-layout>
   </v-container>
@@ -37,11 +55,12 @@
 
 <script>
 import ContentsApi from "../../apis/ContentsApi";
+import CarImages from "../../components/CarImages";
 export default {
   name: "detail",
-  //   components: {
-  //     carCard,
-  //   },
+  components: {
+    CarImages,
+  },
   created() {
     console.log("carId:", this.$route.query.id);
     this.getItemDetail(this.$route.query.id);
