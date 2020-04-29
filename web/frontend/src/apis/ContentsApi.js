@@ -7,19 +7,25 @@ const ContentsApi = {
   searchCompany: (data, callback, errorCallback) => searchCompany(data, callback, errorCallback),
   searchName: (data, callback, errorCallback) => searchName(data, callback, errorCallback),
   requestCarDetail: (data, callback, errorCallback) => requestCarDetail(data, callback, errorCallback),
+  requestCarAI: (data, callback, errorCallback) => requestAI(data, callback, errorCallback),
   requestCars: (callback, errorCallback) => requestCars(callback, errorCallback),
   //   profileLoad: (data, callback, error) => profileLoad(data, callback, error),
 };
 
-// const requestAI = (data, callback, errorCallback) => {
-//   axios
-//     .post(`${host}/=` + JSON.stringify(data["email"]) + "&password=" + JSON.stringify(data["password"]))
-//     .then((res) => {
-//       callback(res);
-//     })
-//     .catch((error) => {
-//       errorCallback(error);
-//     });
+const requestAI = (data, callback, errorCallback) => {
+  axios({
+    url: `${host}/back/ai/num/${data}/`,
+    method: "get",
+  })
+    .then((res) => {
+      console.log(res);
+      callback(res);
+    })
+    .catch((error) => {
+      console.log(error);
+      errorCallback(error);
+    });
+};
 
 const imgupload = (formdata, callback, errorCallback) => {
   axios({

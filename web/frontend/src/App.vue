@@ -198,11 +198,11 @@ export default {
       }
     },
   },
-  watch: {
-    keyword: function() {
-      console.log(this.keyword);
-    },
-  },
+  // watch: {
+  //   keyword: function() {
+  //     console.log(this.keyword);
+  //   },
+  // },
 };
 </script>
 
