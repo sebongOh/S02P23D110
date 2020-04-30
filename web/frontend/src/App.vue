@@ -1,8 +1,8 @@
 <template>
-  <v-app id="inspire" class="viewport">
+  <v-app>
     <v-app-bar app clipped-left>
-      <v-app-bar-nav-icon class="left-drawer" @click.stop="drawer = !drawer" />
-      <v-toolbar-title @click="homeBtn" class="left-drawer">AutoSearch</v-toolbar-title>
+      <v-app-bar-nav-icon @click.stop="overlay = !overlay" />
+      <v-toolbar-title @click="homeBtn">AutoSearch</v-toolbar-title>
       <v-spacer />
 
       <select v-model="selected" class="filter">

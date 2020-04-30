@@ -5,7 +5,6 @@
     <v-card class="mx-auto" max-width="500">
       <v-card-title class="title font-weight-regular justify-space-between">
         <span>Hello World!</span>
-        <v-avatar color="primary lighten-2" class="subheading white--text" size="24"></v-avatar>
       </v-card-title>
 
       <v-window>
