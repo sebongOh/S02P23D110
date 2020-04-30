@@ -14,9 +14,9 @@ const UserApi = {
 
 const requestLike = (data, callback, errorCallback) => {
   axios({
-    url: `${host}/back/likecarUser/` + data + `/`,
-    method: "get",
-  })
+      url: `${host}/back/likecarUser/` + data + `/`,
+      method: "get",
+    })
     .then((res) => {
       console.log(res);
       callback(res);
@@ -44,10 +44,10 @@ const requestLogin = (data, callback, errorCallback) => {
 };
 const update = (formdata, callback, errorCallback) => {
   axios({
-    url: `${host}/back/users/update/` + sessionStorage.getItem("id") + `/`,
-    method: "put",
-    data: formdata,
-  })
+      url: `${host}/back/users/join/` + sessionStorage.getItem("id") + `/`,
+      method: "put",
+      data: formdata,
+    })
     .then((res) => {
       console.log(res);
       callback(res);
@@ -63,10 +63,10 @@ const join = (formdata, callback, errorCallback) => {
   //    formdata
   //  })
   axios({
-    url: `${host}/back/users/join/`,
-    method: "post",
-    data: formdata,
-  })
+      url: `${host}/back/users/join/`,
+      method: "post",
+      data: formdata,
+    })
     .then((res) => {
       console.log(res);
       callback(res);

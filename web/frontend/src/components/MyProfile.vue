@@ -130,7 +130,7 @@ export default {
       this.checkForm();
 
       const formData = new FormData();
-      formData.append("identify", this.user.id);
+      formData.append("identify", this.user.identify);
       formData.append("password", this.password);
       formData.append("name", this.user.name);
       formData.append("nickname", this.user.nickname);
