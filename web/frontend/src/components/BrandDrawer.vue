@@ -230,7 +230,7 @@ export default {
   content: "";
   width: 100%;
   height: 80%;
-  background-image: linear-gradient(to top, #faed02 15%, rgba(0, 0, 0, 0) 25%);
+  background-image: linear-gradient(to top, #fdbb2d 15%, rgba(0, 0, 0, 0) 25%);
   position: absolute;
   left: 0;
   bottom: 2px;

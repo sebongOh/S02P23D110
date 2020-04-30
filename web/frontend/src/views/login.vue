@@ -1,12 +1,31 @@
 <template>
-  <div class="text-center">
-    <h1>로그인</h1>
+  <div>
+    <NavBar></NavBar>
+    <v-container fluid>
+      <v-layout wrap lg6 md6 sm6 xs12>
+        <v-card class="mx-auto justify-center text-center" elevation="1">
+          <v-card-title
+            class="display-1 justify-center text-center font-weight-regular "
+          >
+            Login
+          </v-card-title>
 
-    <v-card class="mx-auto" max-width="500">
-      <v-card-title class="title font-weight-regular justify-space-between">
-        <span>Hello World!</span>
-      </v-card-title>
+          <v-card-text>
+            <v-text-field
+              label="아이디"
+              value
+              v-model="identify"
+            ></v-text-field>
+          </v-card-text>
+          <v-card-text>
+            <v-text-field
+              label="비밀번호"
+              type="password"
+              v-model="password"
+            ></v-text-field>
+          </v-card-text>
 
+<<<<<<< HEAD
       <v-window>
         <v-card-text>
           <v-text-field label="아이디" value v-model="identify"></v-text-field>
@@ -29,22 +48,29 @@
           <span class="caption grey--text">Thanks for Login!</span>
         </div>
       </v-window>
+=======
+          <v-divider></v-divider>
+>>>>>>> c94e0d683c81534a9db90697c5e236128d81968a
 
-      <v-divider></v-divider>
-
-      <v-card-actions>
-        <v-btn text @click="back">Back</v-btn>
-        <v-spacer></v-spacer>
-        <v-btn color="primary" depressed @click="login()">Login</v-btn>
-      </v-card-actions>
-    </v-card>
+          <v-card-actions>
+            <v-btn text @click="back">Back</v-btn>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" depressed @click="login()">Login</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-layout>
+    </v-container>
   </div>
 </template>
 
 <script>
 import UserApi from "../apis/UserApi";
 import Swal from "sweetalert2";
+import NavBar from "../components/NavBar";
 export default {
+  components: {
+    NavBar,
+  },
   data: () => ({
     tiles: [
       { img: "keep.png", title: "Keep" },
