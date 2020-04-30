@@ -105,14 +105,17 @@ class usersPostview(APIView):
 
     def put(self, request, pk):
         if(request.method == 'PUT'):
+            print(pk)
             obj = users.objects.get(pk=pk)
             print(obj)
             data = JSONParser().parse(request)
-            serializer = UsersSerializer(obj, data=request.data)
+            print(data)
+            serializer = UsersSerializer(obj, data=data)
+            print(serializer.data)
             if serializer.is_valid():
                 serializer.save()
                 return JsonResponse(serializer.data)
-            return JsonResponse(serializer.errors, status=400)
+        return JsonResponse(serializer.errors, status=400)
 
 
 @api_view(['GET', 'POST'])
