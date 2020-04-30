@@ -16,7 +16,7 @@
         <v-card-actions>
           <v-btn text color="deep-purple accent-4" @click="goDetail(id)">상세정보</v-btn>
           <v-spacer></v-spacer>
-          <v-btn @click="like">
+          <v-btn @click="like(id)">
             <v-icon>{{ icon }}</v-icon>
           </v-btn>
         </v-card-actions>
@@ -35,7 +35,7 @@ export default {
   },
   data: () => ({
     isLike: false,
-    icon: "mdi-heart-outline",
+    icon: "mdi-heart-outline"
   }),
   methods: {
     goDetail(idx) {
@@ -54,13 +54,13 @@ export default {
       this.isLike = !this.isLike;
       const data = {
         carId: this.id,
-        userId: sessionStorage.getItem("id"),
+        userId: sessionStorage.getItem("id")
       };
       if (this.isLike) {
         this.icon = "mdi-heart";
         UserApi.requestLike(
           data,
-          (res) => {
+          res => {
             const carItemList = res.data;
             for (const idx in carItemList) {
               const carItem = carItemList[idx];
@@ -68,29 +68,39 @@ export default {
               console.log(carItem);
             }
           },
-          (error) => {
+          error => {
             console.log(error);
           }
         );
       } else {
         this.icon = "mdi-heart-outline";
       }
-    },
+    }
   },
   watch: {
     iconWatch: function() {
       this.isLike;
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style>
 .bottom-gradient {
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 72px);
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.4) 0%,
+    transparent 72px
+  );
 }
 
 .repeating-gradient {
-  background-image: repeating-linear-gradient(-45deg, rgba(255, 0, 0, 0.25), rgba(255, 0, 0, 0.25) 5px, rgba(0, 0, 255, 0.25) 5px, rgba(0, 0, 255, 0.25) 10px);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 0, 0, 0.25),
+    rgba(255, 0, 0, 0.25) 5px,
+    rgba(0, 0, 255, 0.25) 5px,
+    rgba(0, 0, 255, 0.25) 10px
+  );
 }
 </style>
