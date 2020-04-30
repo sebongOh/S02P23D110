@@ -42,7 +42,7 @@
 
 <script>
 import ContentsApi from "../apis/ContentsApi";
-import UserApi from "../apis/UserApi";
+// import UserApi from "../apis/UserApi";
 export default {
   data: () => ({
     cars: [

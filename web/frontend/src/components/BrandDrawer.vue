@@ -1,16 +1,6 @@
 <template>
   <v-card class="overflow-hidden">
-    <v-navigation-drawer
-      expand-on-hover
-      mini-variant="false"
-      permanent
-      absolute
-      right
-      style="position:fixed;top:100px; right:10px; scrollable{height:100%; overflow:auto;}"
-      height="800"
-      id="box"
-      width="200"
-    >
+    <v-navigation-drawer expand-on-hover permanent absolute right style="position:fixed;top:100px; right:10px; scrollable{height:100%; overflow:auto;}" height="800" id="box" width="200">
       <template v-slot:prepend>
         <v-list dense v-for="(item, idx) in items" :key="idx">
           <v-list-item v-for="(data, idx2) in item.children" :key="idx2" @click="search(data.name)" class="pl-3">
