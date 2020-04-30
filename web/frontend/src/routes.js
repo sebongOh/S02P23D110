@@ -5,7 +5,7 @@ import login from "./views/login";
 import signUp from "./views/signUp";
 import myInformation from "./views/myInformation";
 import leave from "./views/leave";
-import result from "./views/content/aiResult";
+import result from "./views/content/Result";
 import search from "./views/content/search";
 import detail from "./views/content/detail";
 import NotFound from "./views/NotFound";
@@ -82,21 +82,19 @@ const router = new Router({
   ],
 });
 
-// router.beforeEach((to, from, next) => {
-//     console.group('to: ', to);
-//     console.log('from: ', from);
-//     console.log('next: ', next);
-//     console.groupEnd();
-//     if (to.name === 'Login' || to.name === 'Join' || to.name === 'FindPassword' || to.name === 'NotFound') {
-//         console.log('before ', store.state.showNav);
-//         store.commit('toggleNav', false);
-//         console.log('after ', store.state.showNav);
-//     } else {
-//         store.commit('toggleNav', true);
-//     }
+router.beforeEach((to, from, next) => {
+  // console.group("to: ", to);
+  // console.log("from: ", from);
+  // console.log("next: ", next);
+  // console.groupEnd();
+  if (to.name == "Mypage") {
+    if (sessionStorage.getItem("token") != true) {
+      router.push({ path: "/" });
+    }
+  }
 
-//     next();
-// });
+  next();
+});
 
 // router.beforeEach((to, from, next) => {
 //   // console.log(from.params, to.params);

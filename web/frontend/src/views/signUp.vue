@@ -12,13 +12,7 @@
         </v-avatar>
 
         <v-card-text>
-          <input
-            type="file"
-            class="file-input"
-            accept="image/*"
-            ref="fileInput"
-            @change="onFileChange"
-          />
+          <input type="file" class="file-input" accept="image/*" ref="fileInput" @change="onFileChange" />
           <v-text-field label="아이디" v-model="userId" value></v-text-field>
           <v-text-field label="비밀번호" type="password" v-model="password"></v-text-field>
           <v-text-field label="비밀번호 확인" type="password" v-model="passwordConfirm"></v-text-field>
@@ -140,15 +134,6 @@ export default {
       this.checkId();
       this.checkPwd();
 
-      // console.log("Input:");
-      // console.log("ID:", this.userId);
-      // console.log("PASSWORD:", this.password);
-      // console.log("PASSWORD CONFRIM", this.passwordConfirm);
-      // console.log("USERNAME", this.userName);
-      // console.log("NICKNAME", this.nickName);
-      // console.log("Id check:", this.idValid);
-      // console.log("pwd check:", this.passwordValid);
-
       if (this.idValid == false) {
         this.isSubmit = false;
       }
@@ -187,6 +172,16 @@ export default {
       formData.append("nickname", this.nickName);
       formData.append("image", this.uploadImage);
       if (this.isSubmit == true) {
+<<<<<<< HEAD
+        let signUpInfo = {
+          userId: this.userId,
+          password: this.password,
+          userName: this.userName,
+          nickName: this.nickName,
+        };
+        UserApi.join(signUpInfo);
+        this.$router.push("/login");
+=======
         UserApi.join(
           formData,
           res => {
@@ -197,20 +192,21 @@ export default {
             console.log(error);
           }
         );
+>>>>>>> 2f7b5d77d325a1169a428cf8c34eb441556b7ae0
       } else {
         Swal.fire({
           icon: "error",
-          title: "회원가입 양식이 올바르지 않습니다"
+          title: "회원가입 양식이 올바르지 않습니다",
         });
         return;
       }
-    }
+    },
   },
   watch: {
     checkValid: function() {
       this.checkForm();
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

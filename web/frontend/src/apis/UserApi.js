@@ -8,15 +8,15 @@ const UserApi = {
   requestLogin: (data, callback, errorCallback) => requestLogin(data, callback, errorCallback),
   requestLike: (data, callback, errorCallback) => requestLike(data, callback, errorCallback),
   join: (data, callback, errorCallback) => join(data, callback, errorCallback),
-  update: (data, callback, errorCallback) => update(data, callback, errorCallback)
+  update: (data, callback, errorCallback) => update(data, callback, errorCallback),
   //   profileLoad: (data, callback, error) => profileLoad(data, callback, error),
 };
 
 const requestLike = (data, callback, errorCallback) => {
   axios({
-      url: `${host}/back/likecarUser/` + data + `/`,
-      method: "get",
-    })
+    url: `${host}/back/likecarUser/` + data + `/`,
+    method: "get",
+  })
     .then((res) => {
       console.log(res);
       callback(res);
@@ -44,10 +44,10 @@ const requestLogin = (data, callback, errorCallback) => {
 };
 const update = (formdata, callback, errorCallback) => {
   axios({
-      url: `${host}/back/users/update/` + sessionStorage.getItem("id") + `/`,
-      method: "put",
-      data: formdata,
-    })
+    url: `${host}/back/users/update/` + sessionStorage.getItem("id") + `/`,
+    method: "put",
+    data: formdata,
+  })
     .then((res) => {
       console.log(res);
       callback(res);
@@ -56,17 +56,17 @@ const update = (formdata, callback, errorCallback) => {
       console.log(error);
       errorCallback(error);
     });
-}
+};
 const join = (formdata, callback, errorCallback) => {
   //axios
   //  .post(`${host}/back/users/join/`, {
   //    formdata
   //  })
   axios({
-      url: `${host}/back/users/join/`,
-      method: "post",
-      data: formdata,
-    })
+    url: `${host}/back/users/join/`,
+    method: "post",
+    data: formdata,
+  })
     .then((res) => {
       console.log(res);
       callback(res);
