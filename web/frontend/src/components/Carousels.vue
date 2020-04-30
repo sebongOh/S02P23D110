@@ -78,6 +78,7 @@ export default {
       this.uploadImage = "";
       this.filename = "";
       this.imageSrc = "";
+      
     },
     onDrop(event) {
       this.inputImageFile(event.dataTransfer.files);

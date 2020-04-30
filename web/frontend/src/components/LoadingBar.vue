@@ -13,18 +13,19 @@
     :erase-delay='250'
     erase-style='clear'
     :erase-on-complete='false'
-    caret-animation='smooth'
 ></vue-typer>
   </div>
+
 <br>
 <br>
+<div class="midalign">
   <v-progress-circular
       :size="200"
       :width="15"
       color="white"
       indeterminate
     ></v-progress-circular>
-  
+</div>
   </v-overlay>
 </template>
 
@@ -50,5 +51,9 @@ export default {
   }
   .vue-typer .char{
   color: white !important;
+  }
+  .midalign{
+    display: inline-block;
+    text-align: center;
   }
 </style>
