@@ -1,25 +1,87 @@
 <template>
   <v-app id="inspire" class="viewport">
-    <v-app-bar app clipped-left>
-      <v-app-bar-nav-icon class="left-drawer" @click.stop="overlay = !overlay" />
-      <v-toolbar-title @click="homeBtn" class="left-drawer">AutoSearch</v-toolbar-title>
+    <v-app-bar app fluid>
+      <v-app-bar-nav-icon @click.stop="overlay = !overlay" />
+      <v-toolbar-title @click="homeBtn">AutoSearch</v-toolbar-title>
       <v-spacer />
-
-      <select v-model="selected" class="filter">
-        <option>이름</option>
-        <option>제조사</option>
-      </select>
-      <v-text-field
-        flat
-        solo-inverted
-        hide-details
-        label="Search"
-        v-model="keyword"
-        @keyup.enter="search(keyword)"
-      ></v-text-field>
-      <v-btn @click="search(keyword)">
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
+      <v-card elevation="0" color="transparent" class="d-flex d-sm-none">
+        <v-card-actions>
+          <v-btn text large @click="search_overlay = !search_overlay">
+            <v-icon>mdi-magnify</v-icon>
+          </v-btn>
+          <v-dialog v-model="search_overlay" width="500" height="50%">
+            <v-card>
+              <v-card-title class="headline grey lighten-2" primary-title>Search</v-card-title>
+              <v-divider></v-divider>
+              <v-card-text>
+                <v-layout row class="justify-center">
+                  <v-flex xs6>
+                    <v-select
+                      :value="$store.myValue"
+                      @input="setSelected"
+                      :items="selected_items"
+                      label="select type"
+                      color="black"
+                    ></v-select>
+                  </v-flex>
+                  <v-flex xs12>
+                    <v-text-field
+                      flat
+                      solo-inverted
+                      hide-details
+                      label="키워드를 입력해 주세요."
+                      v-model="keyword"
+                      @keyup.enter="search(keyword), (search_overlay = !search_overlay)"
+                    ></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 class="pl-3 pt-6">
+                    <v-btn @click="search(keyword), (search_overlay = !search_overlay)" text large>
+                      <v-icon>mdi-magnify</v-icon>Search right now!
+                    </v-btn>
+                  </v-flex>
+                </v-layout>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
+        </v-card-actions>
+      </v-card>
+      <!-- 검색 바(md 이상) -->
+      <v-card elevation="0" color="transparent" class="hidden-xs-only">
+        <v-card-actions>
+          <v-row class="mt-3 mx-0">
+            <v-col cols="3" class="pt-6 px-0">
+              <v-select
+                :value="$store.myValue"
+                @input="setSelected"
+                :items="selected_items"
+                label="select"
+                color="black"
+              ></v-select>
+            </v-col>
+            <!-- <v-col cols="1">
+              <select v-model="selected" class="filter">
+                <option>이름</option>
+                <option>제조사</option>
+              </select>
+            </v-col>-->
+            <v-col cols="6" class="px-0">
+              <v-text-field
+                flat
+                solo-inverted
+                hide-details
+                label="Search"
+                v-model="keyword"
+                @keyup.enter="search(keyword)"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="2" class="px-0">
+              <v-btn @click="search(keyword)" text large>
+                <v-icon>mdi-magnify</v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-card-actions>
+      </v-card>
 
       <v-spacer />
       <!-- <v-toolbar-items>
@@ -27,8 +89,9 @@
         <v-btn text>로그인</v-btn>
       </v-toolbar-items>-->
     </v-app-bar>
+
     <v-overlay :value="overlay" opacity="0.8">
-      <v-navigation-drawer v-model="overlay" absolute color="transparent" style="position:fixed;">
+      <v-navigation-drawer absolute color="transparent" style="position:fixed;">
         <v-layout>
           <v-flex>
             <v-toolbar width="100%" absolute dense color="transparent" style="position:fixed;">
@@ -155,9 +218,11 @@ export default {
   },
 
   data: () => ({
+    search_overlay: null,
     drawer: null,
     overlay: null,
     selected: "이름",
+    selected_items: ["이름", "제조사"],
     left: false,
     keyword: "",
     isLogin: false,
@@ -167,6 +232,10 @@ export default {
     myPageRoutePath: "/MyPage"
   }),
   methods: {
+    setSelected(value) {
+      this.selected = value;
+      console.log(this.selected);
+    },
     search(keyword) {
       const data = { keyword: keyword, filter: this.selected };
 
@@ -183,7 +252,11 @@ export default {
         console.log("push to search");
         this.$router.push({
           path: "/search",
+<<<<<<< HEAD
           query: { keyword: data.keyword, filter: data.filter }
+=======
+          query: { keyword: data.keyword, filter: data.filter },
+>>>>>>> develop
         });
       }
     },
