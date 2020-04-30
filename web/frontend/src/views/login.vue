@@ -4,53 +4,16 @@
     <v-container fluid>
       <v-layout wrap lg6 md6 sm6 xs12>
         <v-card class="mx-auto justify-center text-center" elevation="1">
-          <v-card-title
-            class="display-1 justify-center text-center font-weight-regular "
-          >
-            Login
-          </v-card-title>
+          <v-card-title class="display-1 justify-center text-center font-weight-regular">Login</v-card-title>
 
           <v-card-text>
-            <v-text-field
-              label="아이디"
-              value
-              v-model="identify"
-            ></v-text-field>
+            <v-text-field label="아이디" value v-model="identify"></v-text-field>
           </v-card-text>
           <v-card-text>
-            <v-text-field
-              label="비밀번호"
-              type="password"
-              v-model="password"
-            ></v-text-field>
+            <v-text-field label="비밀번호" type="password" v-model="password"></v-text-field>
           </v-card-text>
 
-<<<<<<< HEAD
-      <v-window>
-        <v-card-text>
-          <v-text-field label="아이디" value v-model="identify"></v-text-field>
-          <span
-            class="caption grey--text text--darken-1"
-          >This is the id you will use to login to your account</span>
-        </v-card-text>
-        <v-card-text>
-          <v-text-field label="비밀번호" type="password" v-model="password" @keyup.enter="login"></v-text-field>
-          <span class="caption grey--text text--darken-1">Please enter a password for your account</span>
-        </v-card-text>
-        <div class="pa-4 text-center">
-          <v-img
-            class="mb-4"
-            contain
-            height="128"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTaN-ujXAbXuBt9dV8akS1Mgu2_L-nadEpxGUPsvPs_V4ObLIfj&usqp=CAU"
-          ></v-img>
-          <h3 class="title font-weight-light mb-2">Welcome to AutoSearch</h3>
-          <span class="caption grey--text">Thanks for Login!</span>
-        </div>
-      </v-window>
-=======
           <v-divider></v-divider>
->>>>>>> c94e0d683c81534a9db90697c5e236128d81968a
 
           <v-card-actions>
             <v-btn text @click="back">Back</v-btn>
@@ -69,7 +32,7 @@ import Swal from "sweetalert2";
 import NavBar from "../components/NavBar";
 export default {
   components: {
-    NavBar,
+    NavBar
   },
   data: () => ({
     tiles: [
