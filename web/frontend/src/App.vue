@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire" class="viewport">
     <v-app-bar app clipped-left>
-      <v-app-bar-nav-icon class="left-drawer" @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon class="left-drawer" @click.stop="overlay = !overlay" />
       <v-toolbar-title @click="homeBtn" class="left-drawer">AutoSearch</v-toolbar-title>
       <v-spacer />
 
@@ -9,7 +9,14 @@
         <option>이름</option>
         <option>제조사</option>
       </select>
-      <v-text-field flat solo-inverted hide-details label="Search" v-model="keyword" @keyup.enter="search(keyword)"></v-text-field>
+      <v-text-field
+        flat
+        solo-inverted
+        hide-details
+        label="Search"
+        v-model="keyword"
+        @keyup.enter="search(keyword)"
+      ></v-text-field>
       <v-btn @click="search(keyword)">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
@@ -18,7 +25,7 @@
       <!-- <v-toolbar-items>
         <v-btn text>홈</v-btn>
         <v-btn text>로그인</v-btn>
-      </v-toolbar-items> -->
+      </v-toolbar-items>-->
     </v-app-bar>
     <v-overlay :value="overlay" opacity="0.8">
       <v-navigation-drawer v-model="overlay" absolute color="transparent" style="position:fixed;">
@@ -26,7 +33,11 @@
           <v-flex>
             <v-toolbar width="100%" absolute dense color="transparent" style="position:fixed;">
               <v-card color="white" light elevation="0">
-                <v-icon @click.stop="overlay = !overlay" style="cursor:pointer;" light>{{ leftArrowIcon }}</v-icon>
+                <v-icon
+                  @click.stop="overlay = !overlay"
+                  style="cursor:pointer;"
+                  light
+                >{{ leftArrowIcon }}</v-icon>
               </v-card>
               <!-- mdi-arrow-left, mdi-reply -->
             </v-toolbar>
@@ -104,7 +115,7 @@
           </v-list-item>
         </v-list>
       </v-content>
-    </v-navigation-drawer> -->
+    </v-navigation-drawer>-->
 
     <!-- <v-navigation-drawer v-model="left" fixed temporary /> -->
 
@@ -119,7 +130,7 @@
       <span>SSAFY</span>
       <v-spacer />
       <span>&copy; 2020</span>
-    </v-footer> -->
+    </v-footer>-->
   </v-app>
 </template>
 
@@ -136,11 +147,11 @@ import { mdiArrowLeftThick, mdiCrosshairsGps } from "@mdi/js";
 export default {
   name: "App",
   props: {
-    source: String,
+    source: String
   },
 
   components: {
-    BottomNav,
+    BottomNav
   },
 
   data: () => ({
@@ -153,7 +164,7 @@ export default {
     leftArrowIcon: mdiArrowLeftThick,
     gpsIcon: mdiCrosshairsGps,
     loginRoutePath: "/login",
-    myPageRoutePath: "/MyPage",
+    myPageRoutePath: "/MyPage"
   }),
   methods: {
     search(keyword) {
@@ -162,12 +173,18 @@ export default {
       // console.log(this.$route);
       console.log("fullpath:", this.$router.currentRoute.path);
       console.log("data, query:", data, this.$route.query.keyword);
-      if (this.$router.currentRoute.path == `/search` && this.$route.query.keyword == data.keyword) {
+      if (
+        this.$router.currentRoute.path == `/search` &&
+        this.$route.query.keyword == data.keyword
+      ) {
         console.log("refreash");
         this.$router.go(0);
       } else {
         console.log("push to search");
-        this.$router.push({ path: "/search", query: { keyword: data.keyword, filter: data.filter } });
+        this.$router.push({
+          path: "/search",
+          query: { keyword: data.keyword, filter: data.filter }
+        });
       }
     },
     homeBtn() {
@@ -185,8 +202,8 @@ export default {
     moveMyPage() {
       this.overlay = false;
       this.$router.push(this.myPageRoutePath);
-    },
-  },
+    }
+  }
   // watch: {
   //   keyword: function() {
   //     console.log(this.keyword);
@@ -224,7 +241,11 @@ export default {
   content: "";
   width: 80%;
   height: 80%;
-  background-image: linear-gradient(to top, rgb(18, 192, 149) 15%, rgba(0, 0, 0, 0) 30%);
+  background-image: linear-gradient(
+    to top,
+    rgb(18, 192, 149) 15%,
+    rgba(0, 0, 0, 0) 30%
+  );
   position: absolute;
   left: 0;
   bottom: 10px;

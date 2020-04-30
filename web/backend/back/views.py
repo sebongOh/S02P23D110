@@ -59,7 +59,7 @@ def likecar(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
         like = likecars.objects.filter(
-            userId=data['userId']) & likecars.objects.filter(carId=data['carId'])
+            userId=data['userId']) & likecars.objects.filter(carId=(data['carId']))
         print(like)
         if(len(like) == 0):
             print("추가~~~")
@@ -68,13 +68,27 @@ def likecar(request):
                 serializer.save()
                 result = likecars.objects.filter(userId=data['userId'])
                 serializer = LikeCarsSerializer(result, many=True)
-                return JsonResponse(serializer.data, safe=False, status=200)
+
+                li = []
+                for i in serializer.data:
+                    obj = CarsSerializer(cars.objects.get(id=i['carId']))
+                    print(obj.data)
+                    li.append(obj.data)
+                aa = JSONRenderer().render(li)
+                return HttpResponse(aa, status=200)
         else:
             print("삭제~~~")
             like.delete()
             result = likecars.objects.filter(userId=data['userId'])
             serializer = LikeCarsSerializer(result, many=True)
-            return JsonResponse(serializer.data, safe=False, status=200)
+
+            li = []
+            for i in serializer.data:
+                obj = CarsSerializer(cars.objects.get(id=i['carId']))
+                print(obj.data)
+                li.append(obj.data)
+            aa = JSONRenderer().render(li)
+            return HttpResponse(aa, status=200)
 
 
 class usersPostview(APIView):

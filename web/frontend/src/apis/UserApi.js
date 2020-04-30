@@ -1,5 +1,6 @@
 import axios from "axios";
-const host = "http://58.230.252.215:8000";
+const host = "http://127.0.0.1:8080";
+//const host = "http://58.230.252.215:8000";
 
 const UserApi = {
   requestLogin: (data, callback, errorCallback) => requestLogin(data, callback, errorCallback),
@@ -10,9 +11,9 @@ const UserApi = {
 
 const requestLike = (data, callback, errorCallback) => {
   axios({
-    url: `${host}/back/likecarUser/` + data + `/`,
-    method: "get",
-  })
+      url: `${host}/back/likecarUser/` + data + `/`,
+      method: "get",
+    })
     .then((res) => {
       console.log(res);
       callback(res);
