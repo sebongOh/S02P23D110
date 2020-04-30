@@ -1,19 +1,11 @@
 <template>
   <v-container>
-<<<<<<< Updated upstream
     <NavBar />
-    <LoadingBar v-if="ImageOn" />
-    <v-layout wrap justify-center>
-      <v-flex lg6 sm12 md6 xs12>
-        <v-card class="main_img">
-          <img :src="item.imagelink" alt="" class="car_img" />
-=======
     <LoadingBar v-if="ImageOn" />
     <v-layout row wrap my-5 justify-center>
       <v-flex lg2 md2 xs12 sm12>
         <v-card elevation="0" class=" justify-center text-center">
           <v-img :src="item.imagelink" />
->>>>>>> Stashed changes
         </v-card>
       </v-flex>
     </v-layout>
