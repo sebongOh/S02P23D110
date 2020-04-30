@@ -128,25 +128,7 @@ export default {
 #effect {
   font-family: "Do Hyeon", sans-serif;
 }
-#effect::before {
-  width: 0;
-  transition: width 0.1s ease-out;
-}
 
-#effect:hover:before {
-  content: "";
-  width: 80%;
-  height: 80%;
-  background-image: linear-gradient(to top, rgb(18, 192, 149) 15%, rgba(0, 0, 0, 0) 30%);
-  position: absolute;
-  left: 0;
-  bottom: 10px;
-  z-index: -1;
-  will-change: width;
-  transform: rotate(-2deg);
-  transform-origin: left bottom;
-  transition-duration: 0.15s;
-}
 // #effect {
 //   text-transform: uppercase;
 //   font-size: 36px;
