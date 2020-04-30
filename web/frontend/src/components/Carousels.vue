@@ -1,32 +1,17 @@
 <template>
   <v-carousel
     cycle
-<<<<<<< HEAD
-    height="20%"
-    hide-delimiter-background
-    show-arrows-on-hove
-    class="text-center align-center"
-=======
     height="50vh"
     hide-delimiter-background
     show-arrows-on-hove
     class="text-center align-center"
     vertical="true"
->>>>>>> develop
   >
     <LoadingBar v-if="ImageOn" />
     <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src">
       <v-row class="fill-height" align="center" justify="center">
         <v-row class="fill-height pa-3" align="center">
           <v-col cols="12" md="7" offset-md="5">
-<<<<<<< HEAD
-            <h1 class="display-3 font-weight-light white--text">The Art Of Search</h1>
-            <div class="subheading text-uppercase pl-4 mb-6 white--text">What is that car?, Try it!</div>
-            <v-btn large color="orange" class="ma-2 white--text" dark @click="dialog = true">
-              Upload
-              <v-icon right dark>mdi-cloud-upload</v-icon>
-            </v-btn>
-=======
             <div>
               <div
                 class=" font-weight-light white--text"
@@ -48,7 +33,6 @@
                 <v-icon right dark>mdi-cloud-upload</v-icon>
               </v-btn>
             </div>
->>>>>>> develop
           </v-col>
         </v-row>
       </v-row>
@@ -114,23 +98,6 @@ export default {
       items: [
         {
           src:
-<<<<<<< HEAD
-            "https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-        },
-        {
-          src:
-            "https://images.unsplash.com/photo-1532581140115-3e355d1ed1de?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-        },
-        {
-          src:
-            "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-        },
-        {
-          src:
-            "https://images.unsplash.com/photo-1522037576655-7a93ce0f4d10?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-        }
-      ]
-=======
             "https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
         },
         {
@@ -146,7 +113,6 @@ export default {
             "https://images.unsplash.com/photo-1522037576655-7a93ce0f4d10?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         },
       ],
->>>>>>> develop
     };
   },
   methods: {
@@ -201,11 +167,7 @@ export default {
           this.result = res.data;
           this.$router.push({
             path: "/result",
-<<<<<<< HEAD
-            query: { carList: this.result }
-=======
             query: { carList: this.result },
->>>>>>> develop
           });
         },
         error => {
