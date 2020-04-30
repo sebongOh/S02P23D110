@@ -95,20 +95,24 @@ class usersPostview(APIView):
     parser_classes = (MultiPartParser, )
 
     def post(self, request, format=None):
-        serializer = UsersSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data)
+        if(request.method == 'POST'):
+            print(request.data)
+            serializer = UsersSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors, status=400)
 
     def put(self, request, pk):
-        obj = users.objects.get(pk=pk)
-        data = JSONParser().parse(request)
-        serializer = UsersSerializer(obj, data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
+        if(request.method == 'PUT'):
+            obj = users.objects.get(pk=pk)
+            print(obj)
+            data = JSONParser().parse(request)
+            serializer = UsersSerializer(obj, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return JsonResponse(serializer.data)
+            return JsonResponse(serializer.errors, status=400)
 
 
 @api_view(['GET', 'POST'])
