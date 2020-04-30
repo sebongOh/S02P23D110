@@ -1,5 +1,6 @@
 <template>
   <v-container fluid class="ma-0 pa-0">
+    <NavBar />
     <v-layout mb-5>
       <Carousels></Carousels>
     </v-layout>
@@ -20,12 +21,14 @@
 </template>
 
 <script>
+import NavBar from "../../components/NavBar";
 import Carousels from "../../components/Carousels";
 import MainList from "../../components/MainList";
 import SortedList from "../../components/SortedList";
 import BrandDrawer from "../../components/BrandDrawer";
 export default {
   components: {
+    NavBar,
     Carousels,
     MainList,
     SortedList,

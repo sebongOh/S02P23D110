@@ -26,7 +26,7 @@
           <input type="text" class="form-control" placeholder="Input Image URL or Drag & Drop or Select" v-model="filename" @dragover.prevent @dragenter.prevent @drop.prevent="onDrop" />
         </v-card-subtitle>
         <v-card-subtitle>
-          <input type="file" class="file-input" accept="image/*" ref="fileInput" @change="onFileChange" />
+          <input type="file" accept="image/*" ref="fileInput" @change="onFileChange" />
         </v-card-subtitle>
         <v-card-actions>
           <v-btn color="orange" class="ma-2 white--text" dark @click="onClickUpload">Upload</v-btn>

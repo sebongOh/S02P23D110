@@ -1,6 +1,8 @@
 <template>
   <div>
     <v-container>
+      <NavBar />
+
       <!-- 내 프로필 카드 -->
       <v-layout my-5 row wrap>
         <v-flex xs12>
@@ -26,12 +28,14 @@
 </template>
 
 <script>
+import NavBar from "../../components/NavBar";
 import MyProfile from "@/components/MyProfile.vue";
 import MyLike from "@/components/MyLike.vue";
 import BrandDrawer from "../../components/BrandDrawer";
 export default {
   name: "MyPage",
   components: {
+    NavBar,
     MyProfile,
     MyLike,
     BrandDrawer,
