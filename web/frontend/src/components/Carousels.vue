@@ -45,7 +45,15 @@
           <v-img :src="imageSrc"></v-img>
         </v-card>
         <v-card-subtitle>
-          <input type="text" class="form-control" placeholder="Input Image Drag & Drop or Select" v-model="filename" @dragover.prevent @dragenter.prevent @drop.prevent="onDrop" />
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Input Image Drag & Drop or Select"
+            v-model="filename"
+            @dragover.prevent
+            @dragenter.prevent
+            @drop.prevent="onDrop"
+          />
         </v-card-subtitle>
         <v-card-subtitle>
           <input
@@ -56,7 +64,13 @@
           />
         </v-card-subtitle>
         <v-card-actions>
-          <v-btn color="orange" class="ma-2 white--text" v-if="filename" disadark @click="onClickUpload">Upload</v-btn>
+          <v-btn
+            color="orange"
+            class="ma-2 white--text"
+            v-if="filename"
+            disadark
+            @click="onClickUpload"
+          >Upload</v-btn>
           <v-btn color="grey" class="ma-2 white--text" dark @click="dialogfalse()">Close</v-btn>
         </v-card-actions>
       </v-card>
@@ -71,7 +85,7 @@ import LoadingBar from "./LoadingBar";
 
 export default {
   components: {
-    LoadingBar,
+    LoadingBar
   },
   data() {
     return {
@@ -147,7 +161,7 @@ export default {
 
       ContentsApi.imgupload(
         formData,
-        (res) => {
+        res => {
           console.log(res);
           // this.imageSrc = "";
           this.result = res.data;
@@ -156,7 +170,7 @@ export default {
             query: { carList: this.result },
           });
         },
-        (error) => {
+        error => {
           console.log(error);
         }
       );
@@ -173,8 +187,8 @@ export default {
         };
         reader.readAsDataURL(file);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

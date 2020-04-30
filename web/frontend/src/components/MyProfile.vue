@@ -3,7 +3,7 @@
     <v-layout row wrap>
       <v-flex xs12 lg4 class="text-center">
         <v-avatar class="profile" color="grey" size="164" @click="onClickFile">
-          <v-img contain src="user.image" alt="profile"></v-img>
+          <v-img :src="'58.230.252.215:8000'+user.image" alt="profile"></v-img>
         </v-avatar>
       </v-flex>
       <input type="file" class="file-input" accept="image/*" ref="fileInput" @change="onFileChange" />
@@ -122,17 +122,19 @@ export default {
       message: ""
     };
   },
-  mounted() {},
+  mounted() {
+    console.log(this.user.image);
+  },
   methods: {
     updateuser() {
       this.checkForm();
 
       const formData = new FormData();
-      formData.append("identify", this.user.id);
+      formData.append("identify", this.user.identify);
       formData.append("password", this.password);
       formData.append("name", this.user.name);
       formData.append("nickname", this.user.nickname);
-      formData.append("image", sessionStorage.getItem("image"));
+      formData.append("image", this.uploadImage);
       if (this.isSubmit == true) {
         UserApi.update(
           formData,
@@ -146,8 +148,7 @@ export default {
         );
       } else {
         Swal.fire({
-          icon: "error",
-          title: "회원가입 양식이 올바르지 않습니다"
+          icon: "error"
         });
         return;
       }

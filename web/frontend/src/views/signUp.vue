@@ -204,17 +204,17 @@ export default {
       } else {
         Swal.fire({
           icon: "error",
-          title: "회원가입 양식이 올바르지 않습니다",
+          title: "회원가입 양식이 올바르지 않습니다"
         });
         return;
       }
-    },
+    }
   },
   watch: {
     checkValid: function() {
       this.checkForm();
-    },
-  },
+    }
+  }
 };
 </script>
 <style>

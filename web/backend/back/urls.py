@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path('upload/', views.FileUploadView.as_view()),
     path('users/', views.join),
-    path('users/update/<int:pk>/', views.usersPostview.as_view()),
+    path('users/join/<int:pk>/', views.usersPostview.as_view()),
     path('users/join/', views.usersPostview.as_view()),
     path('users/<int:pk>/', views.user_detail),
     path('login/', views.login),

@@ -1,25 +1,47 @@
 <template>
   <v-layout my-5>
     <v-flex lg12 md12 xs12>
-      <v-card max-width="344" class="mx-auto">
-        <v-img :src="imagelink" height="194"></v-img>
-        <v-list-item>
-          <v-list-item-content>
-            <v-list-item-title class="headline">{{ name }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-card-text>
-          <p>제조사: {{ company }}</p>
-          <p>공인연비: {{ fuel_eff }}</p>
-          <p>연료: {{ engine }}</p>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn text color="deep-purple accent-4" @click="goDetail(id)">상세정보</v-btn>
-          <v-spacer></v-spacer>
-          <v-btn @click="like(id)">
-            <v-icon>{{ icon }}</v-icon>
-          </v-btn>
-        </v-card-actions>
+      <v-card>
+        <v-img
+          :src="imagelink"
+          class="white--text align-end"
+          gradient="to bottom, rgba(0,0,0,.1), rgba(1,2,2,.3)"
+          height="300px"
+        >
+          <v-card-text>
+            <!-- <h3 class="title font-weight-bold mb-1">{{ car.company }}</h3> -->
+            <br />
+            <div class="subtitle-1 font-weight-bold">
+              {{ company }}
+              <br />
+              {{ price }}만원
+              <br />
+              {{ fuel_eff }}
+            </div>
+          </v-card-text>
+          <v-card-actions>
+            <v-chip
+              label
+              class="mx-1 mb-3"
+              color="grey darken-3"
+              text-color="white"
+              @click="goDetail(id)"
+            >{{ name }}</v-chip>
+            <v-spacer></v-spacer>
+            <!--<v-btn v-show="liketable[car.id]" icon @click="heart(car.id)">
+                <v-icon style="color:red">mdi-heart</v-icon>
+              </v-btn>
+              <v-btn v-show="!liketable[car.id]" icon @click="heart(car.id)">
+                <v-icon>mdi-heart-broken</v-icon>
+            </v-btn>-->
+            <!-- <v-btn v-if="liketable[car.id]" icon @click="heart(car.id)">
+                <v-icon style="color:red">mdi-heart</v-icon>
+              </v-btn>
+              <v-btn v-else icon @click="heart(car.id)">
+                <v-icon>mdi-heart-broken</v-icon>
+            </v-btn>-->
+          </v-card-actions>
+        </v-img>
       </v-card>
     </v-flex>
   </v-layout>
