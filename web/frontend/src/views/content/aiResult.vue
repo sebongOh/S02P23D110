@@ -1,12 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <v-container fluid>
-    <v-row>
-      <v-col cols="6" sm="4" v-for="item in carItems" :key="item.name">
-        <carCard :name="item.name" :company="item.company" :price="item.price" :fuel_eff="item.fuel_eff" :engine="item.engine"></carCard>
-      </v-col>
-    </v-row>
-=======
   <v-container>
     <v-layout wrap justify-center>
       <v-flex lg4 sm6 md4 xs12>
@@ -35,7 +27,6 @@
         <CarImages></CarImages>
       </v-flex>
     </v-layout>
->>>>>>> 449d0db5d99de9c7454c7595a152d0c2fee996ec
   </v-container>
 </template>
 
@@ -45,53 +36,6 @@ import CarImages from "../../components/CarImages";
 export default {
   name: "detail",
   components: {
-<<<<<<< HEAD
-    carCard,
-  },
-  data: () => ({
-    carItems: [
-      {
-        company: "횬다이",
-        name: "2020 아반떼",
-        price: "1,531~2392",
-        fuel_eff: "10.5~15.4km/ℓ",
-        engine: "가솔린,LPG",
-      },
-      {
-        company: "횬다이",
-        name: "2020 아반떼2",
-        price: "1,531~2392",
-        fuel_eff: "10.5~15.4km/ℓ",
-        engine: "가솔린,LPG",
-      },
-      {
-        company: "횬다이",
-        name: "2020 아반떼3",
-        price: "1,531~2392",
-        fuel_eff: "10.5~15.4km/ℓ",
-        engine: "가솔린,LPG",
-      },
-      {
-        company: "횬다이",
-        name: "2020 아반떼4",
-        price: "1,531~2392",
-        fuel_eff: "10.5~15.4km/ℓ",
-        engine: "가솔린,LPG",
-      },
-      {
-        company: "횬다이",
-        name: "2020 아반떼5",
-        price: "1,531~2392",
-        fuel_eff: "10.5~15.4km/ℓ",
-        engine: "가솔린,LPG",
-      },
-    ],
-  }),
-};
-</script>
-
-<style scoped></style>
-=======
     CarImages,
   },
   created() {
@@ -105,9 +49,20 @@ export default {
     getItemDetail(id) {
       ContentsApi.requestCarDetail(
         id,
-        (res) => {
+        async (res) => {
           console.log(res.data);
           this.item = res.data;
+          const link = this.item.imagelink;
+          await ContentsApi.requestCarAI(
+            link,
+            (res) => {
+              console.log(res.data);
+              this.aiItems = res.data;
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
         },
         (error) => {
           console.log(error);
@@ -119,4 +74,3 @@ export default {
 </script>
 
 <style></style>
->>>>>>> 449d0db5d99de9c7454c7595a152d0c2fee996ec

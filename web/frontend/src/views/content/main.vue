@@ -4,10 +4,10 @@
       <Carousels></Carousels>
     </v-layout>
     <v-layout my-5 mx-5 row wrap>
-      <v-flex md3 lg3 xs12>
+      <v-flex md2 lg2 xs12>
         <SortedList></SortedList>
       </v-flex>
-      <v-flex md9 lg9 xs12>
+      <v-flex md10 lg10 xs12>
         <MainList></MainList>
       </v-flex>
     </v-layout>
@@ -29,9 +29,7 @@ export default {
     Carousels,
     MainList,
     SortedList,
-    BrandDrawer
-  }
+    BrandDrawer,
+  },
 };
 </script>
-
-

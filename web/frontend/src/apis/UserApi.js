@@ -10,8 +10,8 @@ const UserApi = {
 
 const requestLike = (data, callback, errorCallback) => {
   axios({
-    url: `${host}/back/user/like/` + data,
-    method: "post",
+    url: `${host}/back/likecarUser/` + data + `/`,
+    method: "get",
   })
     .then((res) => {
       console.log(res);
@@ -22,6 +22,21 @@ const requestLike = (data, callback, errorCallback) => {
       errorCallback(error);
     });
 };
+
+// const requestLogin = (data, callback, errorCallback) => {
+//   axios({
+//     url: `${host}/back/login/?identify=${data["identify"]}&password=${data["password"]}`,
+//     method: "post",
+//   })
+//     .then((res) => {
+//       console.log(res);
+//       callback(res);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//       errorCallback(error);
+//     });
+// };
 
 const requestLogin = (data, callback, errorCallback) => {
   axios

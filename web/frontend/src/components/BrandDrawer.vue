@@ -1,10 +1,20 @@
 <template>
   <v-card class="overflow-hidden">
-    <v-navigation-drawer expand-on-hover mini-variant="false" permanent absolute right style="position:fixed;top:100px; right:10px; scrollable{height:100%; overflow:auto;}" height="800" id="box">
+    <v-navigation-drawer
+      expand-on-hover
+      mini-variant="false"
+      permanent
+      absolute
+      right
+      style="position:fixed;top:100px; right:10px; scrollable{height:100%; overflow:auto;}"
+      height="800"
+      id="box"
+      width="200"
+    >
       <template v-slot:prepend>
         <v-list dense v-for="(item, idx) in items" :key="idx">
-          <v-list-item v-for="(data, idx2) in item.children" :key="idx2" @click="search(data.name)">
-            <v-list-item-avatar>
+          <v-list-item v-for="(data, idx2) in item.children" :key="idx2" @click="search(data.name)" class="pl-3">
+            <v-list-item-avatar size="30">
               <v-img :src="data.imgUrl"></v-img>
             </v-list-item-avatar>
             <v-list-item-content>
@@ -159,7 +169,10 @@ export default {
         this.$router.go(0);
       } else {
         console.log("push to search");
-        this.$router.push({ path: "/search", query: { keyword: data.keyword, filter: data.filter } });
+        this.$router.push({
+          path: "/search",
+          query: { keyword: data.keyword, filter: data.filter },
+        });
       }
     },
   },

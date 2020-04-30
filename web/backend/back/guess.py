@@ -7,11 +7,13 @@ import tensorflow.compat.v1 as tf
 import pickle
 
 # imagePath = './cuss.jpg'                                      # 추론을 진행할 이미지 경로
-modelFullPath = './tmp/output_graph.pb'                                      # 읽어들일 graph 파일 경로
-labelsFullPath = './tmp/output_labels.txt'                                   # 읽어들일 labels 파일 경로
+# 읽어들일 graph 파일 경로
+modelFullPath = './back/tmp/output_graph.pb'
+# 읽어들일 labels 파일 경로
+labelsFullPath = './back/tmp/output_labels.txt'
 
 
-with open('change_car_name.pickle', 'rb') as f:
+with open('./back/change_car_name.pickle', 'rb') as f:
     change_car_lists = pickle.load(f)
 
 
@@ -43,11 +45,21 @@ def run_inference_on_image(imagePath):
                                {'DecodeJpeg/contents:0': image_data})
         predictions = np.squeeze(predictions)
 
+<<<<<<< HEAD
         top_k = predictions.argsort()[:][::-1]  # 가장 높은 확률을 가진 5개(top 5)의 예측값(predictions)을 얻는다.
         result = []
         f = open(labelsFullPath, 'rb')
         lines = f.readlines()
         labels = [str(w).replace("\n", "").replace("b'", '').replace("\\n'", '') for w in lines]
+=======
+        # 가장 높은 확률을 가진 5개(top 5)의 예측값(predictions)을 얻는다.
+        top_k = predictions.argsort()[-6:][::-1]
+        result = []
+        f = open(labelsFullPath, 'rb')
+        lines = f.readlines()
+        labels = [str(w).replace("\n", "").replace("b'", '').replace(
+            "\\n'", '').replace("\r", "").replace("\\r", "") for w in lines]
+>>>>>>> 199eadd095381387c0795adc4be7d44cb0955acc
         for node_id in top_k:
             human_string = labels[node_id]
             score = predictions[node_id]
@@ -58,4 +70,7 @@ def run_inference_on_image(imagePath):
 
 if __name__ == '__main__':
     run_inference_on_image(imagePath)
+<<<<<<< HEAD
     
+=======
+>>>>>>> 199eadd095381387c0795adc4be7d44cb0955acc

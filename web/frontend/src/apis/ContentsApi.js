@@ -1,9 +1,6 @@
 import axios from "axios";
 const host = "http://58.230.252.215:8000";
-<<<<<<< HEAD
 // const host = "http://119.56.164.135:8000";
-=======
->>>>>>> 449d0db5d99de9c7454c7595a152d0c2fee996ec
 
 const ContentsApi = {
   //   requestAI: (data, callback, errorCallback) => requestAI(data, callback, errorCallback),
@@ -11,16 +8,17 @@ const ContentsApi = {
   searchCompany: (data, callback, errorCallback) => searchCompany(data, callback, errorCallback),
   searchName: (data, callback, errorCallback) => searchName(data, callback, errorCallback),
   requestCarDetail: (data, callback, errorCallback) => requestCarDetail(data, callback, errorCallback),
-  requestCarAI: (data, callback, errorCallback) => requestAI(data, callback, errorCallback),
+  requestCarAI: (data, callback, errorCallback) => requestCarAI(data, callback, errorCallback),
   requestCars: (callback, errorCallback) => requestCars(callback, errorCallback),
+  likecarAll: (callback, errorCallback) => likecarAll(callback, errorCallback),
   //   profileLoad: (data, callback, error) => profileLoad(data, callback, error),
 };
 
-const requestAI = (data, callback, errorCallback) => {
-  axios({
-    url: `${host}/back/ai/num/${data}/`,
-    method: "get",
-  })
+const requestCarAI = (data, callback, errorCallback) => {
+  axios
+    .post(`${host}/back/cars/detailAi/`, {
+      link: data,
+    })
     .then((res) => {
       console.log(res);
       callback(res);
@@ -83,6 +81,21 @@ const searchName = (data, callback, errorCallback) => {
 const requestCarDetail = (data, callback, errorCallback) => {
   axios({
     url: `${host}/back/cars/` + data,
+    method: "get",
+  })
+    .then((res) => {
+      console.log(res);
+      callback(res);
+    })
+    .catch((error) => {
+      console.log(error);
+      errorCallback(error);
+    });
+};
+
+const likecarAll = (callback, errorCallback) => {
+  axios({
+    url: `${host}/back/likecarAll/`,
     method: "get",
   })
     .then((res) => {

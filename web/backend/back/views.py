@@ -20,6 +20,8 @@ import os.path
 from rest_framework.parsers import MultiPartParser
 from django.db.models import Count
 from rest_framework.renderers import JSONRenderer
+import back.guess
+import urllib.request
 
 
 @api_view(['GET'])
@@ -40,13 +42,16 @@ def likecarAll(request):
 def likecarUser(request, pk):
     if request.method == 'GET':
         data = likecars.objects.filter(userId=pk).values('carId')
-        li = []
-        for i in data:
-            serializer = CarsSerializer(cars.objects.get(id=i['carId']))
-            li.append(serializer.data)
-        aa = JSONRenderer().render(li)
-        print(aa)
-        return HttpResponse(aa, status=200)
+        if(len(data) == 0):
+            return HttpResponse(status=400)
+        else:
+            li = []
+            for i in data:
+                serializer = CarsSerializer(cars.objects.get(id=i['carId']))
+                li.append(serializer.data)
+            aa = JSONRenderer().render(li)
+            print(aa)
+            return HttpResponse(aa, status=200)
 
 
 @api_view(['POST'])
@@ -203,15 +208,24 @@ def car_companyAll(request):
         return HttpResponse(obj, status=201)
 
 
-# @api_view(['GET'])
-# def like_all(request):
-#    if request.method == 'GET':
-#        obj = likes.objects.all()
-#        print(obj)
-#        # obj = likes.objects.filter().values('carsId').annotate(
-#        #    Count('likecount')).orderby('-likecount')
-#        # print(obj)
-#        return HttpResponse(obj, status=201)
+@api_view(['POST'])
+def detailAI(request):
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        print(data)
+        urllib.request.urlretrieve(data['link'], './media/detailai.png')
+        imagePath = './media/detailai.png'
+        result = back.guess.run_inference_on_image(
+            imagePath)
+        print(result)
+        li = []
+        for i in result:
+            serializer = CarsSerializer(cars.objects.get(name=str(i[0])))
+            print(serializer.data)
+            li.append(serializer.data)
+
+        aa = JSONRenderer().render(li)
+        return HttpResponse(aa, status=200)
 
 
 class FileUploadView(APIView):
@@ -219,20 +233,35 @@ class FileUploadView(APIView):
 
     def post(self, request, *args, **kwargs):
         file_serializer = InputFileSerializer(data=request.data)
-        print(request.data)
+        print(request.data['file'])
         if file_serializer.is_valid():
             file_serializer.save()
-            return Response(file_serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            result = back.guess.run_inference_on_image(
+                "./media/" + str(request.data['file']))
+            print(result)
+            li = []
+            for i in result:
+                serializer = CarsSerializer(
+                    cars.objects.get(name=str(i[0])))
+                print(serializer.data)
+                li.append(serializer.data)
 
-        # @csrf_exempt
-        # def insertdata(request):
-        #    with open('./back/car_data.json', encoding='utf-8') as f:
-        #        json_data = json.load(f)
-        #        for i in range(len(json_data)):
-        #            serializer = CarsSerializer(data=json_data[i])
-        #            if serializer.is_valid():
-        #                serializer.save()
-        #            # return JsonResponse(serializer.errors, status=400)
-        #        return JsonResponse(serializer.data, status=201)
+            aa = JSONRenderer().render(li)
+            return HttpResponse(aa, status=200)
+
+
+# @api_view(['GET'])
+# def insertdata(request):
+#    if(request.method == 'GET'):
+#        with open('./back/cardata.json', encoding='utf-8') as f:
+#            json_data = json.load(f)
+#            print(json_data)
+#            for i in range(len(json_data)):
+#                serializer = CarsSerializer(data=json_data[i])
+#                print(serializer)
+#                if serializer.is_valid():
+#                    print("dddddd")
+#                    serializer.save()
+#                else:
+#                    print("aaaa")
+#            return JsonResponse(serializer.data, status=201)

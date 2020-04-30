@@ -11,8 +11,14 @@
       <v-layout my-5>
         <v-flex lg12 md12 xs12>
           <v-divider />
-          <div class="text-center display-1">My Car!!</div>
+          <v-content>
+            <h1 class="display-2 font-weight-light">The List Of My Like Car</h1>
+            <div class="subheading text-uppercase pl-4 mb-6">Finding Beauty, One flight at a time</div>
+          </v-content>
           <MyLike></MyLike>
+        </v-flex>
+        <v-flex>
+          <BrandDrawer></BrandDrawer>
         </v-flex>
       </v-layout>
     </v-container>
@@ -22,17 +28,18 @@
 <script>
 import MyProfile from "@/components/MyProfile.vue";
 import MyLike from "@/components/MyLike.vue";
+import BrandDrawer from "../../components/BrandDrawer";
 export default {
   name: "MyPage",
   components: {
     MyProfile,
-    MyLike
+    MyLike,
+    BrandDrawer,
   },
   data() {
     return {};
-  }
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>
