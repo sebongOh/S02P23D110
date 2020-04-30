@@ -12,10 +12,24 @@
         </v-avatar>
 
         <v-card-text>
-          <input type="file" class="file-input" accept="image/*" ref="fileInput" @change="onFileChange" />
+          <input
+            type="file"
+            class="file-input"
+            accept="image/*"
+            ref="fileInput"
+            @change="onFileChange"
+          />
           <v-text-field label="아이디" v-model="userId" value></v-text-field>
-          <v-text-field label="비밀번호" type="password" v-model="password"></v-text-field>
-          <v-text-field label="비밀번호 확인" type="password" v-model="passwordConfirm"></v-text-field>
+          <v-text-field
+            label="비밀번호"
+            type="password"
+            v-model="password"
+          ></v-text-field>
+          <v-text-field
+            label="비밀번호 확인"
+            type="password"
+            v-model="passwordConfirm"
+          ></v-text-field>
           <v-text-field label="이름" v-model="userName" value></v-text-field>
           <v-text-field label="닉네임" v-model="nickName" value></v-text-field>
         </v-card-text>
@@ -43,8 +57,13 @@
     <v-btn color="blue" dark @click="sheet = !sheet">회원 가입 가이드</v-btn>
     <v-bottom-sheet v-model="sheet">
       <v-sheet class="text-center" height="200px">
-        <v-btn class="mt-6" text color="red" @click="sheet = !sheet">close</v-btn>
-        <div class="py-3">아이디는 영문 기준 6자리 이상 20자리 이하, 비밀번호는 8자리 이상으로 만들어주십시오.</div>
+        <v-btn class="mt-6" text color="red" @click="sheet = !sheet"
+          >close</v-btn
+        >
+        <div class="py-3">
+          아이디는 영문 기준 6자리 이상 20자리 이하, 비밀번호는 8자리 이상으로
+          만들어주십시오.
+        </div>
       </v-sheet>
     </v-bottom-sheet>
   </div>
