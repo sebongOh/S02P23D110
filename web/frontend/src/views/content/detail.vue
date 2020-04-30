@@ -98,12 +98,14 @@ export default {
               this.aiItems = res.data;
             },
             (error) => {
+              this.ImageOn = false;
               console.log(error);
             }
           );
           
         },
         (error) => {
+          this.ImageOn = false;
           console.log(error);
         }
       );

@@ -252,11 +252,7 @@ export default {
         console.log("push to search");
         this.$router.push({
           path: "/search",
-<<<<<<< HEAD
-          query: { keyword: data.keyword, filter: data.filter }
-=======
           query: { keyword: data.keyword, filter: data.filter },
->>>>>>> develop
         });
       }
     },
