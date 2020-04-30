@@ -24,50 +24,38 @@
         <v-divider />
         <p></p>
         <div class="text-center display-1">아니면 혹시 이들 중 하나인가요?</div>
-        <CarImages></CarImages>
+        <CarImages :aiItems="aiItems"></CarImages>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-import ContentsApi from "../../apis/ContentsApi";
+// import ContentsApi from "../../apis/ContentsApi";
 import CarImages from "../../components/CarImages";
 export default {
-  name: "detail",
+  name: "result",
   components: {
     CarImages,
   },
-  created() {
-    console.log("carId:", this.$route.query.id);
-    this.getItemDetail(this.$route.query.id);
+  mounted() {
+    console.log("carlist:", this.$route.query.carList);
+    this.makeList();
   },
   data: () => ({
     item: {},
+    aiItems: [],
   }),
   methods: {
-    getItemDetail(id) {
-      ContentsApi.requestCarDetail(
-        id,
-        async (res) => {
-          console.log(res.data);
-          this.item = res.data;
-          const link = this.item.imagelink;
-          await ContentsApi.requestCarAI(
-            link,
-            (res) => {
-              console.log(res.data);
-              this.aiItems = res.data;
-            },
-            (error) => {
-              console.log(error);
-            }
-          );
-        },
-        (error) => {
-          console.log(error);
+    makeList() {
+      const lst = this.$route.query.carList;
+      for (const idx in lst) {
+        if (idx == 0) {
+          this.item = lst[idx];
+        } else {
+          this.aiItems.push(lst[idx]);
         }
-      );
+      }
     },
   },
 };
