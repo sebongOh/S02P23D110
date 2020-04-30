@@ -61,7 +61,7 @@
         class="ma-1 font-weight-bold"
         color="black darken-2"
         text-color="white"
-      >{{ curPageNum }}</v-chip>
+      >{{ curPageNum }} / {{Math.ceil(this.cars.length/16)}}</v-chip>
       <v-btn class="ma-2" color=" darken-2" dark @click="next()">
         <v-icon dark left>mdi-arrow-right</v-icon>Next
       </v-btn>
