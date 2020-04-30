@@ -60,7 +60,7 @@ export default {
     passwordValid: false,
     idValid: false,
     isSubmit: false,
-    message: ""
+    message: "",
   }),
   methods: {
     goBack() {
@@ -93,15 +93,6 @@ export default {
       this.isSubmit = true;
       this.checkId();
       this.checkPwd();
-
-      // console.log("Input:");
-      // console.log("ID:", this.userId);
-      // console.log("PASSWORD:", this.password);
-      // console.log("PASSWORD CONFRIM", this.passwordConfirm);
-      // console.log("USERNAME", this.userName);
-      // console.log("NICKNAME", this.nickName);
-      // console.log("Id check:", this.idValid);
-      // console.log("pwd check:", this.passwordValid);
 
       if (this.idValid == false) {
         this.isSubmit = false;
@@ -137,23 +128,23 @@ export default {
           userId: this.userId,
           password: this.password,
           userName: this.userName,
-          nickName: this.nickName
+          nickName: this.nickName,
         };
         UserApi.join(signUpInfo);
-        this.$router.push("login");
+        this.$router.push("/login");
       } else {
         Swal.fire({
           icon: "error",
-          title: "회원가입 양식이 올바르지 않습니다"
+          title: "회원가입 양식이 올바르지 않습니다",
         });
         return;
       }
-    }
+    },
   },
   watch: {
     checkValid: function() {
       this.checkForm();
-    }
-  }
+    },
+  },
 };
 </script>

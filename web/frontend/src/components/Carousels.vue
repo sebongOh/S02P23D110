@@ -1,8 +1,6 @@
 <template>
   <v-carousel cycle height="20%" hide-delimiter-background show-arrows-on-hove class="text-center align-center">
-  <LoadingBar
-  v-if="ImageOn"
-  />
+    <LoadingBar v-if="ImageOn" />
     <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src">
       <v-row class="fill-height" align="center" justify="center">
         <v-row class="fill-height pa-3" align="center">
@@ -45,7 +43,7 @@ import ContentsApi from "../apis/ContentsApi";
 import LoadingBar from "./LoadingBar";
 
 export default {
-  components:{
+  components: {
     LoadingBar,
   },
   data() {
@@ -78,7 +76,6 @@ export default {
       this.uploadImage = "";
       this.filename = "";
       this.imageSrc = "";
-      
     },
     onDrop(event) {
       this.inputImageFile(event.dataTransfer.files);
@@ -120,14 +117,15 @@ export default {
         formData,
         (res) => {
           console.log(res);
-          this.imageSrc = "";
+          // this.imageSrc = "";
           this.result = res.data;
+          this.$router.push({ path: "/result", query: { carList: this.result } });
         },
         (error) => {
           console.log(error);
         }
       );
-      this.$router.push({ path: "/result", query: { carList: this.result } });
+      // console.log("result list:", this.result);
     },
     preview(file) {
       if (typeof file === "string") {
