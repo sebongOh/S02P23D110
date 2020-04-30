@@ -1,8 +1,7 @@
 <template>
   <v-container>
-        <LoadingBar
-        v-if="ImageOn"
-        />
+    <NavBar />
+    <LoadingBar v-if="ImageOn" />
     <v-layout wrap justify-center>
       <v-flex lg6 sm12 md6 xs12>
         <v-card class="main_img">
@@ -29,7 +28,7 @@
       <v-flex lg12 md12 xs12>
         <v-divider />
         <p></p>
-        
+
         <div class="text-center display-1">이런 차는 어떠신가요?</div>
         <CarImages :aiItems="aiItems"></CarImages>
       </v-flex>
@@ -38,6 +37,7 @@
 </template>
 
 <script>
+import NavBar from "../../components/NavBar";
 import ContentsApi from "../../apis/ContentsApi";
 import CarImages from "../../components/CarImages";
 import LoadingBar from "../../components/LoadingBar";
@@ -45,6 +45,7 @@ import LoadingBar from "../../components/LoadingBar";
 export default {
   name: "detail",
   components: {
+    NavBar,
     CarImages,
     LoadingBar,
   },
@@ -88,32 +89,28 @@ export default {
           console.log("itemcheck:", this.item);
           const link = this.item.imagelink;
           console.log("AI image link:", this.item.imagelink);
-          this.ImageOn = true
+          this.ImageOn = true;
           await ContentsApi.requestCarAI(
             link,
             (res) => {
               console.log("AI request response");
               console.log(res.data);
               this.aiItems = res.data;
-              this.ImageOn = false
+              this.ImageOn = false;
             },
             (error) => {
               console.log(error);
-              this.ImageOn = false
-
+              this.ImageOn = false;
             }
           );
-          
         },
         (error) => {
           console.log(error);
-              this.ImageOn = false
-
+          this.ImageOn = false;
         }
       );
       console.log("--get detail end--");
-      this.ImageOn = false
-
+      this.ImageOn = false;
     },
   },
   mounted() {},

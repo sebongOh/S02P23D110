@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <NavBar />
     <v-layout wrap justify-center>
       <v-flex lg4 sm6 md4 xs12>
         <v-card>
@@ -32,10 +33,12 @@
 
 <script>
 // import ContentsApi from "../../apis/ContentsApi";
+import NavBar from "../../components/NavBar";
 import CarImages from "../../components/CarImages";
 export default {
   name: "result",
   components: {
+    NavBar,
     CarImages,
   },
   mounted() {
