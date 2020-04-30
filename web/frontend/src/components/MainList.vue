@@ -31,10 +31,10 @@
                   text-color="white"
                 >{{ car.name }}</v-chip>
                 <v-spacer></v-spacer>
-                <v-btn v-show="liketable[car.id]" icon @click="heart(car.id)">
+                <v-btn v-show="liketable[car.id]" icon @click.stop="heart(car.id)">
                   <v-icon style="color:red">mdi-heart</v-icon>
                 </v-btn>
-                <v-btn v-show="!liketable[car.id]" icon @click="heart(car.id)">
+                <v-btn v-show="!liketable[car.id]" icon @click.stop="heart(car.id)">
                   <v-icon>mdi-heart-broken</v-icon>
                 </v-btn>
               </v-card-actions>

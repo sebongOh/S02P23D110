@@ -4,6 +4,7 @@
     <v-layout mb-5>
       <Carousels></Carousels>
     </v-layout>
+
     <v-layout my-5 mx-5 row wrap>
       <v-flex md2 lg2 xs12>
         <SortedList></SortedList>
@@ -12,6 +13,7 @@
         <MainList></MainList>
       </v-flex>
     </v-layout>
+
     <v-layout class="hidden-xs-only">
       <v-flex>
         <BrandDrawer></BrandDrawer>
@@ -32,7 +34,7 @@ export default {
     Carousels,
     MainList,
     SortedList,
-    BrandDrawer,
-  },
+    BrandDrawer
+  }
 };
 </script>
