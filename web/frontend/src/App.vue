@@ -1,28 +1,11 @@
 <template>
-<<<<<<< HEAD
   <v-app id="inspire" class="viewport">
     <v-app-bar app clipped-left>
       <v-app-bar-nav-icon class="left-drawer" @click.stop="drawer = !drawer" />
-<<<<<<< HEAD
-      <v-toolbar-title class="left-drawer" @click="homeBtn">AutoSearch</v-toolbar-title>
-      <v-spacer />
-
-      <select v-model="selected" class="option">
-=======
-      <v-app-bar-title @click="homeBtn" class="left-drawer">AutoSearch</v-app-bar-title>
+      <v-toolbar-title @click="homeBtn" class="left-drawer">AutoSearch</v-toolbar-title>
       <v-spacer />
 
       <select v-model="selected" class="filter">
->>>>>>> 449d0db5d99de9c7454c7595a152d0c2fee996ec
-=======
-  <v-app>
-    <v-app-bar app>
-      <v-app-bar-nav-icon @click.stop="overlay = !overlay" />
-      <v-app-bar-title @click="homeBtn">AutoSearch</v-app-bar-title>
-      <v-spacer />
-
-      <select v-model="selected" class="filter">
->>>>>>> 199eadd095381387c0795adc4be7d44cb0955acc
         <option>이름</option>
         <option>제조사</option>
       </select>
@@ -360,5 +343,4 @@ export default {
 //     transform: scaleX(0);
 //   }
 // }
->>>>>>> 199eadd095381387c0795adc4be7d44cb0955acc
 </style>
