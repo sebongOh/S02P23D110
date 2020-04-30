@@ -11,7 +11,6 @@
             height="300px"
           >
             <v-card-text>
-              <!-- <h3 class="title font-weight-bold mb-1">{{ car.company }}</h3> -->
               <br />
               <div class="subtitle-1 font-weight-bold">
                 {{mylikecar.company}}
@@ -57,17 +56,14 @@ export default {
     init() {
       this.mylikecars = [];
       this.mylikecars = JSON.parse(sessionStorage.getItem("mylikecars"));
-      console.log(this.mylikecars);
     },
     deletelike(car_id) {
-      console.log(car_id);
       if (sessionStorage.getItem("id") == null) {
         alert("로그인 해주세요");
       } else {
         ContentsApi.likecarUserlike(car_id, async res => {
           console.log(res.data);
           this.mylikecars = res.data;
-          console.log("ddddddddddddddddddddddddddddddd", this.mylikecars);
           sessionStorage.setItem("mylikecars", JSON.stringify(this.mylikecars));
 
           await this.init();
@@ -78,7 +74,6 @@ export default {
       }
     },
     carDetail(car_id) {
-      console.log("디테일 :: " + car_id);
       this.$router.push({ path: "/detail", query: { id: car_id } });
     }
   }

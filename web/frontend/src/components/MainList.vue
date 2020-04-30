@@ -14,7 +14,6 @@
               style="cursor:pointer;"
             >
               <v-card-text>
-                <!-- <h3 class="title font-weight-bold mb-1">{{ car.company }}</h3> -->
                 <br />
                 <div class="subtitle-1 font-weight-bold">
                   {{ car.company }}
@@ -38,12 +37,6 @@
                 <v-btn v-show="!liketable[car.id]" icon @click.stop="heart(car.id)">
                   <v-icon>mdi-heart-broken</v-icon>
                 </v-btn>
-                <!-- <v-btn v-if="liketable[car.id]" icon @click="heart(car.id)">
-                <v-icon style="color:red">mdi-heart</v-icon>
-              </v-btn>
-              <v-btn v-else icon @click="heart(car.id)">
-                <v-icon>mdi-heart-broken</v-icon>
-                </v-btn>-->
               </v-card-actions>
             </v-img>
           </v-card>
@@ -69,7 +62,6 @@
 
 <script>
 import ContentsApi from "../apis/ContentsApi";
-// import UserApi from "../apis/UserApi";
 export default {
   data: () => ({
     cars: [
@@ -118,7 +110,6 @@ export default {
         ContentsApi.likecarUserlike(car_id, async res => {
           console.log(res.data);
           this.mylikecars = res.data;
-          console.log("ddddddddddddddddddddddddddddddd", this.mylikecars);
           sessionStorage.setItem("mylikecars", JSON.stringify(this.mylikecars));
 
           await this.init();
@@ -129,7 +120,6 @@ export default {
       }
     },
     carDetail(car_id) {
-      console.log("디테일 :: " + car_id);
       this.$router.push({ path: "/detail", query: { id: car_id } });
     },
     previous() {

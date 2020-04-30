@@ -10,10 +10,7 @@
                 class="d-flex transition-fast-in-fast-out grey darken-2 display-3 white--text justify-center"
                 style="height: 100%; opacity:.8;"
               >
-                <v-card-title
-                  v-text="item.name"
-                  @click="getDetail(item.id)"
-                ></v-card-title>
+                <v-card-title v-text="item.name" @click="getDetail(item.id)"></v-card-title>
               </div>
             </v-expand-transition>
           </v-img>
@@ -32,10 +29,9 @@ export default {
   },
   methods: {
     getDetail(id) {
-      // this.$router.go({ name: "detail", query: { id: id } });
       this.$router.push({ path: "/detail", query: { id: id } });
-    },
-  },
+    }
+  }
 };
 </script>
 

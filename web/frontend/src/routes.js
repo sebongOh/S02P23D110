@@ -82,29 +82,5 @@ const router = new Router({
   ],
 });
 
-router.beforeEach((to, from, next) => {
-  // console.group("to: ", to);
-  // console.log("from: ", from);
-  // console.log("next: ", next);
-  // console.groupEnd();
-  if (to.name == "Mypage") {
-    if (sessionStorage.getItem("token") != true) {
-      router.push({ path: "/" });
-    }
-  }
-
-  next();
-});
-
-// router.beforeEach((to, from, next) => {
-//   // console.log(from.params, to.params);
-//   console.log("to:", to.path);
-//   console.log("from:", from.path);
-//   if (from.path === to.path && from.params === to.params) {
-//     this.$router.go(0);
-//   } else {
-//     next();
-//   }
-// });
 
 export default router;

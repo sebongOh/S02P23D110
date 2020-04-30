@@ -87,14 +87,10 @@
 </template>
 
 <script>
-// import MyInfoDialog from "../components/MyInfoDialog";
 import UserApi from "../apis/UserApi";
 import Swal from "sweetalert2";
 export default {
   name: "MyProfile",
-  components: {
-    // MyInfoDialog
-  },
   data() {
     return {
       uploadImage: "",
@@ -121,9 +117,6 @@ export default {
       isSubmit: false,
       message: ""
     };
-  },
-  mounted() {
-    console.log(this.user.image);
   },
   methods: {
     updateuser() {
@@ -224,7 +217,6 @@ export default {
         this.message = "비밀번호를 입력해주세요";
         this.isSubmit = false;
       }
-      console.log("Valid Check:", this.isSubmit);
     }
   }
 };
