@@ -103,16 +103,15 @@ class usersPostview(APIView):
                 return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors, status=400)
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk):
         if(request.method == 'PUT'):
-            print(pk)
             obj = users.objects.get(pk=pk)
             print(obj)
-
-            serializer = UsersSerializer(obj, data=request.data)
-            print(serializer.data)
+            data = JSONParser().parse(request)
+            serializer = UsersSerializer(obj, data=data)
             if serializer.is_valid():
                 serializer.save()
+                obj.delete()
                 return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors, status=400)
 
