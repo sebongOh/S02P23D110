@@ -8,6 +8,7 @@ const UserApi = {
   requestLogin: (data, callback, errorCallback) => requestLogin(data, callback, errorCallback),
   requestLike: (data, callback, errorCallback) => requestLike(data, callback, errorCallback),
   join: (data, callback, errorCallback) => join(data, callback, errorCallback),
+  update: (data, callback, errorCallback) => update(data, callback, errorCallback)
   //   profileLoad: (data, callback, error) => profileLoad(data, callback, error),
 };
 
@@ -41,14 +42,30 @@ const requestLogin = (data, callback, errorCallback) => {
       errorCallback(error);
     });
 };
-
-const join = (data, callback, errorCallback) => {
-  axios
-    .post(`${host}/back/join/`, {
-      identify: data.userId,
-      password: data.password,
-      userName: data.userName,
-      nickName: data.nickName,
+const update = (formdata, callback, errorCallback) => {
+  axios({
+      url: `${host}/back/users/update/` + sessionStorage.getItem("id") + `/`,
+      method: "put",
+      data: formdata,
+    })
+    .then((res) => {
+      console.log(res);
+      callback(res);
+    })
+    .catch((error) => {
+      console.log(error);
+      errorCallback(error);
+    });
+}
+const join = (formdata, callback, errorCallback) => {
+  //axios
+  //  .post(`${host}/back/users/join/`, {
+  //    formdata
+  //  })
+  axios({
+      url: `${host}/back/users/join/`,
+      method: "post",
+      data: formdata,
     })
     .then((res) => {
       console.log(res);
