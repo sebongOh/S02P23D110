@@ -23,13 +23,13 @@
           <v-img :src="imageSrc"></v-img>
         </v-card>
         <v-card-subtitle>
-          <input type="text" class="form-control" placeholder="Input Image URL or Drag & Drop or Select" v-model="filename" @dragover.prevent @dragenter.prevent @drop.prevent="onDrop" />
+          <input type="text" class="form-control" placeholder="Input Image Drag & Drop or Select" v-model="filename" @dragover.prevent @dragenter.prevent @drop.prevent="onDrop" />
         </v-card-subtitle>
         <v-card-subtitle>
           <input type="file" accept="image/*" ref="fileInput" @change="onFileChange" />
         </v-card-subtitle>
         <v-card-actions>
-          <v-btn color="orange" class="ma-2 white--text" dark @click="onClickUpload">Upload</v-btn>
+          <v-btn color="orange" class="ma-2 white--text" v-if="filename" disadark @click="onClickUpload">Upload</v-btn>
           <v-btn color="grey" class="ma-2 white--text" dark @click="dialogfalse()">Close</v-btn>
         </v-card-actions>
       </v-card>
@@ -103,6 +103,7 @@ export default {
       }
     },
     onClickUpload() {
+      this.dialog = false;
       this.preview(this.filename);
       this.ImageOn = !this.ImageOn;
       const formData = new FormData();
