@@ -30,9 +30,6 @@ export default {
     carCard
   },
   created() {
-    console.log("load search");
-    console.log("query:", this.$route.query.keyword);
-    console.log("filter:", this.$route.query.filter);
     this.getSearchResult(this.$route.query.keyword, this.$route.query.filter);
   },
   data: () => ({
@@ -40,7 +37,6 @@ export default {
   }),
   methods: {
     getSearchResult(keyword, filter) {
-      console.log("function query:", keyword);
       if (filter == "이름") {
         ContentsApi.searchName(
           keyword,
@@ -49,7 +45,6 @@ export default {
             for (const idx in carItemList) {
               const carItem = carItemList[idx];
               this.carItems.push(carItem);
-              console.log(carItem);
             }
           },
           error => {
@@ -65,7 +60,6 @@ export default {
               for (const idx in carItemList) {
                 const carItem = carItemList[idx];
                 this.carItems.push(carItem);
-                console.log(carItem);
               }
             },
             error => {

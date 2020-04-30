@@ -9,7 +9,6 @@
           height="300px"
         >
           <v-card-text>
-            <!-- <h3 class="title font-weight-bold mb-1">{{ car.company }}</h3> -->
             <br />
             <div class="subtitle-1 font-weight-bold">
               {{ company }}
@@ -28,18 +27,6 @@
               @click="goDetail(id)"
             >{{ name }}</v-chip>
             <v-spacer></v-spacer>
-            <!--<v-btn v-show="liketable[car.id]" icon @click="heart(car.id)">
-                <v-icon style="color:red">mdi-heart</v-icon>
-              </v-btn>
-              <v-btn v-show="!liketable[car.id]" icon @click="heart(car.id)">
-                <v-icon>mdi-heart-broken</v-icon>
-            </v-btn>-->
-            <!-- <v-btn v-if="liketable[car.id]" icon @click="heart(car.id)">
-                <v-icon style="color:red">mdi-heart</v-icon>
-              </v-btn>
-              <v-btn v-else icon @click="heart(car.id)">
-                <v-icon>mdi-heart-broken</v-icon>
-            </v-btn>-->
           </v-card-actions>
         </v-img>
       </v-card>
@@ -87,7 +74,6 @@ export default {
             for (const idx in carItemList) {
               const carItem = carItemList[idx];
               this.carItems.push(carItem);
-              console.log(carItem);
             }
           },
           error => {

@@ -10,7 +10,7 @@
             <v-text-field label="아이디" value v-model="identify"></v-text-field>
           </v-card-text>
           <v-card-text>
-            <v-text-field label="비밀번호" type="password" v-model="password"></v-text-field>
+            <v-text-field label="비밀번호" type="password" v-model="password" @keyup.enter="login"></v-text-field>
           </v-card-text>
 
           <v-divider></v-divider>
@@ -35,23 +35,10 @@ export default {
     NavBar
   },
   data: () => ({
-    tiles: [
-      { img: "keep.png", title: "Keep" },
-      { img: "inbox.png", title: "Inbox" },
-      { img: "hangouts.png", title: "Hangouts" },
-      { img: "messenger.png", title: "Messenger" },
-      { img: "google.png", title: "Google+" }
-    ],
-    step: 1,
     identify: "",
     password: ""
-    // idValid:false,
-    // passwordValid:false,
   }),
   methods: {
-    // changeInput(event, type) {
-    //   this.enterInput(event.target.value, type);
-    // },
     back() {
       this.$router.go(-1);
     },
@@ -83,7 +70,6 @@ export default {
               console.log(error);
             }
           );
-          // let likelist = res.data.object.likelist;
           sessionStorage.setItem("id", id);
           sessionStorage.setItem("identify", identify);
           sessionStorage.setItem("name", name);
@@ -91,10 +77,6 @@ export default {
           sessionStorage.setItem("image", image);
           sessionStorage.setItem("token", true);
 
-          //sessionStorage.setItem("likelist", likelist);
-          // this.getNotice();
-          // this.$router.push('/main');
-          //요청이 끝나면 버튼 활성화
           this.$router.push("/");
         },
         error => {
@@ -107,18 +89,6 @@ export default {
           console.log(error);
         }
       );
-    }
-  },
-  watch: {
-    watchLoginColomn: function() {
-      // if (this.identify.length >= 9){
-      //   this.idValid = true;
-      // };
-      // if (this.identify.length >= 9){
-      //   this.idValid = true;
-      // }
-      console.log(this.identify);
-      console.log(this.password);
     }
   }
 };

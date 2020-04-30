@@ -4,60 +4,53 @@
     <LoadingBar v-if="ImageOn" />
     <v-layout row wrap justify-center>
       <v-flex lg2 md2 xs12 sm12>
-        <v-card
-          elevation="0"
-          class=" justify-center text-center"
-          style="border:1px solid;"
-        >
+        <v-card elevation="0" class="justify-center text-center" style="border:1px solid;">
           <v-img :src="item.imagelink" />
         </v-card>
       </v-flex>
     </v-layout>
     <v-layout row wrap justify-center text-center>
       <v-flex lg2 md2 xs12 sm12>
-        <v-card
-          elevation="0"
-          class="justify-center text-center"
-          style="border:1px solid;"
-        >
+        <v-card elevation="0" class="justify-center text-center" style="border:1px solid;">
           <v-list-item>
             <v-list-item-content>
               <v-list-item-title
                 class="display-1 font-weight-bold justify-center text-center"
-                >{{ item.name }}</v-list-item-title
-              >
+              >{{ item.name }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <v-list-item>
-            <v-list-item-title class="text-center"
-              ><div class="underlined">제조사</div></v-list-item-title
-            >
+            <v-list-item-title class="text-center">
+              <div class="underlined">제조사</div>
+            </v-list-item-title>
             <v-list-item-subtitle>{{ item.company }}</v-list-item-subtitle>
           </v-list-item>
           <v-list-item>
-            <v-list-item-title class="text-center"
-              ><div class="underlined">출시가</div></v-list-item-title
-            >
+            <v-list-item-title class="text-center">
+              <div class="underlined">출시가</div>
+            </v-list-item-title>
             <v-list-item-subtitle>{{ item.price }}만</v-list-item-subtitle>
           </v-list-item>
           <v-list-item>
-            <v-list-item-title class="text-center"
-              ><div class="underlined">연비</div></v-list-item-title
-            >
+            <v-list-item-title class="text-center">
+              <div class="underlined">연비</div>
+            </v-list-item-title>
             <v-list-item-subtitle>{{ item.fuel_eff }}</v-list-item-subtitle>
           </v-list-item>
           <v-list-item>
-            <v-list-item-title class="text-center"
-              ><div class="underlined">연료</div></v-list-item-title
-            >
-            <v-list-item-subtitle class="text-center">{{
+            <v-list-item-title class="text-center">
+              <div class="underlined">연료</div>
+            </v-list-item-title>
+            <v-list-item-subtitle class="text-center">
+              {{
               item.engine
-            }}</v-list-item-subtitle>
+              }}
+            </v-list-item-subtitle>
           </v-list-item>
           <v-list-item>
-            <v-list-item-title class="text-center"
-              ><div class="underlined">분류</div></v-list-item-title
-            >
+            <v-list-item-title class="text-center">
+              <div class="underlined">분류</div>
+            </v-list-item-title>
             <v-list-item-subtitle>{{ item.size }}</v-list-item-subtitle>
           </v-list-item>
         </v-card>
@@ -68,8 +61,8 @@
         <v-divider />
         <p></p>
         <div class="text-center headline font-italic font-weight-light">
-          <v-icon>{{ quoteopen }}</v-icon
-          >이런 차는 어떠신가요? <v-icon>{{ quoteclose }}</v-icon>
+          <v-icon>{{ quoteopen }}</v-icon>이런 차는 어떠신가요?
+          <v-icon>{{ quoteclose }}</v-icon>
         </div>
       </v-flex>
     </v-layout>
@@ -99,10 +92,9 @@ export default {
     NavBar,
     CarImages,
     LoadingBar,
-    BrandDrawer,
+    BrandDrawer
   },
   created() {
-    console.log("carId:", this.$route.query.id);
     this.getItemDetail(this.$route.query.id);
   },
   data: () => ({
@@ -111,63 +103,39 @@ export default {
     aiItems: {},
     ImageOn: true,
     quoteclose: mdiFormatQuoteClose,
-    quoteopen: mdiFormatQuoteOpen,
+    quoteopen: mdiFormatQuoteOpen
   }),
   methods: {
-    getSimilar(imgLink) {
-      console.log("get AI result");
-      let file = document.querySelector("#getfile");
-      console.log("queryselector:", file);
-      const formData = new FormData();
-
-      console.log("file: ", imgLink);
-      // console.log("append formData:", formData.append("file", imgLink));
-      // console.log("formData:", formData);
-      ContentsApi.imgupload(
-        formData,
-        (res) => {
-          console.log(res);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    },
     getItemDetail(id) {
-      console.log("--get detail start--");
       ContentsApi.requestCarDetail(
         id,
-        async (res) => {
+        async res => {
           console.log(res.data);
           this.item = res.data;
-          console.log("itemcheck:", this.item);
           const link = this.item.imagelink;
-          console.log("AI image link:", this.item.imagelink);
           this.ImageOn = true;
           await ContentsApi.requestCarAI(
             link,
-            (res) => {
-              console.log("AI request response");
+            res => {
               console.log(res.data);
               this.aiItems = res.data;
               this.ImageOn = false;
             },
-            (error) => {
+            error => {
               console.log(error);
               this.ImageOn = false;
             }
           );
         },
-        (error) => {
+        error => {
           console.log(error);
           this.ImageOn = false;
         }
       );
-      console.log("--get detail end--");
       this.ImageOn = false;
-    },
+    }
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 

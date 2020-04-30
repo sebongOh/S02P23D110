@@ -3,18 +3,11 @@
     <v-app-bar app fluid>
       <v-app-bar-nav-icon @click.stop="overlay = !overlay" />
 
-      <v-toolbar-title @click="homeBtn" style="cursor:pointer;" id="title"
-        >AutoSearch
-      </v-toolbar-title>
+      <v-toolbar-title @click="homeBtn" style="cursor:pointer;" id="title">AutoSearch</v-toolbar-title>
 
       <v-spacer />
       <!-- 모바일 버전 -->
-      <v-card
-        elevation="0"
-        color="transparent"
-        class="d-flex d-sm-none"
-        width="1px"
-      >
+      <v-card elevation="0" color="transparent" class="d-flex d-sm-none" width="1px">
         <v-card-actions>
           <v-spacer />
           <v-btn text large @click="search_overlay = !search_overlay">
@@ -23,9 +16,7 @@
 
           <v-dialog v-model="search_overlay" width="500" height="50%">
             <v-card>
-              <v-card-title class="headline grey lighten-2" primary-title
-                >Search</v-card-title
-              >
+              <v-card-title class="headline grey lighten-2" primary-title>Search</v-card-title>
               <v-divider></v-divider>
               <v-card-text>
                 <v-layout row class="justify-center">
@@ -50,12 +41,7 @@
                       "
                     ></v-text-field>
                   </v-flex>
-                  <v-flex
-                    row
-                    wrap
-                    xs6
-                    class="pl-3 pt-6 justify-center text-center"
-                  >
+                  <v-flex row wrap xs6 class="pl-3 pt-6 justify-center text-center">
                     <v-btn
                       @click="
                         search(keyword), (search_overlay = !search_overlay)
@@ -73,12 +59,7 @@
         </v-card-actions>
       </v-card>
       <!-- 검색 바(md 이상) -->
-      <v-card
-        elevation="0"
-        color="transparent"
-        class="hidden-xs-only"
-        width="50vw"
-      >
+      <v-card elevation="0" color="transparent" class="hidden-xs-only" width="50vw">
         <v-card-actions>
           <v-row class="mt-3 mx-0">
             <v-col cols="2" class="pt-6 px-0">
@@ -90,12 +71,6 @@
                 color="black"
               ></v-select>
             </v-col>
-            <!-- <v-col cols="1">
-              <select v-model="selected" class="filter">
-                <option>이름</option>
-                <option>제조사</option>
-              </select>
-            </v-col>-->
             <v-col cols="6" class="px-0">
               <v-text-field
                 flat
@@ -121,20 +96,13 @@
       <v-navigation-drawer absolute color="transparent" style="position:fixed;">
         <v-layout>
           <v-flex>
-            <v-toolbar
-              width="100%"
-              absolute
-              dense
-              color="transparent"
-              style="position:fixed;"
-            >
+            <v-toolbar width="100%" absolute dense color="transparent" style="position:fixed;">
               <v-card color="white" light elevation="0">
                 <v-icon
                   @click.stop="overlay = !overlay"
                   style="cursor:pointer;"
                   light
-                  >{{ leftArrowIcon }}</v-icon
-                >
+                >{{ leftArrowIcon }}</v-icon>
               </v-card>
               <!-- mdi-arrow-left, mdi-reply -->
             </v-toolbar>
@@ -214,7 +182,7 @@ export default {
     leftArrowIcon: mdiArrowLeftThick,
     gpsIcon: mdiCrosshairsGps,
     loginRoutePath: "/login",
-    myPageRoutePath: "/MyPage",
+    myPageRoutePath: "/MyPage"
   }),
   methods: {
     setSelected(value) {
@@ -223,21 +191,15 @@ export default {
     },
     search(keyword) {
       const data = { keyword: keyword, filter: this.selected };
-
-      // console.log(this.$route);
-      console.log("fullpath:", this.$router.currentRoute.path);
-      console.log("data, query:", data, this.$route.query.keyword);
       if (
         this.$router.currentRoute.path == `/search` &&
         this.$route.query.keyword == data.keyword
       ) {
-        console.log("refreash");
         this.$router.go(0);
       } else {
-        console.log("push to search");
         this.$router.push({
           path: "/search",
-          query: { keyword: data.keyword, filter: data.filter },
+          query: { keyword: data.keyword, filter: data.filter }
         });
       }
     },
@@ -266,13 +228,8 @@ export default {
     moveSignUp() {
       this.overlay = false;
       this.$router.push("/signup");
-    },
-  },
-  watch: {
-    checklogin: function() {
-      console.log("LOGIN CHECK:", this.isLogin);
-    },
-  },
+    }
+  }
 };
 </script>
 

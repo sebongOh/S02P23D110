@@ -4,7 +4,7 @@
     <v-layout wrap justify-center>
       <v-flex lg4 sm6 md4 xs12>
         <v-card>
-          <img :src="item.imagelink" alt="" width="340vw" />
+          <img :src="item.imagelink" alt width="340vw" />
         </v-card>
       </v-flex>
       <v-flex lg4 sm6 md4 xs12>
@@ -32,22 +32,20 @@
 </template>
 
 <script>
-// import ContentsApi from "../../apis/ContentsApi";
 import NavBar from "../../components/NavBar";
 import CarImages from "../../components/CarImages";
 export default {
   name: "result",
   components: {
     NavBar,
-    CarImages,
+    CarImages
   },
   mounted() {
-    console.log("carlist:", this.$route.query.carList);
     this.makeList();
   },
   data: () => ({
     item: {},
-    aiItems: [],
+    aiItems: []
   }),
   methods: {
     makeList() {
@@ -59,8 +57,8 @@ export default {
           this.aiItems.push(lst[idx]);
         }
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
