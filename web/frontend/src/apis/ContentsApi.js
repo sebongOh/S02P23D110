@@ -1,6 +1,6 @@
 import axios from "axios";
-const host = "http://127.0.0.1:8080";
-//const host = "http://58.230.252.215:8000";
+// const host = "http://127.0.0.1:8080";
+const host = "http://58.230.252.215:8000";
 // const host = "http://119.56.164.135:8000";
 
 const ContentsApi = {

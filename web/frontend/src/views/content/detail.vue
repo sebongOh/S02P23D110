@@ -13,9 +13,8 @@
         <v-card class="main_subs">
           <v-card-title style="font-size:2.5rem">{{ item.name }}</v-card-title>
           <hr />
-          <br />
-          <v-card-subtitle style="font-size:2rem">제조사: {{ item.company }}</v-card-subtitle>
-          <v-card-text style="font-size:1.5rem">
+          <v-card-subtitle style="font-size:1.5rem">제조사: {{ item.company }}</v-card-subtitle>
+          <v-card-text style="font-size:1.2rem">
             <br />
             <p>분류: {{ item.size }}</p>
             <p>출시가: {{ item.price }}만</p>
@@ -131,25 +130,25 @@ export default {
     display: block;
     margin: 0px auto;
     width: 500px;
-    padding-top: 40px;
+    padding-top: 10px;
   }
   @media (max-width: 768px) {
     .car_img {
       width: 500px;
-      padding-top: 40px;
+      padding-top: 10px;
     }
   }
 
   @media (min-width: 992px) {
     .car_img {
-      padding-top: 70px;
+      padding-top: 10px;
       width: 400px;
     }
   }
 
   @media (min-width: 1200px) {
     .car_img {
-      padding-top: 50px;
+      padding-top: 10px;
       width: 450px;
     }
   }
