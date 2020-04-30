@@ -103,14 +103,13 @@ class usersPostview(APIView):
                 return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors, status=400)
 
-    def put(self, request, pk):
+    def put(self, request, pk, format=None):
         if(request.method == 'PUT'):
             print(pk)
             obj = users.objects.get(pk=pk)
             print(obj)
-            data = JSONParser().parse(request)
-            print(data)
-            serializer = UsersSerializer(obj, data=data)
+
+            serializer = UsersSerializer(obj, data=request.data)
             print(serializer.data)
             if serializer.is_valid():
                 serializer.save()
@@ -131,6 +130,7 @@ def join(request):
     elif request.method == 'POST':
         # POST 통신이면 request로 들어온 JSON형태 데이터 추출
         data = JSONParser().parse(request)
+
         # 추출한 데이터와 우리가 선언한 serializer포맷이랑 비교 후
         serializer = UsersSerializer(data=data)
         # 같은데이터면

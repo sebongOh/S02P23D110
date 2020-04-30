@@ -132,7 +132,7 @@ export default {
       formData.append("password", this.password);
       formData.append("name", this.user.name);
       formData.append("nickname", this.user.nickname);
-      formData.append("image", sessionStorage.getItem("image"));
+      formData.append("image", this.uploadImage);
       if (this.isSubmit == true) {
         UserApi.update(
           formData,
@@ -146,8 +146,7 @@ export default {
         );
       } else {
         Swal.fire({
-          icon: "error",
-          title: "회원가입 양식이 올바르지 않습니다"
+          icon: "error"
         });
         return;
       }
