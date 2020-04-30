@@ -3,7 +3,7 @@
     <v-layout row wrap>
       <v-flex xs12 lg4 class="text-center">
         <v-avatar class="profile" color="grey" size="164" @click="onClickFile">
-          <v-img contain src="user.image" alt="profile"></v-img>
+          <v-img :src="'58.230.252.215:8000'+user.image" alt="profile"></v-img>
         </v-avatar>
       </v-flex>
       <input type="file" class="file-input" accept="image/*" ref="fileInput" @change="onFileChange" />
@@ -122,7 +122,9 @@ export default {
       message: ""
     };
   },
-  mounted() {},
+  mounted() {
+    console.log(this.user.image);
+  },
   methods: {
     updateuser() {
       this.checkForm();
