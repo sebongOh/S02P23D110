@@ -81,12 +81,26 @@ export default {
           let name = res.data.name;
           let nickname = res.data.nickname;
           let image = res.data.image;
+          UserApi.requestLike(
+            id,
+            res => {
+              console.log("내가 좋아요 한 데이터 :: ", res.data);
+              let mylikecar = res.data;
+              console.log("mylikecar ::", mylikecar);
+              sessionStorage.setItem("mylikecars", JSON.stringify(mylikecar));
+              console.log(mylikecar);
+            },
+            error => {
+              console.log(error);
+            }
+          );
           // let likelist = res.data.object.likelist;
           sessionStorage.setItem("id", id);
           sessionStorage.setItem("identify", identify);
           sessionStorage.setItem("name", name);
           sessionStorage.setItem("nickname", nickname);
           sessionStorage.setItem("image", image);
+
           //sessionStorage.setItem("likelist", likelist);
           // this.getNotice();
           // this.$router.push('/main');

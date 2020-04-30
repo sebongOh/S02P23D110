@@ -42,33 +42,16 @@
 </template>
 
 <script>
-import UserApi from "../apis/UserApi";
 export default {
   name: "MyLike",
   data() {
     return {
-      mylikecars: [
-        {
-          id: "",
-          imagelink: "",
-          name: "",
-          price: "",
-          company: "",
-          fuel_eff: "",
-          size: "",
-          engine: ""
-        }
-      ]
+      mylikecars: [{}]
     };
   },
   mounted() {
-    UserApi.requestLike(sessionStorage.getItem("id"), res => {
-      this.mylikecars = res.data;
-      console.log(this.mylikecars);
-    }),
-      error => {
-        console.log(error);
-      };
+    this.mylikecars = JSON.parse(sessionStorage.getItem("mylikecars"));
+    console.log(this.mylikecars);
   },
   methods: {}
 };

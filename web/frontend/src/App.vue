@@ -16,13 +16,28 @@
               <v-card-text>
                 <v-layout row class="justify-center">
                   <v-flex xs6>
-                    <v-select :value="$store.myValue" @input="setSelected" :items="selected_items" label="select type" color="black"></v-select>
+                    <v-select
+                      :value="$store.myValue"
+                      @input="setSelected"
+                      :items="selected_items"
+                      label="select type"
+                      color="black"
+                    ></v-select>
                   </v-flex>
                   <v-flex xs12>
-                    <v-text-field flat solo-inverted hide-details label="키워드를 입력해 주세요." v-model="keyword" @keyup.enter="search(keyword), (search_overlay = !search_overlay)"></v-text-field>
+                    <v-text-field
+                      flat
+                      solo-inverted
+                      hide-details
+                      label="키워드를 입력해 주세요."
+                      v-model="keyword"
+                      @keyup.enter="search(keyword), (search_overlay = !search_overlay)"
+                    ></v-text-field>
                   </v-flex>
                   <v-flex xs12 class="pl-3 pt-6">
-                    <v-btn @click="search(keyword), (search_overlay = !search_overlay)" text large> <v-icon>mdi-magnify</v-icon>Search right now! </v-btn>
+                    <v-btn @click="search(keyword), (search_overlay = !search_overlay)" text large>
+                      <v-icon>mdi-magnify</v-icon>Search right now!
+                    </v-btn>
                   </v-flex>
                 </v-layout>
               </v-card-text>
@@ -35,7 +50,13 @@
         <v-card-actions>
           <v-row class="mt-3 mx-0">
             <v-col cols="3" class="pt-6 px-0">
-              <v-select :value="$store.myValue" @input="setSelected" :items="selected_items" label="select" color="black"></v-select>
+              <v-select
+                :value="$store.myValue"
+                @input="setSelected"
+                :items="selected_items"
+                label="select"
+                color="black"
+              ></v-select>
             </v-col>
             <!-- <v-col cols="1">
               <select v-model="selected" class="filter">
@@ -44,7 +65,14 @@
               </select>
             </v-col>-->
             <v-col cols="6" class="px-0">
-              <v-text-field flat solo-inverted hide-details label="Search" v-model="keyword" @keyup.enter="search(keyword)"></v-text-field>
+              <v-text-field
+                flat
+                solo-inverted
+                hide-details
+                label="Search"
+                v-model="keyword"
+                @keyup.enter="search(keyword)"
+              ></v-text-field>
             </v-col>
             <v-col cols="2" class="px-0">
               <v-btn @click="search(keyword)" text large>
@@ -68,7 +96,11 @@
           <v-flex>
             <v-toolbar width="100%" absolute dense color="transparent" style="position:fixed;">
               <v-card color="white" light elevation="0">
-                <v-icon @click.stop="overlay = !overlay" style="cursor:pointer;" light>{{ leftArrowIcon }}</v-icon>
+                <v-icon
+                  @click.stop="overlay = !overlay"
+                  style="cursor:pointer;"
+                  light
+                >{{ leftArrowIcon }}</v-icon>
               </v-card>
               <!-- mdi-arrow-left, mdi-reply -->
             </v-toolbar>
@@ -178,11 +210,11 @@ import { mdiArrowLeftThick, mdiCrosshairsGps } from "@mdi/js";
 export default {
   name: "App",
   props: {
-    source: String,
+    source: String
   },
 
   components: {
-    BottomNav,
+    BottomNav
   },
 
   data: () => ({
@@ -197,7 +229,7 @@ export default {
     leftArrowIcon: mdiArrowLeftThick,
     gpsIcon: mdiCrosshairsGps,
     loginRoutePath: "/login",
-    myPageRoutePath: "/MyPage",
+    myPageRoutePath: "/MyPage"
   }),
   methods: {
     setSelected(value) {
@@ -210,14 +242,21 @@ export default {
       // console.log(this.$route);
       console.log("fullpath:", this.$router.currentRoute.path);
       console.log("data, query:", data, this.$route.query.keyword);
-      if (this.$router.currentRoute.path == `/search` && this.$route.query.keyword == data.keyword) {
+      if (
+        this.$router.currentRoute.path == `/search` &&
+        this.$route.query.keyword == data.keyword
+      ) {
         console.log("refreash");
         this.$router.go(0);
       } else {
         console.log("push to search");
         this.$router.push({
           path: "/search",
+<<<<<<< HEAD
+          query: { keyword: data.keyword, filter: data.filter }
+=======
           query: { keyword: data.keyword, filter: data.filter },
+>>>>>>> develop
         });
       }
     },
@@ -236,8 +275,8 @@ export default {
     moveMyPage() {
       this.overlay = false;
       this.$router.push(this.myPageRoutePath);
-    },
-  },
+    }
+  }
   // watch: {
   //   keyword: function() {
   //     console.log(this.keyword);
@@ -275,7 +314,11 @@ export default {
   content: "";
   width: 80%;
   height: 80%;
-  background-image: linear-gradient(to top, rgb(18, 192, 149) 15%, rgba(0, 0, 0, 0) 30%);
+  background-image: linear-gradient(
+    to top,
+    rgb(18, 192, 149) 15%,
+    rgba(0, 0, 0, 0) 30%
+  );
   position: absolute;
   left: 0;
   bottom: 10px;
