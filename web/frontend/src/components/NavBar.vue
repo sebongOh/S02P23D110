@@ -2,27 +2,69 @@
   <div>
     <v-app-bar app fluid>
       <v-app-bar-nav-icon @click.stop="overlay = !overlay" />
-      <v-toolbar-title @click="homeBtn">AutoSearch</v-toolbar-title>
+
+      <v-toolbar-title @click="homeBtn" style="cursor:pointer;" id="title"
+        >AutoSearch
+      </v-toolbar-title>
+
       <v-spacer />
-      <v-card elevation="0" color="transparent" class="d-flex d-sm-none">
+      <!-- 모바일 버전 -->
+      <v-card
+        elevation="0"
+        color="transparent"
+        class="d-flex d-sm-none"
+        width="1px"
+      >
         <v-card-actions>
+          <v-spacer />
           <v-btn text large @click="search_overlay = !search_overlay">
             <v-icon>mdi-magnify</v-icon>
           </v-btn>
+
           <v-dialog v-model="search_overlay" width="500" height="50%">
             <v-card>
-              <v-card-title class="headline grey lighten-2" primary-title>Search</v-card-title>
+              <v-card-title class="headline grey lighten-2" primary-title
+                >Search</v-card-title
+              >
               <v-divider></v-divider>
               <v-card-text>
                 <v-layout row class="justify-center">
                   <v-flex xs6>
-                    <v-select :value="$store.myValue" @input="setSelected" :items="selected_items" label="select type" color="black"></v-select>
+                    <v-select
+                      :value="$store.myValue"
+                      @input="setSelected"
+                      :items="selected_items"
+                      label="select type"
+                      color="black"
+                    ></v-select>
                   </v-flex>
                   <v-flex xs12>
-                    <v-text-field flat solo-inverted hide-details label="키워드를 입력해 주세요." v-model="keyword" @keyup.enter="search(keyword), (search_overlay = !search_overlay)"></v-text-field>
+                    <v-text-field
+                      flat
+                      solo-inverted
+                      hide-details
+                      label="키워드를 입력해 주세요."
+                      v-model="keyword"
+                      @keyup.enter="
+                        search(keyword), (search_overlay = !search_overlay)
+                      "
+                    ></v-text-field>
                   </v-flex>
-                  <v-flex xs12 class="pl-3 pt-6">
-                    <v-btn @click="search(keyword), (search_overlay = !search_overlay)" text large> <v-icon>mdi-magnify</v-icon>Search right now! </v-btn>
+                  <v-flex
+                    row
+                    wrap
+                    xs6
+                    class="pl-3 pt-6 justify-center text-center"
+                  >
+                    <v-btn
+                      @click="
+                        search(keyword), (search_overlay = !search_overlay)
+                      "
+                      text
+                      large
+                    >
+                      <v-icon>mdi-magnify</v-icon>Search right now!
+                    </v-btn>
                   </v-flex>
                 </v-layout>
               </v-card-text>
@@ -31,11 +73,22 @@
         </v-card-actions>
       </v-card>
       <!-- 검색 바(md 이상) -->
-      <v-card elevation="0" color="transparent" class="hidden-xs-only">
+      <v-card
+        elevation="0"
+        color="transparent"
+        class="hidden-xs-only"
+        width="50vw"
+      >
         <v-card-actions>
           <v-row class="mt-3 mx-0">
-            <v-col cols="3" class="pt-6 px-0">
-              <v-select :value="$store.myValue" @input="setSelected" :items="selected_items" label="select" color="black"></v-select>
+            <v-col cols="2" class="pt-6 px-0">
+              <v-select
+                :value="$store.myValue"
+                @input="setSelected"
+                :items="selected_items"
+                label="select"
+                color="black"
+              ></v-select>
             </v-col>
             <!-- <v-col cols="1">
               <select v-model="selected" class="filter">
@@ -44,7 +97,14 @@
               </select>
             </v-col>-->
             <v-col cols="6" class="px-0">
-              <v-text-field flat solo-inverted hide-details label="Search" v-model="keyword" @keyup.enter="search(keyword)"></v-text-field>
+              <v-text-field
+                flat
+                solo-inverted
+                hide-details
+                label="Search"
+                v-model="keyword"
+                @keyup.enter="search(keyword)"
+              ></v-text-field>
             </v-col>
             <v-col cols="2" class="px-0">
               <v-btn @click="search(keyword)" text large>
@@ -61,9 +121,20 @@
       <v-navigation-drawer absolute color="transparent" style="position:fixed;">
         <v-layout>
           <v-flex>
-            <v-toolbar width="100%" absolute dense color="transparent" style="position:fixed;">
+            <v-toolbar
+              width="100%"
+              absolute
+              dense
+              color="transparent"
+              style="position:fixed;"
+            >
               <v-card color="white" light elevation="0">
-                <v-icon @click.stop="overlay = !overlay" style="cursor:pointer;" light>{{ leftArrowIcon }}</v-icon>
+                <v-icon
+                  @click.stop="overlay = !overlay"
+                  style="cursor:pointer;"
+                  light
+                  >{{ leftArrowIcon }}</v-icon
+                >
               </v-card>
               <!-- mdi-arrow-left, mdi-reply -->
             </v-toolbar>
@@ -156,7 +227,10 @@ export default {
       // console.log(this.$route);
       console.log("fullpath:", this.$router.currentRoute.path);
       console.log("data, query:", data, this.$route.query.keyword);
-      if (this.$router.currentRoute.path == `/search` && this.$route.query.keyword == data.keyword) {
+      if (
+        this.$router.currentRoute.path == `/search` &&
+        this.$route.query.keyword == data.keyword
+      ) {
         console.log("refreash");
         this.$router.go(0);
       } else {
@@ -202,4 +276,32 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Jua|Nanum+Gothic|Sunflower:300");
+#title {
+  font-family: sans-serif;
+}
+#effect::before {
+  width: 0;
+  transition: width 0.1s ease-out;
+}
+
+#effect:hover:before {
+  content: "";
+  width: 80%;
+  height: 30%;
+  background-image: linear-gradient(
+    to top,
+    rgb(18, 192, 149) 30%,
+    rgba(0, 0, 0, 0) 50%
+  );
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  z-index: -1;
+  will-change: width;
+  transform: rotate(-2deg);
+  transform-origin: left bottom;
+  transition-duration: 0.15s;
+}
+</style>
