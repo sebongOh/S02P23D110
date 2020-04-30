@@ -96,20 +96,25 @@ export default {
               console.log("AI request response");
               console.log(res.data);
               this.aiItems = res.data;
+              this.ImageOn = false
             },
             (error) => {
               console.log(error);
+              this.ImageOn = false
+
             }
           );
           
         },
         (error) => {
           console.log(error);
+              this.ImageOn = false
+
         }
       );
-      
-      this.ImageOn = false;
       console.log("--get detail end--");
+      this.ImageOn = false
+
     },
   },
   mounted() {},
