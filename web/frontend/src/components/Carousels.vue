@@ -1,5 +1,8 @@
 <template>
   <v-carousel cycle height="20%" hide-delimiter-background show-arrows-on-hove class="text-center align-center">
+  <LoadingBar
+  v-if="ImageOn"
+  />
     <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src">
       <v-row class="fill-height" align="center" justify="center">
         <v-row class="fill-height pa-3" align="center">
@@ -39,7 +42,12 @@
 
 <script>
 import ContentsApi from "../apis/ContentsApi";
+import LoadingBar from "./LoadingBar";
+
 export default {
+  components:{
+    LoadingBar,
+  },
   data() {
     return {
       uploadImage: "",
@@ -47,6 +55,7 @@ export default {
       imageSrc: "",
       dialog: false,
       result: {},
+      ImageOn: false,
       items: [
         {
           src: "https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
@@ -69,6 +78,7 @@ export default {
       this.uploadImage = "";
       this.filename = "";
       this.imageSrc = "";
+      
     },
     onDrop(event) {
       this.inputImageFile(event.dataTransfer.files);
@@ -97,7 +107,7 @@ export default {
     },
     onClickUpload() {
       this.preview(this.filename);
-
+      this.ImageOn = !this.ImageOn;
       const formData = new FormData();
       formData.append("file", this.uploadImage);
       console.log("imageSrc", this.imageSrc);
