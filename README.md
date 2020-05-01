@@ -1,4 +1,6 @@
-# 이미지 캡셔닝 기능 구현
+# AutoSearch
+
+자동차 검색 사이트
 
 <table>
    <tr>
@@ -35,467 +37,131 @@
    </tr>
 </table>
 
-## 🤲 OverView<br> 
+## 1. Frontend - Vue.js
 
-## ✨ Prequuisited<br>
+### 1-1. 개발환경 구성
 
+Node.js 설치
 
+https://nodejs.org/ko/download/
 
+Vue.js 설치
 
+https://kr.vuejs.org/v2/guide/installation.html
 
-### develop machine Spec
 
->- Gitlab - SSAFY gitlab 사용합니다. 문제 발생시 [gitLab docs](https://lab.ssafy.com/help)를 활용합니다.
->- Vue.js - VS Code 설치 및 [Vue.js 공식 웹사이트](https://kr.vuejs.org/index.html) 및 [StackOverflow](https://stackoverflow.com/)를 통해 시작합니다
->- Jira - [SSAFY jira](https://jira.ssafy.com/secure/Dashboard.jspa)를 사용합니다. jira를 통해 issue 및 WorkFlow 등 전반적인 스프린트를 관리합니다.
->- MySQL
->- django
 
+### 1-2 컴포넌트 설치
 
-
-
-
-## 🥨Commit/Branch Rules
-
-### Commit
-
- #### Commit Message 7 Rules
-
-> 1. 제목과 본문을 한 줄 띄워 분리하기
-> 2. 제목은 영문 기준 50자 이내로
-> 3. 제목 첫글자를 대문자로
-> 4. 제목 끝에 . 금지
-> 5. 제목은 명령조로
-> 6. 본문은 영문 기준 72자마다 줄 바꾸기
-> 7. 본문은 어떻게보다 무엇을, 왜에 맞춰 작성하기
-
- #### 단어 목록
-
-> ##### 기본적으로 [타입] "무엇을" + "왜" 형식으로 관리
->
-> 1. 수정 :: fix
->
-> ```
-> //비정상적 동작일 때, 
-> //버그 잡을 때,
-> [Fix] "무엇을" + ("왜")
-> ```
-
-> 2. 수정 :: update
->
-> ```
-> //정상적으로 동작할 때, 수정,추가,보완할 때
-> [Update] "무엇을" + ("왜")
-> ```
-
-> 3. 추가 :: add
->
-> ```
-> [Add] "무엇을" + ("왜")
-> ```
-
-> 4. 삭제 :: remove
->
-> ```
-> [Remove] "무엇을" + ("왜")
-> ```
-
-> 5. 전면 수정 :: refactor
->
-> ```
-> [Refactor] "무엇을" + ("왜")
-> ```
-
-### Branch Naming (브랜치 명명 규칙)
-
-> ##### > Gitlab에는 master와 develop 브랜치, 그리고 master 브랜치의 TAG만 관리한다.
-
-> #### 개발자 PC
->
-> 개발자는 PC에 release, hotfix, feature, issue 브랜치를 생성하여 작업을 진행한다.
-> 작업이 완료된 브랜치는 병합후 삭제 가능하며, Gitlab에 반영하지 않는다.
-
-> #### release 브랜치
->
-> - develop 브랜치로부터 생성하는 브랜치이다.
-> - 명명 규칙 : release/버젼넘버
->   ex) `release/2.0.0`
-> - 브랜치 생성 후에는 버그 픽스만 반영한다.
-> - 최종 확정 후에는 develop, master 브랜치에 병합한다.
-
-> #### feature 브랜치
->
-> - develop 브랜치로부터 생성하는 브랜치이다.
-> - 명명 규칙 : 년월일_feature_짧은설명
->   ex) `200207_feature_BoardTransition`
-> - 완료 후 develop 브랜치에 병합한다.
-
-
-
-## 🎲 파일/디렉터리 구조
-
-- checkpoints/
-
-  > 학습된 모델들이 저장되는 폴더
-
-- data/
-
-  > 데이터 처리 함수들이 위치한 폴더
-
-- datasets/
-
-  > 실제 데이터가 위치한 경로
-
-- models/
-
-  > 이미지 캡셔닝 모델이 위치한 경로
-
-- utils/
-
-  > 데이터 시각화, 학습 및 테스트에 필요한 유틸리티 함수들이 위치한 경로
-
-- config.py
-
-  > 설정 변수들이 저장된 파일
-
-- linear_regression.py
-
-  > 선형 회귀 모델의 학습 및 시각화 예시코드가 있는 파일
-
-- predict.py
-
-  > 학습된 모델을 사용해 새로운 데이터에 대해 결과값을 예측하는 파일
-
-- train.py
-
-  > 캡셔닝 모델 학습 파일
-
-## 🤦 SetUp
-
-### 아나콘다 설치
-
-- [아나콘다 다운로드 링크](https//www.anaconda.com/distribution/) 접속후 version 3.7 다운로드
-
-- 아나콘다 가상 환경 생성 및 활성화
-
-  ```bash
-  conda create -n AI python = 3.7
-  conda activate AI
-  ```
-
-- Tensorflow 및 필요 라이브러리 설치
-
-  ```bash
-  conda install git matplotlib scikit-learn tqdm scipy numpy tesorflow-gpu=2.0.0
-  ```
-
-- 샘플 실행 확인
-
-  ```bash
-  <!--프로젝트 최상단 디렉토리에서 할 것.-->
-  python linear_regression.py
-  ```
-  
-
-## Req. 1 이미지 데이터 전처리
-
-### Req. 1-1 이미지 파일 로드
-
-preprocess.py의 get_path_caption함수로 
-
-train_dataset.csv, test_dataset.csv에서 데이터정보를 받아온 뒤,
-
-img_preprocess.py의 img_pre함수로 각 이미지 경로를 불러온다.
-
-### Req. 1-2 이미지 정규화
-
-img_preprocess.py의 img_pre함수에서 이미지경로와 캡션을 각각 묶어서 저장한다.
-
-train_test_split으로 학습할 데이터, 테스트할 데이터를 나눈다
-
-```python
-img_name_train, img_name_val, cap_train, cap_val = train_test_split(
-    img_name_vector, cap_vector, test_size=0.2, random_state=0)
+```
+npm install
 ```
 
 
 
-## Req. 2 텍스트 데이터 전처리
+### 1-3 서버 실행
 
-### Req. 2-1 텍스트 데이터 토큰화
+```
+npm run serve
+```
 
-my_token,py의 tokenization함수에서 캡션에 대한 데이터를 숫자데이터로 토큰화한뒤 리턴한다.
+## 2. Backend - Anaconda
 
-### Req. 2-2 Tokenizer 저장 및 불러오기
+### 2-1 개발환경 구성
 
-my_token,py의 Save_Tokenizer에서 토큰 저장을, Load_Tokenizer에서 토큰을 불러온다
+아나콘다 설치
 
+https://www.anaconda.com/download/
 
+### 2-2 가상환경 구성
 
-## Req. 3 Dataset 생성 함수 구현
+```
+conda create -n AI
+```
 
-### Req. 3-1 tf.data.Dataset 생성
+### 2-3 가상환경 실행
 
-pre_trained_model.py의 Pre_trained_img함수에서 받아온 이미지 경로를 통하여 tf.data.Dataset을 생성한다.
-
-```python
-encode_train = sorted(set(img_name_vector))
-    image_dataset = tf.data.Dataset.from_tensor_slices(encode_train)
-    image_dataset = image_dataset.map(
-                            load_image, num_parallel_calls=tf.data.experimental.AUTOTUNE).batch(16)
-    image_model = tf.keras.applications.InceptionV3(include_top=False,
-                                                    weights='imagenet')
+```
+conda activate AI
 ```
 
 
 
-### Req. 3-2 Image Data Augmentation
+## 3. Backend - Django
 
-img_preprocess.py의 img_pre에서 각 이미지를 변형한다
+### 3-1 개발환경 구성
 
-```python
-    datagen = image.ImageDataGenerator(
-        rotation_range=5,
-        width_shift_range=0.1,
-        height_shift_range=0.1,
-        rescale=1./255,
-        shear_range=0.2,
-        zoom_range=0.12,
-        horizontal_flip=True,
-        fill_mode='nearest')
-```
+https://tutorial.djangogirls.org/ko/django_installation/
 
+### 3-2 필요 pip 설치
 
-
-## Req. 4 이미지 모델 구현
-
-### Req. 4-1 Pre-trained 모델로 특성 추출
-
-pre-trained 모델 : Inception, VGG, MobileNet, NASNet 등
-
-InceptionV3모델을 사용
-
-Augumentation : 같은 사진을 쓰더라도 기울이거나 자르거나 뒤집어서 학습할 자료를 추가로 생성
-
-ImageDataGenerator 를 사용해서 한 이미지당 여러가지의 자료를 생성한다. 
-
-```python
-from tensorflow.keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
-
-datagen = ImageDataGenerator(
-        rotation_range=40,
-        width_shift_range=0.2,
-        height_shift_range=0.2,
-        rescale=1./255,
-        shear_range=0.2,
-        zoom_range=0.2,
-        horizontal_flip=True,
-        fill_mode='nearest')
-
-image = load_img('bird_resize.jpg', target_size=(220,200))
-image = img_to_array(image)
-image = image.reshape((1,) + image.shape)
-i = 0
-for batch in datagen.flow(image, batch_size=1,
-                          save_to_dir='preview', save_prefix='bird', save_format='jpeg'):
-    i += 1
-    if i > 30:
-        break  # 이미지 30개 생성
-```
-
-각 변수 참고자료 : https://keras.io/preprocessing/image/
-
-### Red. 4-2 Feature Encoder 구현
-
-이미지 크기를
-
-220x200x3 - 220x200x64 - 110x100x128 - 55x50x256 - 27x25x512 - 13x12x512 순서로 Encoding
-
-glob : 폴더 내의 특정 파일명만 모아줌
-
-
-
-
-
-## Req. 5 텍스트 모델 구현
-
-### Req. 5-1 임베딩 레이어 구현
-
-토큰화된 벡터를 지정한 공간에 투영
+아나콘다 가상환경이 실행된 상태에서 ./web/backend/ 에서
 
 ```
-        self.embedding = tf.keras.layers.Embedding(vocab_size, embedding_dim)
-
+pip install -r requirement.txt
 ```
 
+필요 패키지들이 설치된다.
 
 
-### Req. 5-2 RNN 모델 구현
 
-임베인 된 벡터를 입력으로 받는 RNN 모델을 구현
+## 4. 자동차 학습파일 생성
 
-```
-        self.gru = tf.keras.layers.GRU(self.units,
-                                       return_sequences=True,
-                                       return_state=True,
-                                       recurrent_initializer='glorot_uniform')
-```
 
 
+### 4-1 네이버 자동차 정보 크롤링
 
-### Req. 5-3 역임베딩 레이어 구현
+./AI/car_training/crawl.py에서 자동차 정보를 json파일로 저장한다.
 
-결과값을 토큰화 된 정답 데이터와 비교 가능하게 차원을 변형
+네이버 자동차의 각페이지에 있는 정보를 저장
 
-```
-        self.fc1 = tf.keras.layers.Dense(self.units)
-        self.fc2 = tf.keras.layers.Dense(vocab_size)
-```
 
 
+### 4-2 구글 이미지 크롤링
 
-## Req. 6 train.py 구현
+./AI/car_training/create_imate.py 이전에 얻은 자동차 정보들을 이용하여 각각여 자동차에 대한 이미지를 ./models_origin에 저장한다.
 
-### Req. 6-1 손실 함수 구현
-예측값과 정답값을 입력으로 받아 손실을 계산하는 함수를 구현
 
-```
-        features = encoder(img_tensor)
 
-        for i in range(1, target.shape[1]):
-            predictions, hidden, _ = decoder(dec_input, features, hidden)
+### 4-3 이미지 Augumentation
 
-            loss += loss_function(target[:, i], predictions)
+./AI/car_training/spread_image.py에서 각각의 폴더에 저장된이미지를 여러방법으로 바꾸어서 ./models 에 저장한다.
 
-            dec_input = tf.expand_dims(target[:, i], 1)
-```
 
-### Req. 6-2 1-batch train step 구현
-배치 데이터를 입력받아 손실을 계산하고 모델을 학습하는 함수 구현
 
-```
-    with tf.GradientTape() as tape:
-total_loss = (loss / int(target.shape[1]))
+### 4-4. 자동차 모델 학습
 
-    trainable_variables = encoder.trainable_variables + decoder.trainable_variables
+./AI/car_training/Learning_cars.py 에서 이미지들을이용하여 학습을 시작한다.
 
-    gradients = tape.gradient(loss, trainable_variables)
-```
+학습 모델은 Inception V3를 사용했다.
 
 
 
-### Req. 6-3 train.py 완성
-여기까지 구현된 전처리, 모델, 최적화함수및 손실함수를 이용하여 모델을 학습시키는 과정 구현
+### 4-5 자동차 모델 추정
 
-```
-BATCH_SIZE = 2048
+Django의 views.py에서 모델 추정이 필요할때 해당 경로의 guess.py를 불러와서 결과를 받아온다.
 
-EPOCHS = 30
-num_steps = len(img_name_train) // BATCH_SIZE
+## 5. 서비스 페이지
 
-for epoch in range(start_epoch, EPOCHS):
-    start = time.time()
-    total_loss = 0
+### 5-1. 메인 페이지
 
-    for (batch, (img_tensor, target)) in enumerate(dataset):
-        batch_loss, t_loss = pre_trained_model.train_step(img_tensor, target, encoder, decoder, tokenizer, optimizer)
-        total_loss += t_loss
 
-        if batch % 100 == 0:
-            print ('Epoch {} Batch {} Loss {:.4f}'.format(
-                epoch + 1, batch, batch_loss.numpy() / int(target.shape[1])))
-    # storing the epoch end loss value to plot later
-    loss_plot.append(total_loss / num_steps)
 
-    if epoch % 5 == 0:
-        ckpt_manager.save()
 
-    print ('Epoch {} Loss {:.6f}'.format(epoch + 1,
-                                         total_loss/num_steps))
-    print ('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
 
+### 5-2. 예측 결과 페이지
 
-```
 
 
 
 
+### 5-3. 상세정보 페이지
 
-## Req. 7 predict.py 구현
 
 
+### 5-4. 회사별 정보 페이지
 
-### Req. 7-1 캡션 생성 함수 구현
-캡션 문장을 생성하는 함수를 구현
 
-```
-rid = np.random.randint(0, len(img_name_val))
-image = img_name_val[rid]
-real_caption = ' '.join([tokenizer.index_word[i] for i in cap_val[rid] if i not in [0]])
-result, attention_plot = pre_trained_model.evaluate(image, max_length, attention_features_shape, encoder, decoder, pre_trained_model, image_features_extract_model, tokenizer)
 
-print ('Real Caption:', real_caption)
-print ('Prediction Caption:', ' '.join(result))
-pre_trained_model.plot_attention(image, result, attention_plot)
-
-```
-
-
-
-### Req. 7-2 predict.py 구현
-
-랜덤한 이미지를 넣어서 실제값과 예측값을 비교하는 과정 구현
-
-```
-def plot_attention(image, result, attention_plot):
-    temp_image = np.array(Image.open(image))
-
-    fig = plt.figure(figsize=(10, 10))
-
-    len_result = len(result)
-    for l in range(len_result):
-        temp_att = np.resize(attention_plot[l], (8, 8))
-        ax = fig.add_subplot(len_result//2, len_result//2, l+1)
-        ax.set_title(result[l])
-        img = ax.imshow(temp_image)
-        ax.imshow(temp_att, cmap='gray', alpha=0.6, extent=img.get_extent())
-
-    plt.tight_layout()
-    plt.show()
-```
-
-
-
-## Req. 8 체크포인트 매니저
-
-
-
-### Req. 8-1 체크포인트 생성 및 저장 함수 구현
-CheckpointManager를 이용하여 모델의 변수들을 저장
-
-```
-checkpoint_path = "./checkpoints/train"
-ckpt = tf.train.Checkpoint(encoder=encoder,
-                           decoder=decoder,
-                           optimizer = optimizer)
-ckpt_manager = tf.train.CheckpointManager(ckpt, checkpoint_path, max_to_keep=5)
-
-start_epoch = 0
-```
-
-
-
-### Req. 8-2 체크포인트 로더 구현
-checkpoints/train에 저장된 체크포인트 파일을 불러올 로더를 구현
-
-```
-if ckpt_manager.latest_checkpoint:
-    start_epoch = int(ckpt_manager.latest_checkpoint.split('-')[-1])
-    # restoring the latest checkpoint in checkpoint_path
-    ckpt.restore(ckpt_manager.latest_checkpoint)
-
-```
-
-
-
+### 5-3. 검색 페이지
 
